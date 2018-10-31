@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Register Account</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./css/style.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div id="brand">
+                <h1><span class="highlight">Regis</span>tration</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section>
+        <div class="container">
+            <form action="action_page.php" style="border:1px solid #ccc">
+                <div class="register">
+                    <h1>Register to Send-IT</h1>
+                    <p>Kindly fill in your personal details</p>
+                    <hr>
+                      
+                    <label for="email"><b>Username</b></label>
+                    <input type="text" placeholder="Provide Username" name="email" required>
+                      
+                    <label for="psw"><b>Password</b></label>
+                    <input type="password" placeholder="Provide a Password" name="psw" required>
+                      
+                    <label for="psw-repeat"><b>Confirm Password</b></label>
+                    <input type="password" placeholder="Confirm Password" name="psw-repeat" required>
+                      
+                    <label>
+                    <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
+                    </label>
+                      
+                    <p>Already have an account? <a href="login.html">login here</a>.</p>
+                      
+                    <div class="clearfix">
+                    <button type="button" class="cancelbtn">Cancel</button>
+                    <button type="submit" class="signupbtn">Sign Up</button>
+                    </div>
+                </div>
+            </form>   
+           
+        </div>
+    </section>
+
+   
+
+    <footer>
+        <p>Send-IT, Copyright &copy; 2018</p>
+    </footer>
+    
+</body>
+</html>
