@@ -17,6 +17,14 @@ ul{
     padding: 0;
 }
 
+.navy{
+    padding: 15px;
+    background: #0B5068;
+    color: #cccccc;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 /* header */
 header{
     background: #0B5068;
@@ -87,6 +95,23 @@ header a:hover{
     width: 90px;
 }
 
+/* Main pillar styling */
+#about{
+    margin-top: 300px;
+    margin-bottom: 200px;
+}
+article#about-col{
+    float: right;
+    width: 65%;
+} 
+
+/*  sidebar style  */
+aside#leftbar{
+    float: left;
+    width: 30%;
+    margin-top: 10px;
+}
+
 /* footer */
 footer{
     padding: 20px;
@@ -94,4 +119,43 @@ footer{
     color: #ffffff;
     background-color: #0B5068;
     text-align: center;
+}
+
+/* social media icons*/
+/*
+.fab {
+    padding: 15px;
+    font-size: 25px;
+}
+.fab:hover {
+    color: #D5D5D5;
+    text-decoration: none;
+}
+.fa-facebook {
+    background: #3B5998;
+    color: white;
+}
+.fa-twitter-square {
+    background: #55ACEE;
+    color: white;
+}
+.fa-google-plus-square {
+    background: #dd4b39;
+    color: white;
+}
+.fa-linkedin {
+    background: #007bb5;
+    color: white;
+}
+.fa-instagram {
+    background: #d6249f;
+    color: #ffffff;  
+}
+*/
+
+@media (max-width: 768px) {
+    .fab {
+        font-size: 20px;
+        padding: 10px;
+    }
 }
