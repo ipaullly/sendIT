@@ -16,6 +16,14 @@ ul{
     margin: 0;
     padding: 0;
 }
+.button_1{
+    height: 38px;
+    border: 0;
+    background: #021E27;
+    padding-left: 20px;
+    padding-right: 20px; 
+    color: #cccccc;
+}
 
 /* header */
 header{
@@ -85,6 +93,19 @@ header a:hover{
 }
 #boxes .box img{
     width: 90px;
+}
+aside#leftbar .create input{
+    width: 90%;
+    margin-top: 10px;
+}
+
+/* orders style */
+ul#orders li{
+    list-style: none;
+    padding: 20px;
+    border: #cccccc solid 1px;
+    margin-bottom: 5px;
+    background: #D8F6FF;
 }
 
 /* footer */
