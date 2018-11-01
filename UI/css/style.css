@@ -63,35 +63,35 @@ header a:hover{
     font-weight: bold;
 }
 
-/* showcase */
+/* display */
 
-#showcase{
+#display{
     min-height: 400px;
     background: url('../img/showcase.jpg') no-repeat 0 -400px;
     text-align: center;
   
 }
-#showcase h1{
+#display h1{
     margin-top: 130px;
     font-size: 55px;
     margin-bottom: 10px;
 
 }
-#showcase p{
+#display p{
     font-size: 20px;
 }
-/* boxes */
-#boxes{
+/* squares */
+#squares{
     margin-top: 20px;
 }
 
-#boxes .box{
+#squares .box{
     float: left;
     text-align: center;
     width: 30%;
     padding: 10px;
 }
-#boxes .box img{
+#squares .box img{
     width: 90px;
 }
 
