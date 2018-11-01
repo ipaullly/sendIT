@@ -55,35 +55,35 @@ header a:hover{
     font-weight: bold;
 }
 
-/* showcase */
+/* display */
 
-#showcase{
+#display{
     min-height: 400px;
     background: url('../img/showcase.jpg') no-repeat 0 -400px;
     text-align: center;
   
 }
-#showcase h1{
+#display h1{
     margin-top: 130px;
     font-size: 55px;
     margin-bottom: 10px;
 
 }
-#showcase p{
+#display p{
     font-size: 20px;
 }
-/* boxes */
-#boxes{
+/* squares */
+#squares{
     margin-top: 20px;
 }
 
-#boxes .box{
+#squares .box{
     float: left;
     text-align: center;
     width: 30%;
     padding: 10px;
 }
-#boxes .box img{
+#squares .box img{
     width: 90px;
 }
 
@@ -96,81 +96,9 @@ footer{
     text-align: center;
 }
 
-/**** login-page ****/
-/* Bordered form */
-form {
-    border: 3px solid #f1f1f1;
-}
-
-/* Full-width inputs */
-input[type=text], input[type=password] {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-}
-
-/* Set a style for all buttons */
-button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-}
-
-/* Add a hover effect for buttons */
-button:hover {
-    opacity: 0.8;
-}
-
-/* Extra style for the cancel button (red) */
-.cancelbtn {
-    width: auto;
-    padding: 10px 18px;
-    background-color: #f44336;
-}
-
-/* Center the avatar image inside this container */
-.imgcontainer {
-    text-align: center;
-    margin: 24px 0 12px 0;
-}
-
-/* Avatar image */
-img.avatar {
-    width: 40%;
-    border-radius: 50%;
-}
-
-/* Add padding to containers */
-.container {
-    padding: 16px;
-}
-
-/* The "Forgot password" text */
-span.psw {
-    float: right;
-    padding-top: 16px;
-}
-
-/* Change styles for span and cancel button on extra small screens */
-@media screen and (max-width: 300px) {
-    span.psw {
-        display: block;
-        float: none;
-    }
-    .cancelbtn {
-        width: 100%;
-    }
-}
-
 /***** Registration page styles ******/
-/* Full-width input fields */
+
+/* form input fields */
 input[type=text], input[type=password] {
     width: 100%;
     padding: 15px;
@@ -190,8 +118,8 @@ input[type=text], input[type=password] {
     margin-bottom: 25px;
   }
   
-  /* Set a style for all buttons */
-  button {
+  /* style buttons */
+  .delbtn, .regbtn {
     background-color: #4CAF50;
     color: white;
     padding: 14px 20px;
@@ -206,20 +134,20 @@ input[type=text], input[type=password] {
     opacity:1;
   }
   
-  /* Extra styles for the cancel button */
-  .cancelbtn {
+  /* more style for cancel button */
+  .delbtn {
     padding: 14px 20px;
     background-color: #f44336;
   }
   
-  /* Float cancel and signup buttons and add an equal width */
-  .cancelbtn, .signupbtn {
+  /* Float cancel and register account buttons*/
+  .delbtn, .regbtn {
     float: left;
     width: 50%;
   }
   
   /* Add padding to container elements */
-  .register {
+  .regisdiv {
     padding: 16px;
   }
   
