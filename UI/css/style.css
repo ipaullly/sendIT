@@ -16,6 +16,7 @@ ul{
     margin: 0;
     padding: 0;
 }
+
 .button_1{
     height: 38px;
     background: #08242D;
@@ -31,6 +32,7 @@ ul{
     margin-top: 10px;
     margin-bottom: 10px;
 }
+
 
 /* header */
 header{
@@ -89,7 +91,6 @@ header a:hover{
 }
 
 /* squares */
-
 #squares{
     margin-top: 20px;
 }
@@ -129,6 +130,55 @@ footer{
     color: #ffffff;
     background-color: #0B5068;
     text-align: center;
+}
+
+
+/**** login-page ****/
+
+
+/* Styles for input fields */
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+/* style for button */
+#loginbut {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+
+/* Center the avatar image inside this container */
+.sizeimg {
+    text-align: center;
+    margin: 20px 0 12px 0;
+}
+
+/* Avatar image */
+img.userlog {
+    width: 40%;
+    border-radius: 50%;
+}
+
+/* Add padding to containers */
+.inputfield {
+    padding: 16px;
+}
+
+/* The "Forgot password" text */
+span.assord {
+    float: right;
+    padding-top: 16px;
 }
 
 /* social media icons*/
@@ -186,5 +236,12 @@ footer{
     .fab {
         font-size: 20px;
         padding: 10px;
+    }
+}
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+    span.assord {
+        display: block;
+        float: none;
     }
 }
