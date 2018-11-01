@@ -93,6 +93,7 @@ header a:hover{
 }
 #squares .box img{
     width: 90px;
+    border-radius: 50%;
 }
 
 /* Main pillar styling */
