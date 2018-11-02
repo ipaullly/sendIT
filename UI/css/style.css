@@ -1,6 +1,6 @@
 body{
     font: 15px/1.5 'Montserrat', sans-serif;
-    padding: o;
+    padding: 0;
     margin: 0;
     background-color: #A2D7E9;
 }
@@ -25,6 +25,14 @@ aside#leftbar .create input{
 ul{
     margin: 0;
     padding: 0;
+}
+.button_1{
+    height: 38px;
+    border: 0;
+    background: #021E27;
+    padding-left: 20px;
+    padding-right: 20px; 
+    color: #cccccc;
 }
 
 .button_1{
@@ -127,6 +135,20 @@ header a:hover{
     width: 90px;
     border-radius: 50%;
 }
+
+/** ft-orders-display-users-161595954 **/
+
+aside#leftbar .create input{
+    width: 90%;
+    margin-top: 10px;
+}
+
+/* orders style */
+ul#orders li{
+    list-style: none;
+    padding: 20px;
+    border: #cccccc solid 1px;
+    margin-bottom: 5px;
 
 /* Main pillar styling */
 #about{
