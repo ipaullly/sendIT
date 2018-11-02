@@ -1,6 +1,6 @@
 body{
     font: 15px/1.5 'Montserrat', sans-serif;
-    padding: 0;
+    padding: o;
     margin: 0;
     background-color: #A2D7E9;
 }
@@ -12,38 +12,16 @@ body{
     overflow: hidden;
 }
 
-article#about-col{
-    float: right;
-    width: 65%;
-}
-aside#leftbar .create input{
-    float: left;
-    width: 30%;
-    margin-top: 10px;
-}
-
 ul{
     margin: 0;
     padding: 0;
 }
 .button_1{
     height: 38px;
-    border: 0;
-    background: #021E27;
+    background: #08242D;
+    border: none;
+    padding-right: 20px;
     padding-left: 20px;
-    padding-right: 20px; 
-    color: #cccccc;
-}
-
-ul#orders li{
-    list-style: none;
-    padding: 20px;
-    border: #cccccc solid 1px;
-    margin-bottom: 5px;
-    background: #D8F6FF;
-}
-.label{
-    margin-bottom: 40px;
 }
 
 .navy{
@@ -53,7 +31,6 @@ ul#orders li{
     margin-top: 10px;
     margin-bottom: 10px;
 }
-
 
 /* header */
 header{
@@ -112,6 +89,7 @@ header a:hover{
 }
 
 /* squares */
+
 #squares{
     margin-top: 20px;
 }
@@ -127,10 +105,20 @@ header a:hover{
     border-radius: 50%;
 }
 
-/** ft-orders-display-users-161595954 **/
+/* Main pillar styling */
+#about{
+    margin-top: 300px;
+    margin-bottom: 200px;
+}
+article#about-col{
+    float: right;
+    width: 65%;
+} 
 
-aside#leftbar .create input{
-    width: 90%;
+/*  sidebar style  */
+aside#leftbar{
+    float: left;
+    width: 30%;
     margin-top: 10px;
 }
 
@@ -141,55 +129,6 @@ footer{
     color: #ffffff;
     background-color: #0B5068;
     text-align: center;
-}
-
-
-/**** login-page ****/
-
-
-/* Styles for input fields */
-input[type=text], input[type=password] {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-}
-
-/* style for button */
-#loginbut {
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-}
-
-
-/* Center the avatar image inside this container */
-.sizeimg {
-    text-align: center;
-    margin: 20px 0 12px 0;
-}
-
-/* Avatar image */
-img.userlog {
-    width: 40%;
-    border-radius: 50%;
-}
-
-/* Add padding to containers */
-.inputfield {
-    padding: 16px;
-}
-
-/* The "Forgot password" text */
-span.assord {
-    float: right;
-    padding-top: 16px;
 }
 
 /* social media icons*/
@@ -247,12 +186,5 @@ span.assord {
     .fab {
         font-size: 20px;
         padding: 10px;
-    }
-}
-/* Change styles for span and cancel button on extra small screens */
-@media screen and (max-width: 300px) {
-    span.assord {
-        display: block;
-        float: none;
     }
 }
