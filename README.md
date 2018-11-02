@@ -1,5 +1,4 @@
-# SendIT
-____
+
 
 
 ## Web app features
@@ -10,10 +9,9 @@ ____
 4. Users can cancel parcel delivery order.
 5. Users can see the details of a delivery order.
 6. Admin can change the **status** and **Current-location** of a parcel delivery order.
-_____
 
 ## User Interface elements
-_______
+
 1. [Welcome Page](https://ipaullly.github.io/sendIT/UI/index.html)
 2. [Login Page](https://ipaullly.github.io/sendIT/UI/login.html)
 3. [Registration Page](https://ipaullly.github.io/sendIT/UI/register_page.html)
@@ -23,10 +21,10 @@ _______
 7. [Profile Page](https://ipaullly.github.io/sendIT/UI/profile.html)
 
 ## Built Using
-______
-HTML
-CSS
+
+1.HTML
+2.CSS
 
 # Author
-______
+
 [Paul Morogo](https://github.com/ipaullly)
