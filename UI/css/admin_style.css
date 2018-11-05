@@ -16,19 +16,11 @@ article#about-col{
     float: right;
     width: 65%;
 }
-aside#leftbar .create input{
+aside#leftbar{
     float: left;
     width: 30%;
     margin-top: 10px;
 }
-.navy{
-    padding: 15px;
-    background: #0B5068;
-    color: #cccccc;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
 ul{
     margin: 0;
     padding: 0;
@@ -52,6 +44,16 @@ ul#orders li{
 .label{
     margin-bottom: 40px;
 }
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+
 
 /* header */
 header{
@@ -91,38 +93,6 @@ header a:hover{
     font-weight: bold;
 }
 
-/* display */
-
-#display{
-    min-height: 400px;
-    background: url('../img/showcase.jpg') no-repeat 0 -400px;
-    text-align: center;
-  
-}
-#display h1{
-    margin-top: 130px;
-    font-size: 55px;
-    margin-bottom: 10px;
-
-}
-#display p{
-    font-size: 20px;
-}
-/* square */
-#squares{
-    margin-top: 20px;
-}
-
-#squares .box{
-    float: left;
-    text-align: center;
-    width: 30%;
-    padding: 10px;
-}
-#squares .box img{
-    width: 90px;
-    border-radius: 50%;
-}
 
 /* footer */
 footer{
@@ -147,9 +117,6 @@ footer{
     }
     header{
         padding-bottom: 20px; 
-    }
-    #display h1{
-        margin-top: 40px;
     }
     .order button{
         display: block;
