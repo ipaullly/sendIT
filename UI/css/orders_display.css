@@ -103,7 +103,6 @@ article a{
     header #brand,
     header nav,
     header nav li,
-    #squares .box
     article#about-col,
     aside#leftbar{
         float: none;
@@ -113,22 +112,9 @@ article a{
     header{
         padding-bottom: 20px; 
     }
-    #display h1{
-        margin-top: 40px;
-    }
+    
     .order button{
         display: block;
         width: 100%;
-    }
-    .fab {
-        font-size: 20px;
-        padding: 10px;
-    }
-}
-/* Change styles for span and cancel button on extra small screens */
-@media screen and (max-width: 300px) {
-    span.assord {
-        display: block;
-        float: none;
     }
 }
