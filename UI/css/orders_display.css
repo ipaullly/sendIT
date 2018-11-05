@@ -34,16 +34,6 @@ ul{
     padding-right: 20px; 
     color: #cccccc;
 }
-
-.button_1{
-    height: 38px;
-    background: #08242D;
-    border: none;
-    padding-right: 20px;
-    padding-left: 20px;
-    color: #cccccc;
-}
-
 ul#orders li{
     list-style: none;
     padding: 20px;
@@ -96,13 +86,8 @@ footer{
     background-color: #0B5068;
     text-align: center;
 }
-
-
-
-
-
 /* Styles for input fields */
-input[type=text], input[type=password] {
+input[type=text]{
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0 8px 0;
@@ -110,62 +95,9 @@ input[type=text], input[type=password] {
     border: 1px solid #ccc;
     box-sizing: border-box;
 }
-
-
-
-/* Center the avatar image inside this container */
-.sizeimg {
-    text-align: center;
-    margin: 20px 0 12px 0;
-}
-
-/* Avatar image */
-img.userlog {
-    width: 40%;
-    border-radius: 50%;
-}
-
-/* Add padding to containers */
-.inputfield {
-    padding: 16px;
-}
-
-/* The "Forgot password" text */
-span.assord {
-    float: right;
-    padding-top: 16px;
-}
-
-/* social media icons*/
-.fab {
-    padding: 15px;
-    font-size: 25px;
-}
-.fab:hover {
-    color: #D5D5D5;
+article a{
     text-decoration: none;
 }
-.fa-facebook {
-    background: #3B5998;
-    color: white;
-}
-.fa-twitter-square {
-    background: #55ACEE;
-    color: white;
-}
-.fa-google-plus-square {
-    background: #dd4b39;
-    color: white;
-}
-.fa-linkedin {
-    background: #007bb5;
-    color: white;
-}
-.fa-instagram {
-    background: #d6249f;
-    color: #ffffff;  
-}
-
 /* mobile responsiveness */
 @media(max-width: 768px){
     header #brand,
