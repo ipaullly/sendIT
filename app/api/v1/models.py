@@ -18,4 +18,9 @@ class Parcels:
 
     def order_list(self):
         return self.db
+    
+    def retrieve_single_order(self, parcelID):
+        order_by_id = [parc for parc in self.db if parc['id'] == parcelID][0]
+        return order_by_id
+
         
