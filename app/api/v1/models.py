@@ -16,6 +16,6 @@ class Parcels:
         }
         self.db.append(payload)
 
-    def order(self):
+    def order_list(self):
         return self.db
         

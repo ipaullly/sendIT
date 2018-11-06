@@ -2,7 +2,7 @@ from flask_restful import Resource
 from flask import make_response, jsonify, request
 from .models import Parcels
 
-
+cancelled = 'cancel'
 class ParcelList(Resource, Parcels):
 
     def __init__(self):
@@ -22,7 +22,12 @@ class ParcelList(Resource, Parcels):
         }), 201)
     
     def get(self):
-        pass
+        resp = self.order.order_list()
+        return make_response(jsonify({
+            "message" : "ok"
+            "Delivery Orders" : resp
+        }), 200)
+
 
 class IndividualParcel(Resource):
 
@@ -31,3 +36,4 @@ class IndividualParcel(Resource):
 
     def put(self, id):
         pass
+            
