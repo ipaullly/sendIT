@@ -49,7 +49,17 @@ class IndividualParcel(Resource):
             "order" : single
         }), 200)
 
-
+class CancelParcel(Resource):
+    """
+    class for endpoint to cancel parcel order
+    """
     def put(self, id):
-        pass
+        """
+        PUT request to update parcel status to 'cancelled'
+        """
+        cancel_parcel = order.cancel_order(id)
+        return make_response(jsonify({
+            "message" : "order is cancelled",
+            "cancelled order" : cancel_parcel
+        }), 201)
             
