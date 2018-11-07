@@ -7,6 +7,7 @@ class Parcels:
     """
     def __init__(self):
         self.db = parcels
+        self.parcel_status = 'pending'
 
     def create_order(self, item, pickup, dest, pricing):
         """
@@ -17,7 +18,8 @@ class Parcels:
             "itemName" : item,
             "pickupLocation" : pickup,
             "destination" : dest,
-            "pricing" : pricing
+            "pricing" : pricing,
+            "status" : self.parcel_status
         }
         self.db.append(payload)
 
@@ -29,9 +31,16 @@ class Parcels:
     
     def retrieve_single_order(self, parcelID):
         """
-        retrive a single order by id
+        retrieve a single order by id
         """
         order_by_id = [parc for parc in self.db if parc['id'] == parcelID][0]
         return order_by_id
-
+    
+    def cancel_order(self, ParcelID):
+        """
+        update parcel status to cancel
+        """
+        parcel_to_cancel = [parc for parc in self.db if parc['id'] == ParcelID]
+        parcel_to_cancel[0]['status'] = 'cancelled'
+        return parcel_to_cancel
         
