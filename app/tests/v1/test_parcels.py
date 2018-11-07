@@ -48,6 +48,16 @@ class TestPracelCreation(unittest.TestCase):
         result = self.app.get('/api/v1/parcels/1')
         self.assertEqual(result.status_code, 200)
         self.assertIn('seven ballons', str(result.data))
+
+    def test_PUT_cancel_delivery_order(self):
+        """
+        Test if API can cancel order by changing order status
+        """
+        response = self.app.post('/api/v1/parcels', data=json.dumps(self.data), content_type='application/json')
+        self.assertEqual(response.status_code, 201)
+        result = self.app.put('/api/v1/parcels/1/cancel')
+        self.assertEqual(result.status_code, 201)
+        self.assertIn('order is cancelled', str(result.data))
         
 # make the tests you have written executable
 
