@@ -3,6 +3,9 @@ from flask import make_response,jsonify, request
 from .models import User
 
 class Registration(Resource):
+    """
+    class that handles registration of new user
+    """
     def post(self):
         data = request.get_json()
         email = data['email']
@@ -21,3 +24,33 @@ class Registration(Resource):
             }
 
             return make_response((jsonify(response)), 202)
+        
+class SignIn(Resource):
+    """
+    class that handles logging into user accounts and token generation
+    """
+    def post(self):
+        data = request.get_json()
+        email = data['email']
+        password = data['password']
+        try:
+            user = User.get_user_by_email(email)
+            user_id = user.id
+            if user and user.validate_password(password):
+                auth_token = user.generate_token(user_id)
+                if auth_token:
+                    response = {
+                        'message' : 'Successfully logged in',
+                        'authentication token' : auth_token.decode()
+                    }
+                    return make_response(jsonify(response), 200)
+            else:
+                response = {
+                    'message' : 'User with email already exists, please login'
+                }
+                return make_response(jsonify(response), 401)
+        except Exception as err:
+            response = {
+                'message' : str(err)
+            }
+            return make_response(jsonify(response), 500)
