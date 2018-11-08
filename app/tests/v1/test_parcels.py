@@ -26,7 +26,7 @@ class TestPracelCreation(unittest.TestCase):
         response = self.app.post('/api/v1/parcels', data=json.dumps(self.data), content_type='application/json')
         result = json.loads(response.data)
         self.assertEqual(response.status_code, 201)
-        self.assertIn('seven ballons', str(result))
+        self.assertIn('delivery order created', str(result))
     
     def test_GET_delivery_orders_list(self):
         """

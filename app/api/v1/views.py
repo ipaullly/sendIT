@@ -19,10 +19,8 @@ class ParcelList(Resource):
         pricing = data['pricing']
 
         order.create_order(item, pickup, dest, pricing)
-        orders = order.db
         return make_response(jsonify({
-            "message" : "delivery order created successfully",
-            "orders" : orders
+            "message" : "delivery order created successfully"
         }), 201)
     
     def get(self):

@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+from flask import current_app
 import jwt
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -63,6 +64,27 @@ class User(Parent):
         keys = ['email', 'id']
         return {key: getattr(self, key) for key in keys}
     
+    def generate_token(self):
+        """
+        method that generates token during each login
+        """
+        payload = {
+            'exp' : datetime.utcnow()+timedelta(minutes=5),
+            'iat' : datetime.utcnow(),
+            'email' : self.email,
+            'id' : self.id
+        }
+        token = jwt.encode(payload, str(current_app.config.get('SECRET_KEY')), algorithm='HS256')
+        return token
+    
+    @staticmethod
+    def decode_token(token):
+        """
+        method to decode the token generated during login
+        """
+        payload = jwt.decode(token, str(current_app.config.get('SECRET_KEY')), algorithm='HS256')
+        return payload
+        
     @classmethod
     def get_user_by_email(cls, email):
         """
