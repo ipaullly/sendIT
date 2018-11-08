@@ -1,6 +1,6 @@
 from flask import Flask, Blueprint
 from .api.v1 import version1
-from .auth import auth
+from .auth.v1 import auth
 
 def create_app():
     app = Flask(__name__)
