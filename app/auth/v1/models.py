@@ -9,6 +9,8 @@ class MockDb():
     """
     def __init__(self):
         self.users = {}
+        self.orders = {}
+        """
         self.orders = {
             {
                 'id' : 1,
@@ -36,6 +38,7 @@ class MockDb():
             }
 
         }
+        """
         self.user_no = 0
         self.entry_no = 0
     def drop(self):
