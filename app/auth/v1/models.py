@@ -10,35 +10,6 @@ class MockDb():
     def __init__(self):
         self.users = {}
         self.orders = {}
-        """
-        self.orders = {
-            {
-                'id' : 1,
-                'order_name' : 'Ten boxes of dry ice',
-                'pickup' : 'Ndananai',
-                'dest' : 'Bomet',
-                'pricing' : 'ksh. 3000',
-                'user_id' : 4
-            },
-            {
-                'id' : 2,
-                'order_name' : 'four pink trousers',
-                'pickup' : 'Mulutu',
-                'dest' : 'Katheka',
-                'pricing' : 'ksh. 1500',
-                'user_id' : 7
-            },
-            {
-                'id' : 3,
-                'order_name' : 'three suitcases',
-                'pickup' : 'Kathivo',
-                'dest' : 'Matinyani',
-                'pricing' : 'ksh. 200',
-                'user_id' : 9
-            }
-
-        }
-        """
         self.user_no = 0
         self.entry_no = 0
     def drop(self):

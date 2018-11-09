@@ -40,8 +40,7 @@ class SignIn(Resource):
                 auth_token = user.generate_token(user_id)
                 if auth_token:
                     response = {
-                        'message' : 'Successfully logged in',
-                        'authentication token' : auth_token.decode()
+                        'message' : 'Successfully logged in and token generated'
                     }
                     return make_response(jsonify(response), 200)
             else:
