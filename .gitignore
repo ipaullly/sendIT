@@ -2,5 +2,4 @@
 venv
 .vscode
 *.pytest_cache
-instance
 db_config.py
