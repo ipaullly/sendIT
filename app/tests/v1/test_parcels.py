@@ -59,7 +59,7 @@ class TestPracelCreation(unittest.TestCase):
         res = self.app.get('/api/v1/user/barnabas/parcels')
         self.assertEqual(res.status_code, 200)
         self.assertIn('orders by single user', str(res.data))
-        
+
     def test_PUT_cancel_delivery_order(self):
         """
         Test if API can cancel order by changing order status
