@@ -1,0 +1,180 @@
+FORMAT: 1A
+HOST: https://delivery-sendit.herokuapp.com/
+
+# SendIT 
+
+SendIT is a simple API allowing consumers to perform CRUD functionalites and authentication
+
+## Parcels [/api/v1/parcels]
+
+### GET delivery orders list [GET]
+this request allows the user to obtain a list of delivery orders they have made
+
++ Response 200 (application/json)
+
+        [
+            {
+                "Delivery Orders": [
+                    {
+                        "destination": "Kikuyu town",
+                        "id": 1,
+                        "itemName": "seven ballons",
+                        "pickupLocation": "Biashara street",
+                        "pricing": "250 ksh",
+                        "username" : "barnabas",
+                        "status": "pending"
+                    },
+                    {
+                        "destination": "Kikuyu town",
+                        "id": 2,
+                        "itemName": "seven ballons",
+                        "pickupLocation": "Biashara street",
+                        "pricing": "250 ksh",
+                        "username" : "barnabas",
+                        "status": "pending"
+                    },
+                    {
+                        "destination": "Kikuyu town",
+                        "id": 3,
+                        "itemName": "seven ballons",
+                        "pickupLocation": "Biashara street",
+                        "pricing": "250 ksh",
+                        "username" : "barnabas",
+                        "status": "pending"
+                    }
+                ],
+            "message": "ok"
+            }
+        ]
+
+### POST a new delivery order [POST]
+
+You can generate a POST request to create a new delivery order. It takes a JSON
+object containing arguments required for endpoint "item", "pickup", "dest", "pricing", and "username" .
+
++ Request (application/json)
+
+        {
+            "item" : "seven ballons", 
+            "pickup" : "Biashara street", 
+            "dest" : "Kikuyu town",
+            "pricing": "250 ksh",
+            "username" : "barnabas"
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /api/v1/parcels
+
+    + Body
+
+            {
+                "message": "delivery order created successfully"
+            }
+
+## SingleParcel [/api/v1/parcels/<int:id>]
+
+### GET delivery order by id [GET]
+this request will retrieve a single order by its id 
+
++ Response 200 (application/json)
+
+        [
+             "message": "Ok",
+                 "order": {
+                    "destination": "Kikuyu town",
+                    "id": 3,
+                    "itemName": "seven ballons",
+                    "pickupLocation": "Biashara street",
+                    "pricing": "250 ksh",
+                    "username" : "barnabas",
+                    "status": "pending"
+                }
+        ]
+
+### PUT cancel delivery order by id [PUT]
+a user can cancel a delivery order by id via a PUT request
+
++ Response 201 (application/json)
+
+        {
+             "cancelled order": [
+                {
+                    "destination": "Kikuyu town",
+                    "id": 1,
+                    "itemName": "seven ballons",
+                    "pickupLocation": "Biashara street",
+                    "pricing": "250 ksh",
+                    "username" : "barnabas",
+                    "status": "cancelled"
+                }
+            ],
+            "message": "order is cancelled"
+        }
+
+## UserParcel [/api/v1/users/<string:id>/parcels]
+
+### GET delivery order by a particular order [GET]
+this request will retrieve orders made by the user
+
++ Response 200 (application/json)
+
+        [
+             {
+            "message": "Ok",
+            "orders by single user": {
+                "authorId": "Barnabas",
+                "destination": "Kikuyu town",
+                "id": 1,
+                "itemName": "seven ballons",
+                "pickupLocation": "Biashara street",
+                "pricing": "250 ksh",
+                "status": "pending"
+            }
+        
+        ]
+
+
+## Registration [/auth/v1/register]
+### POST register user [POST]
+
+You can generate a POST request to register an account by providing unique "email" and password
+
++ Request (application/json)
+
+        {"email" : "gsfg@gmail.com", "password" : "holywater"}
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /auth/v1/register
+
+    + Body
+
+            {
+                "message": "you have successfully registered an account"
+            }
+
+## Login [/auth/v1/login]
+### POST log in user [POST]
+
+You can generate a POST request to log into account by providing user credentials
+
++ Request (application/json)
+
+        {"email" : "gsfg@gmail.com", "password" : "holywater"}
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Location: /auth/v1/login
+
+    + Body
+
+            {
+               "message": "Successfully logged in and token generated"
+            }
