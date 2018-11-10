@@ -16,7 +16,8 @@ class TestPracelCreation(unittest.TestCase):
             "item" : "seven ballons",
             "pickup" : "Biashara street",
             "dest" : "Kikuyu town",
-            "pricing": "250 ksh"
+            "pricing": "250 ksh",
+            "username" : "barnabas"
         }
 
     def test_POST_create_delivery_order(self):
@@ -49,6 +50,16 @@ class TestPracelCreation(unittest.TestCase):
         self.assertEqual(result.status_code, 200)
         self.assertIn('seven ballons', str(result.data))
 
+    def test_GET_orders_by_single_user(self):
+        """
+        Test if API can retrieve orders made by a spefic user
+        """
+        response = self.app.post('/api/v1/parcels', data=json.dumps(self.data), content_type='application/json')
+        self.assertEqual(response.status_code, 201)
+        res = self.app.get('/api/v1/user/barnabas/parcels')
+        self.assertEqual(res.status_code, 200)
+        self.assertIn('orders by single user', str(res.data))
+        
     def test_PUT_cancel_delivery_order(self):
         """
         Test if API can cancel order by changing order status
