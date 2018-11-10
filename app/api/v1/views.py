@@ -17,8 +17,9 @@ class ParcelList(Resource):
         pickup = data['pickup']
         dest = data['dest']
         pricing = data['pricing']
+        author = data['username']
 
-        order.create_order(item, pickup, dest, pricing)
+        order.create_order(item, pickup, dest, pricing, author)
         return make_response(jsonify({
             "message" : "delivery order created successfully"
         }), 201)
@@ -45,6 +46,17 @@ class IndividualParcel(Resource):
         return make_response(jsonify({
             "message" : "Ok",
             "order" : single
+        }), 200)
+
+class UserOrders(Resource):
+    """
+    class for endpoint that restrieves all the orders made by a specific user
+    """
+    def get(self, id):
+        user_orders = order.get_orders_by_user(id)
+        return make_response(jsonify({
+            "message" : "Ok",
+            "orders by single user" : user_orders
         }), 200)
 
 class CancelParcel(Resource):
