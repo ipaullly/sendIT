@@ -1,16 +1,11 @@
 language: python
-
 python:
   - 3.6.5
-
 install:
   - pip install -r requirements.txt 
-
+  - pip install coveralls
 script: 
-  - pytest --cov-report term-missing --cov=app
-
-
+  - nosetests --with-coverage --cover-package=app
 after_success:
   - coveralls
-
 cache: pip
