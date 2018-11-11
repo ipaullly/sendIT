@@ -1,5 +1,6 @@
 # sendIT
-
+[![Maintainability](https://api.codeclimate.com/v1/badges/db4df351dbe833d147b0/maintainability)](https://codeclimate.com/github/ipaullly/sendIT/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/db4df351dbe833d147b0/test_coverage)](https://codeclimate.com/github/ipaullly/sendIT/test_coverage)
 The sendIT app is built using flask to make RESTful APIs to achieve basic functionalities for the app 
 
 ## RESTful API Endpoints for sendIT
@@ -60,12 +61,12 @@ Next, install the requirements by typing:
 pip install -r requirements.txt
 ```
 
-## Unit Testing
+## Testing
 To test the endpointsensure that the following tools are available the follow steps below
    ### Tools:
      Postman
      
 ### Commands
-  The application was tested using `pytest` and coverage. run the following command
+  The application was tested using `pytest` and coveralls.
      
-     pytest --with-coverage --cover-package=app  && coverage report
+     pytest --cov-report term-missing --cov=app
