@@ -1,6 +1,7 @@
 # sendIT
 [![Maintainability](https://api.codeclimate.com/v1/badges/db4df351dbe833d147b0/maintainability)](https://codeclimate.com/github/ipaullly/sendIT/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/db4df351dbe833d147b0/test_coverage)](https://codeclimate.com/github/ipaullly/sendIT/test_coverage)
+
 The sendIT app is built using flask to make RESTful APIs to achieve basic functionalities for the app 
 
 ## RESTful API Endpoints for sendIT
