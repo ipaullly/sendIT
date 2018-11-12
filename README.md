@@ -70,4 +70,4 @@ To test the endpointsensure that the following tools are available the follow st
 ### Commands
   The application was tested using `pytest` and coveralls.
      
-     pytest --cov-report term-missing --cov=app
+     pytest --cov app
