@@ -1,11 +1,16 @@
 language: python
 python:
-  - 3.6.5
+  - "3.6.5"
 install:
   - pip install --upgrade pip && pip install -r requirements.txt
   - pip install coveralls
+  - pip install pytest
 script: 
-  - nosetests --with-coverage --cover-package=app
-after_success:
+  - pytest 
+
+after_script:
   - coveralls
-cache: pip
+
+after_success:
+  - codecov
+

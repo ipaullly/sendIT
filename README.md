@@ -1,6 +1,6 @@
 # sendIT
 [![Maintainability](https://api.codeclimate.com/v1/badges/db4df351dbe833d147b0/maintainability)](https://codeclimate.com/github/ipaullly/sendIT/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/db4df351dbe833d147b0/test_coverage)](https://codeclimate.com/github/ipaullly/sendIT/test_coverage)[![Build Status](https://travis-ci.com/ipaullly/sendIT.svg?branch=ft-GET-user-orders-161858618)](https://travis-ci.com/ipaullly/sendIT)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/db4df351dbe833d147b0/test_coverage)](https://codeclimate.com/github/ipaullly/sendIT/test_coverage) [![Build Status](https://travis-ci.com/ipaullly/sendIT.svg?branch=ft-GET-user-orders-161858618)](https://travis-ci.com/ipaullly/sendIT) [![Coverage Status](https://coveralls.io/repos/github/ipaullly/sendIT/badge.svg?branch=master)](https://coveralls.io/github/ipaullly/sendIT?branch=master)
 
 The sendIT app is built using flask to make RESTful APIs to achieve basic functionalities for the app 
 

@@ -33,6 +33,7 @@ class SignIn(Resource):
         data = request.get_json()
         email = data['email']
         password = data['password']
+        
         try:
             user = User.get_user_by_email(email)
             user_id = user.id
