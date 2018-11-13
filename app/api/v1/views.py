@@ -19,10 +19,17 @@ class ParcelList(Resource):
         pricing = data['pricing']
         author = data['username']
 
-        order.create_order(item, pickup, dest, pricing, author)
-        return make_response(jsonify({
-            "message" : "delivery order created successfully"
-        }), 201)
+        try:
+            
+            order.create_order(item, pickup, dest, pricing, author)
+            return make_response(jsonify({
+                "message" : "delivery order created successfully"
+            }), 201)
+
+        except Exception:
+            return make_response(jsonify({
+                "message" : "wrong input format"
+            }), 400)
     
     def get(self):
         """

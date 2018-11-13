@@ -49,8 +49,8 @@ class SignIn(Resource):
                     'message' : 'User with email already exists, please login'
                 }
                 return make_response(jsonify(response), 401)
-        except Exception as err:
+        except Exception:
             response = {
-                'message' : str(err)
+                'message' : 'wrong login credentials, please create account'
             }
             return make_response(jsonify(response), 500)

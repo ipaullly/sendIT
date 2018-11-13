@@ -24,7 +24,7 @@ class LoginTestCase(unittest.TestCase):
         self.assertEqual(res.status_code, 201)
         signin_res = self.app.post('/auth/v1/login', data=json.dumps(self.mock_data), content_type='application/json')
         result = json.loads(signin_res.data)
-     #   self.assertEqual(result['message'], 'Successfully logged in')
+        self.assertIn('Successfully logged in', str(result))
         self.assertEqual(signin_res.status_code, 200)
         self.assertTrue(result)
 
@@ -32,6 +32,7 @@ class LoginTestCase(unittest.TestCase):
         #test that unregistered user cannot log in
         res = self.app.post('/auth/v1/login', data=json.dumps(self.mock_data), content_type='application/json')
         result = json.loads(res.data)
+        self.assertIn('wrong login credentials', str(result))
         self.assertEqual(res.status_code, 500)
 
 
