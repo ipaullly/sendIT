@@ -7,6 +7,7 @@ python:
 install:
   - pip install --upgrade pip && pip install -r requirements.txt
   - pip install coveralls
+  - pip install codecov
   - pip install pytest
 before_script:
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
@@ -18,5 +19,5 @@ after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
   - coveralls
 after_success:
-  - codecov
+  - codecov -t b1bc8af2-07e9-45e9-8824-c733282c6cea
 
