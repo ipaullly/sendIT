@@ -1,0 +1,23 @@
+env:
+  global:
+    - CC_TEST_REPORTER_ID=e6fc31601f7b6906c6ff9c0bfc5afb08d679e93ea89c315aaf6758c20bcdc274
+language: python
+python:
+  - "3.6.5"
+install:
+  - pip install --upgrade pip && pip install -r requirements.txt
+  - pip install coveralls
+  - pip install codecov
+  - pip install pytest
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+script: 
+  - pytest 
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+  - coveralls
+after_success:
+  - codecov -t b1bc8af2-07e9-45e9-8824-c733282c6cea
+
