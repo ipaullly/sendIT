@@ -23,7 +23,7 @@ class Registration(Resource):
                 'message': 'Account with provided email exists. please login'
             }
 
-            return make_response((jsonify(response)), 202)
+            return make_response(jsonify(response), 202)
         
 class SignIn(Resource):
     """
@@ -51,6 +51,6 @@ class SignIn(Resource):
                 return make_response(jsonify(response), 401)
         except Exception:
             response = {
-                'message' : 'wrong login credentials, please create account'
+                'message' : 'wrong input format, please enter details again'
             }
             return make_response(jsonify(response), 500)

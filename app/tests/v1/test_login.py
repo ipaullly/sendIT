@@ -32,7 +32,7 @@ class LoginTestCase(unittest.TestCase):
         #test that unregistered user cannot log in
         res = self.app.post('/auth/v1/login', data=json.dumps(self.mock_data), content_type='application/json')
         result = json.loads(res.data)
-        self.assertIn('wrong login credentials', str(result))
+        self.assertIn("{'message': 'wrong input format, please enter details again'}", str(result))
         self.assertEqual(res.status_code, 500)
 
 
