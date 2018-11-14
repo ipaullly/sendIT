@@ -55,7 +55,7 @@ class SignIn(Resource):
                 auth_token = user.generate_token(user_id)
                 if auth_token:
                     response = {
-                        'message' : 'Successfully logged in and token generated'
+                        'message' : 'Successfully logged in'
                     }
                     return make_response(jsonify(response), 200)
             else:
