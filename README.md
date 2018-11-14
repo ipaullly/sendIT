@@ -75,10 +75,24 @@ flask run
 
 ## Testing
 To test the endpointsensure that the following tools are available the follow steps below
-   ### Tools:
-     Postman
+
+### Tool:
+    Postman
+
+  with the flask server running power up POSTMAN to test your endpoints. set the localhost:
+  ```
+  http://127.0.0.1:5000/
+  ```
+  append the localhost with urls for the various endpoints, for example:
+  ```
+  http://127.0.0.1:5000/api/v1/parcels
+  ```
+  ensure to set the correct HTTP method before sending the request
      
 ### Commands
-  The application was tested using `pytest` and coveralls.
-     
-     pytest --cov app
+  The application was tested using `pytest` and code cov.
+  run the command
+  ```
+  pytest --cov app
+  ```
+  this generates a detailed log of the tests in your app directory
