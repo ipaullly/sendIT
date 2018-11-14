@@ -61,6 +61,17 @@ Next, install the requirements by typing:
 ```
 pip install -r requirements.txt
 ```
+## Running the sendIT flask app locally
+
+Once you are in a virtual environment with all the dependencies installed, set the environmental variables:
+```
+export FLASK_APP=run.py
+export FLASK_ENV=development
+```
+initialize the server with the command:
+```
+flask run
+```
 
 ## Testing
 To test the endpointsensure that the following tools are available the follow steps below
