@@ -35,8 +35,12 @@ class Parcels:
         """
         retrieve a single order by id
         """
-        order_by_id = [parc for parc in self.db if parc['id'] == parcelID][0]
-        return order_by_id
+        for parc in self.db:
+            if parc['id'] == parcelID:
+                return parc
+            else:
+                return False
+        
     
     def cancel_order(self, ParcelID):
         """

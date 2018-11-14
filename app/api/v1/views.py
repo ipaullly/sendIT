@@ -53,11 +53,17 @@ class IndividualParcel(Resource):
         """
         get method to retrieve order by id
         """
+        
         single = order.retrieve_single_order(id)
-        return make_response(jsonify({
-            "message" : "Ok",
-            "order" : single
-        }), 200)
+        if single:
+            return make_response(jsonify({
+                "message" : "Ok",
+                "order" : single
+            }), 200)
+        else:
+            return make_response(jsonify({
+                "message" : "Invalid id"
+            }), 400)
 
 class UserOrders(Resource):
     """
