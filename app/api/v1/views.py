@@ -17,7 +17,7 @@ class ParcelList(Resource):
         pickup = data['pickup']
         dest = data['dest']
         pricing = data['pricing']
-        author = data['username']
+        author = data['user_id']
 
         try:
             if "  " in item:
@@ -25,9 +25,10 @@ class ParcelList(Resource):
             elif type(pricing) is not int:
                 raise Exception
             else:
-                order.create_order(item, pickup, dest, pricing, author)
+                res = order.create_order(item, pickup, dest, pricing, author)
                 return make_response(jsonify({
-                    "message" : "delivery order created successfully"
+                    "message" : "delivery order created successfully",
+                    "new delivery order" : res
                 }), 201)
         except Exception:
             return make_response(jsonify({

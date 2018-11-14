@@ -23,6 +23,7 @@ class Parcels:
             "status" : self.parcel_status
         }
         self.db.append(payload)
+        return payload
 
     def order_list(self):
         """
