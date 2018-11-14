@@ -61,9 +61,10 @@ class IndividualParcel(Resource):
                 "order" : single
             }), 200)
         else:
-            return make_response(jsonify({
+            response = {
                 "message" : "Invalid id"
-            }), 400)
+            }
+            return make_response(jsonify(response), 400)
 
 class UserOrders(Resource):
     """

@@ -27,6 +27,13 @@ class TestEdgeCases(unittest.TestCase):
             "email" : "house",
             "password" : "xgss"
         }
+        self.invalid_id = {
+            "item" : "seven ballons",
+            "pickup" : "Biashara street",
+            "dest" : "Kikuyu town",
+            "pricing": 250,
+            "user_id" : "12"
+        }
 
     def test_empty_strings_in_POST_create_order(self):
         """
@@ -48,5 +55,13 @@ class TestEdgeCases(unittest.TestCase):
         self.assertEqual(response3.status_code, 400)
         res = json.loads(response3.data)
         self.assertEqual("{'message': 'Invalid email format'}", str(res))
+    
+    def test_invalid_parcel_id(self):
+        response = self.app.post('/api/v1/parcels', data=json.dumps(self.invalid_id), content_type='application/json')
+        self.assertEqual(response.status_code, 201)
+        result = self.app.get('/api/v1/parcels/30')
+        self.assertEqual(result.status_code, 400)
+        self.assertIn('"message": "Invalid id"', str(result.data))
+
 if __name__ == "__main__":
     unittest.main()
