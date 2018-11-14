@@ -19,9 +19,13 @@ class TestEdgeCases(unittest.TestCase):
             "pricing": 250,
             "user_id" : "12"
         }
-        self.invalid_registration_details = {
+        self.blank_email = {
             "email" : "   ",
             "password" : "ghfgfg"
+        }
+        self.invalid_pattern = {
+            "email" : "house",
+            "password" : "xgss"
         }
 
     def test_empty_strings_in_POST_create_order(self):
@@ -34,10 +38,15 @@ class TestEdgeCases(unittest.TestCase):
         self.assertIn('wrong input format', str(result))
     
     def test_whitespces_in_email_field(self):
-        response2 = self.app.post('/auth/v1/register', data=json.dumps(self.invalid_registration_details), content_type='application/json')
+        response2 = self.app.post('/auth/v1/register', data=json.dumps(self.blank_email), content_type='application/json')
         self.assertEqual(response2.status_code, 400)
         res = json.loads(response2.data)
         self.assertEqual("{'message': 'Whitespaces are invalid inputs'}", str(res))
-    
+
+    def test_wrong_email_pattern(self):
+        response3 = self.app.post('/auth/v1/register', data=json.dumps(self.invalid_pattern), content_type='application/json')
+        self.assertEqual(response3.status_code, 400)
+        res = json.loads(response3.data)
+        self.assertEqual("{'message': 'Invalid email format'}", str(res))
 if __name__ == "__main__":
     unittest.main()
