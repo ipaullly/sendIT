@@ -88,7 +88,8 @@ To test the endpointsensure that the following tools are available the follow st
   http://127.0.0.1:5000/api/v1/parcels
   ```
   ensure to set the correct HTTP method before sending the request.
-  alternatively you can access the API documentation [here](https://documenter.getpostman.com/view/4014888/RzZCCwun#22450978-87c5-be21-e538-51cd4100035a)
+  
+  Alternatively you can access the API documentation via this [link](https://documenter.getpostman.com/view/4014888/RzZCCwun#22450978-87c5-be21-e538-51cd4100035a).
      
 ### Commands
   The application was tested using `pytest` and code cov.
