@@ -17,7 +17,7 @@ class TestPracelCreation(unittest.TestCase):
             "pickup" : "Biashara street",
             "dest" : "Kikuyu town",
             "pricing": 250,
-            "username" : "barnabas"
+            "user_id" : "12"
         }
 
     def test_POST_create_delivery_order(self):
@@ -56,7 +56,7 @@ class TestPracelCreation(unittest.TestCase):
         """
         response = self.app.post('/api/v1/parcels', data=json.dumps(self.data), content_type='application/json')
         self.assertEqual(response.status_code, 201)
-        res = self.app.get('/api/v1/user/barnabas/parcels')
+        res = self.app.get('/api/v1/user/12/parcels')
         self.assertEqual(res.status_code, 200)
         self.assertIn('orders by single user', str(res.data))
 

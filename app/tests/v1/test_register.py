@@ -29,7 +29,7 @@ class AuthTestCase(unittest.TestCase):
         response1 = self.app.post('/auth/v1/register', data=json.dumps(self.mock_data2), content_type='application/json')
         self.assertEqual(response1.status_code, 201)
         duplicate_signup = self.app.post('/auth/v1/register', data=json.dumps(self.mock_data2), content_type='application/json')
-        self.assertEqual(duplicate_signup.status_code, 202)
+        self.assertEqual(duplicate_signup.status_code, 409)
         res = json.loads(duplicate_signup.data)
         self.assertIn('Account with provided email exists. please login', str(res))
 

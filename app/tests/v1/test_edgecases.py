@@ -17,7 +17,7 @@ class TestEdgeCases(unittest.TestCase):
             "pickup" : "muranga",
             "dest" : "house",
             "pricing": 250,
-            "username" : "stanLee"
+            "user_id" : "12"
         }
 
     def test_empty_strings_in_POST_create_order(self):
