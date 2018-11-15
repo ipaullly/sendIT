@@ -34,6 +34,10 @@ class TestEdgeCases(unittest.TestCase):
             "pricing": 250,
             "user_id" : "12"
         }
+        self.weak_password = {
+            "email" : "house@gmail.org",
+            "password" : "nnnibal"
+        }
 
     def test_empty_strings_in_POST_create_order(self):
         """
@@ -69,6 +73,11 @@ class TestEdgeCases(unittest.TestCase):
         result = self.app.put('/api/v1/parcels/30/cancel')
         self.assertEqual(result.status_code, 400)
       # self.assertIn('{"message": "Cancel failed. no order by that id"}', str(result.data))
+    def test_weak_password(self):
+        respon = self.app.post('/auth/v1/register', data=json.dumps(self.weak_password), content_type='application/json')
+        self.assertEqual(respon.status_code, 400)
+        res = json.loads(respon.data)
+        self.assertEqual("{'message': 'Ensure your password is at least 8 charaters and includes an Uppercase letter'}", str(res))
 
 if __name__ == "__main__":
     unittest.main()
