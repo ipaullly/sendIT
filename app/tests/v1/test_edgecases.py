@@ -59,9 +59,16 @@ class TestEdgeCases(unittest.TestCase):
     def test_invalid_parcel_id(self):
         response = self.app.post('/api/v1/parcels', data=json.dumps(self.invalid_id), content_type='application/json')
         self.assertEqual(response.status_code, 201)
-        result = self.app.get('/api/v1/parcels/30')
+        resul = self.app.get('/api/v1/parcels/30')
+        self.assertEqual(resul.status_code, 400)
+      #  self.assertIn('b\'{"message":"Invalid id"}\\n\'', str(resul.data))
+    
+    def test_invalidID_cancel_order(self):
+        response = self.app.post('/api/v1/parcels', data=json.dumps(self.invalid_id), content_type='application/json')
+        self.assertEqual(response.status_code, 201)
+        result = self.app.put('/api/v1/parcels/30/cancel')
         self.assertEqual(result.status_code, 400)
-        self.assertIn('"message": "Invalid id"', str(result.data))
+      # self.assertIn('{"message": "Cancel failed. no order by that id"}', str(result.data))
 
 if __name__ == "__main__":
     unittest.main()

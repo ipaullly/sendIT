@@ -35,11 +35,8 @@ class Parcels:
         """
         retrieve a single order by id
         """
-        for parc in self.db:
-            if parc['id'] == parcelID:
-                return parc
-            else:
-                return False
+        single_parc = [parc for parc in self.db if parc['id'] == parcelID]
+        return single_parc
         
     
     def cancel_order(self, ParcelID):
@@ -57,3 +54,10 @@ class Parcels:
         user_orders = [parc for parc in self.db if parc['authorId'] == AuthorID][0]
         return user_orders
 
+    def validate_ID(self, ID):
+        for parc in self.db:
+            list_of_keys = [key for (key, value) in parc.items() if value == ID]
+            if list_of_keys:
+                return True
+            else:
+                return False

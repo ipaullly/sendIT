@@ -54,11 +54,12 @@ class IndividualParcel(Resource):
         get method to retrieve order by id
         """
         
-        single = order.retrieve_single_order(id)
+        single = order.validate_ID(id)
         if single:
+            individ_order = order.retrieve_single_order(id)
             return make_response(jsonify({
                 "message" : "Ok",
-                "order" : single
+                "order" : individ_order
             }), 200)
         else:
             response = {
@@ -71,11 +72,17 @@ class UserOrders(Resource):
     class for endpoint that restrieves all the orders made by a specific user
     """
     def get(self, id):
-        user_orders = order.get_orders_by_user(id)
-        return make_response(jsonify({
-            "message" : "Ok",
-            "orders by single user" : user_orders
-        }), 200)
+        if order.validate_ID(id):
+            user_orders = order.get_orders_by_user(id)
+            return make_response(jsonify({
+                "message" : "Ok",
+                "orders by single user" : user_orders
+            }), 200)
+        else:
+            response = {
+                "message" : "Invalid user id"
+            }
+            return make_response(jsonify(response), 400)
 
 class CancelParcel(Resource):
     """
@@ -85,9 +92,17 @@ class CancelParcel(Resource):
         """
         PUT request to update parcel status to 'cancelled'
         """
-        cancel_parcel = order.cancel_order(id)
-        return make_response(jsonify({
-            "message" : "order is cancelled",
-            "cancelled order" : cancel_parcel
-        }), 201)
-            
+        try:
+            check_id = order.validate_ID(id)
+            if not check_id:
+                raise Exception  
+            else:
+                cancel_parcel = order.cancel_order(check_id)
+                return make_response(jsonify({
+                    "message" : "order is cancelled",
+                    "cancelled order" : cancel_parcel
+                }), 201)
+        except Exception:
+            return make_response(jsonify({
+                    "message" : "Cancel failed. no order by that id"
+                }), 400) 
