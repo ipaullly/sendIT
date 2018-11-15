@@ -54,9 +54,8 @@ class IndividualParcel(Resource):
         get method to retrieve order by id
         """
         
-        single = order.validate_ID(id)
-        if single:
-            individ_order = order.retrieve_single_order(id)
+        individ_order = order.retrieve_single_order(id)
+        if individ_order:
             return make_response(jsonify({
                 "message" : "Ok",
                 "order" : individ_order
@@ -72,8 +71,8 @@ class UserOrders(Resource):
     class for endpoint that restrieves all the orders made by a specific user
     """
     def get(self, id):
-        if order.validate_ID(id):
-            user_orders = order.get_orders_by_user(id)
+        user_orders = order.get_orders_by_user(id)
+        if user_orders:
             return make_response(jsonify({
                 "message" : "Ok",
                 "orders by single user" : user_orders
@@ -91,18 +90,14 @@ class CancelParcel(Resource):
     def put(self, id):
         """
         PUT request to update parcel status to 'cancelled'
-        """
-        try:
-            check_id = order.validate_ID(id)
-            if not check_id:
-                raise Exception  
-            else:
-                cancel_parcel = order.cancel_order(check_id)
-                return make_response(jsonify({
-                    "message" : "order is cancelled",
-                    "cancelled order" : cancel_parcel
-                }), 201)
-        except Exception:
+        """ 
+        cancel_parcel = order.cancel_order(id)
+        if cancel_parcel:
+            return make_response(jsonify({
+                "message" : "order is cancelled",
+                "cancelled order" : cancel_parcel
+            }), 201)
+        else:
             return make_response(jsonify({
                     "message" : "Cancel failed. no order by that id"
                 }), 400) 

@@ -72,7 +72,7 @@ class TestEdgeCases(unittest.TestCase):
         self.assertEqual(response.status_code, 201)
         result = self.app.put('/api/v1/parcels/30/cancel')
         self.assertEqual(result.status_code, 400)
-      # self.assertIn('{"message": "Cancel failed. no order by that id"}', str(result.data))
+       # self.assertIn('{"message": "Cancel failed. no order by that id"}', str(result.data))
     def test_weak_password(self):
         respon = self.app.post('/auth/v1/register', data=json.dumps(self.weak_password), content_type='application/json')
         self.assertEqual(respon.status_code, 400)

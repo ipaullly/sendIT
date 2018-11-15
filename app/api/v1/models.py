@@ -36,7 +36,10 @@ class Parcels:
         retrieve a single order by id
         """
         single_parc = [parc for parc in self.db if parc['id'] == parcelID]
-        return single_parc
+        if single_parc:
+            return single_parc
+        else:
+            return False
         
     
     def cancel_order(self, ParcelID):
@@ -44,20 +47,18 @@ class Parcels:
         update parcel status to cancel
         """
         parcel_to_cancel = [parc for parc in self.db if parc['id'] == ParcelID]
-        parcel_to_cancel[0]['status'] = 'cancelled'
-        return parcel_to_cancel
+        if parcel_to_cancel:
+            parcel_to_cancel[0]['status'] = 'cancelled'
+            return parcel_to_cancel
+        else:
+            return False
     
     def get_orders_by_user(self, AuthorID):
         """
         retrieve all orders by a specific user given her/his username
         """
-        user_orders = [parc for parc in self.db if parc['authorId'] == AuthorID][0]
-        return user_orders
-
-    def validate_ID(self, ID):
-        for parc in self.db:
-            list_of_keys = [key for (key, value) in parc.items() if value == ID]
-            if list_of_keys:
-                return True
-            else:
-                return False
+        user_orders = [parc for parc in self.db if parc['authorId'] == AuthorID]
+        if user_orders:
+            return user_orders
+        else:
+            return False
