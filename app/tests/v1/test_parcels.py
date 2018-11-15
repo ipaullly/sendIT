@@ -16,7 +16,7 @@ class TestPracelCreation(unittest.TestCase):
             "item" : "seven ballons",
             "pickup" : "Biashara street",
             "dest" : "Kikuyu town",
-            "pricing": 250,
+            "pricing": "250",
             "user_id" : "12"
         }
 

@@ -16,7 +16,7 @@ class TestEdgeCases(unittest.TestCase):
             "item" : "  ",
             "pickup" : "muranga",
             "dest" : "house",
-            "pricing": 250,
+            "pricing": "250",
             "user_id" : "12"
         }
         self.blank_email = {
@@ -31,7 +31,7 @@ class TestEdgeCases(unittest.TestCase):
             "item" : "seven ballons",
             "pickup" : "Biashara street",
             "dest" : "Kikuyu town",
-            "pricing": 250,
+            "pricing": "250",
             "user_id" : "12"
         }
         self.weak_password = {
@@ -46,7 +46,7 @@ class TestEdgeCases(unittest.TestCase):
         response = self.app.post('/api/v1/parcels', data=json.dumps(self.dummy), content_type='application/json')
         result = json.loads(response.data)
         self.assertEqual(response.status_code, 400)
-        self.assertIn('wrong input format', str(result))
+        self.assertIn('Invalid item name format', str(result))
     
     def test_whitespces_in_email_field(self):
         response2 = self.app.post('/auth/v1/register', data=json.dumps(self.blank_email), content_type='application/json')
