@@ -13,3 +13,11 @@ def check_email_format(varib):
         return True
     else:
         return False
+
+def check_password_strength(password):
+    leng_regex = re.compile(r'.{8,}')
+    leng = True if leng_regex.search(password) != None else False
+
+    capital_regex = re.compile(r'[A-Z]')
+    uppercase = True if capital_regex.search(password) != None else False
+    return(leng and uppercase == True)

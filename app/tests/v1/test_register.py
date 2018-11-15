@@ -11,11 +11,11 @@ class AuthTestCase(unittest.TestCase):
         self.app = create_app().test_client()
         self.mock_data = {
             'email' : 'test@hotmail.com',
-            'password' : 'holy_water'
+            'password' : 'Goriguty'
         }
         self.mock_data2 = {
             'email' : 'qarth@hotmail.com',
-            'password' : 'jade_sea'
+            'password' : 'Hannniabl'
         }
           
     

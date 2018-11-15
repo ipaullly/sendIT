@@ -11,7 +11,7 @@ class LoginTestCase(unittest.TestCase):
         self.app = create_app().test_client()
         self.mock_data = {
             'email' : 'test@chocoly.com',
-            'password' : 'balerion'
+            'password' : 'Balerion'
         }
         self.not_user_data = {
             'email' : 'not_user@chocoly.com',
