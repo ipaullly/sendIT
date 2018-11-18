@@ -50,3 +50,12 @@ class ParcelList(Resource):
            return make_response(jsonify({
                 "message" : "Invalid item name format"
             }), 400) 
+    
+    def get(self):
+        """
+        get method to retrieve list of all orders
+        """
+        resp = order.order_list()
+        if resp:
+            return jsonify(resp)
+        return jsonify({"message" : "No orders in the database"})

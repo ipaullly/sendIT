@@ -26,4 +26,12 @@ class OrderParcel:
         self.db.commit()
         return payload
 
-  
+    def order_list(self):
+        """
+        retrieves entire list of delivery orders
+        """
+        curr = self.db.cursor()
+        curr.execute("""SELECT item_name, pickup_location, destination FROM orders""")
+        resp = curr.fetchall()
+        return resp
+        
