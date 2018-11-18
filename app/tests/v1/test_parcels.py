@@ -1,6 +1,6 @@
-from ... import create_app
 import unittest
 import json
+from ... import test_app
 
 class TestPracelCreation(unittest.TestCase):
     """
@@ -10,8 +10,8 @@ class TestPracelCreation(unittest.TestCase):
         """
         Initialize app and define test variables
         """
-        create_app().testing = True
-        self.app = create_app().test_client()
+        test_app().testing = True
+        self.app = test_app().test_client()
         self.data = {
             "item" : "seven ballons",
             "pickup" : "Biashara street",

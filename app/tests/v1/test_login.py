@@ -1,14 +1,14 @@
-from ... import create_app
 import unittest
 import json
+from ... import test_app
 
 class LoginTestCase(unittest.TestCase):
     """
     test class for the registration endpoint
     """
     def setUp(self):
-        create_app().testing = True
-        self.app = create_app().test_client()
+        test_app().testing = True
+        self.app = test_app().test_client()
         self.mock_data = {
             'email' : 'test@chocoly.com',
             'password' : 'Balerion'
