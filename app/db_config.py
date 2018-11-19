@@ -1,7 +1,7 @@
 import os
 import psycopg2
 
-url = "dbname='sendit_db' host='localhost' port='5432' user='paul' password='polmog9439'"
+url = os.getenv('DATABASE_URI')
 
 def connection(url):
     """
