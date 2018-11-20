@@ -12,8 +12,7 @@ class TestEdgeCases(unittest.TestCase):
         Initialize app and define test variables
         """
         test_app = create_app(config_option="TestConfig")
-        test_app.testing = True
-        self.app = test_app().test_client()
+        self.app = test_app.test_client()
         self.dummy = {
             "item" : "  ",
             "pickup" : "muranga",
@@ -42,7 +41,7 @@ class TestEdgeCases(unittest.TestCase):
         }
     
     def tearDown(self):
-        SenditDb.drop_all
+        SenditDb.drop_all()
 
 
     def test_empty_strings_in_POST_create_order(self):

@@ -9,7 +9,6 @@ class AuthTestCase(unittest.TestCase):
     """
     def setUp(self):
         test_app = create_app(config_option="TestConfig")
-        test_app.testing = True
         self.app = test_app.test_client()
         self.mock_data = {
             'email' : 'test@hotmail.com',
@@ -21,7 +20,7 @@ class AuthTestCase(unittest.TestCase):
         }
     
     def tearDown(self):
-        SenditDb.drop_all
+        SenditDb.drop_all()
           
     
     def test_signup(self):

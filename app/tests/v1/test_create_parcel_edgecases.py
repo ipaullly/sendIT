@@ -1,8 +1,7 @@
 import unittest
-import unittest
 import json
 from ... import create_app
-from ...api.v2.dbmodel import SenditDb
+from ...api.v2.dbmodel import SenditDb as db
 
 
 class TestEdgeCases(unittest.TestCase):
@@ -14,7 +13,6 @@ class TestEdgeCases(unittest.TestCase):
         Initialize app and define test variables
         """
         test_app = create_app(config_option="TestConfig")
-        test_app.testing = True
         self.app = test_app.test_client()
         self.blank_name = {
             "item" : "   ",
@@ -51,6 +49,8 @@ class TestEdgeCases(unittest.TestCase):
             "pricing": "250",
             "user_id" : "  "
         }
+    def tearDown(self):
+        db.drop_all()
 
     def test_blank_item_name(self):
         response = self.app.post('/api/v1/parcels', data=json.dumps(self.blank_name), content_type='application/json')
