@@ -82,7 +82,7 @@ class SingleParcel(Resource):
         updated_parcel = order.update_destination(new_destination, item_id)
         if updated_parcel:
             return make_response(jsonify({
-                "message" : "order is cancelled",
+                "message" : "New destination updated",
                 "data" : updated_parcel
             }), 201)
         else:
