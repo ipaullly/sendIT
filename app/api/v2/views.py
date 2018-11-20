@@ -20,33 +20,36 @@ class ParcelList(Resource):
         pricing = data['pricing']
         author = data['user_id']
 
-        if check_for_space(item):
-            if check_for_space(pickup):
-                if check_for_space(dest):
-                    if check_for_space(pricing):
-                        if check_for_space(author):
-                            res = order.create_order(item, pickup, dest, pricing, author)
-                            return make_response(jsonify({
-                                "message" : "delivery order created successfully",
-                                "new delivery order" : res
-                            }), 201)
-                        else:
-                            return make_response(jsonify({
-                                "message" : "Invalid user id"
-                            }), 400) 
-                    else:
-                        return make_response(jsonify({
-                            "message" : "Invalid price value"
-                        }), 400) 
-                else:
-                    return make_response(jsonify({
-                        "message" : "Invalid destination name"
-                    }), 400) 
-            else:
-                return make_response(jsonify({
-                    "message" : "Invalid pickup location name"
-                }), 400) 
-        else:
+        if not check_for_space(item):
            return make_response(jsonify({
                 "message" : "Invalid item name format"
+            }), 400)
+
+        if not check_for_space(pickup):
+            return make_response(jsonify({
+                "message" : "Invalid pickup location name"
+            }), 400)
+
+        if not check_for_space(dest):
+            return make_response(jsonify({
+                "message" : "Invalid destination name"
             }), 400) 
+
+        if not check_for_space(pricing):
+            return make_response(jsonify({
+                "message" : "Invalid price value"
+            }), 400)
+
+
+        if not check_for_space(author):
+            return make_response(jsonify({
+                "message" : "Invalid user id"
+            }), 400) 
+
+        res = order.create_order(item, pickup, dest, pricing, author)
+        return make_response(jsonify({
+            "message" : "delivery order created successfully",
+            "data" : res
+        }), 201)
+        
+        
