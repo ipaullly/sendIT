@@ -2,7 +2,7 @@ import os
 import psycopg2
 from psycopg2.extras import RealDictCursor
 
-class SenditDb():
+class SenditDb:
     """
     contains methods that perform query string operations on the databaes
     """
