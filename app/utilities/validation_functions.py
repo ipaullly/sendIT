@@ -1,11 +1,11 @@
 import re
 
-def check_for_space(varib):
-    output = varib.strip(" ")
+def check_for_space(input_data):
+    output = input_data.strip(" ")
     return output
 
-def check_email_format(varib):
-    match = re.search(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9]+\.[a-zA-Z0-9.]*\.*[com|org|edu]{3}$)",varib)
+def check_email_format(input_email):
+    match = re.search(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9]+\.[a-zA-Z0-9.]*\.*[com|org|edu]{3}$)", input_email)
     if match:
         return True
     else:
