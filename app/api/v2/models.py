@@ -21,8 +21,8 @@ class OrderParcel:
         }
 
         input_query = """INSERT INTO orders (item_name, pickup_location, destination \
-        , pricing, user_id) VALUES (%s, %s, %s, %s, %s)"""
-        user_query = """SELECT * FROM orders WHERE user_id={}""".format(user_id)
+        , pricing, user_id) VALUES (%s, %s, %s, %s, %s);"""
+        user_query = """SELECT * FROM orders WHERE user_id={};""".format(user_id)
         response = SenditDb.retrieve_one(user_query)
         if response['item_name'] == item:
             message = "User already ordered this item"
@@ -36,7 +36,23 @@ class OrderParcel:
         """
         retrieves entire list of delivery orders
         """
-        query = """SELECT item_name, pickup_location, destination FROM orders"""
+        query = """SELECT item_name, pickup_location, destination FROM orders;"""
         resp = SenditDb.retrieve_all(query)
         return resp
+    
+    def update_destination(self, new_dest, parcel_id):
+        """
+        updates the destination of a user's parcels
+        """
+        payload = {
+            "updated_destination" : new_dest
+        }
+        input_query = """SELECT destination FROM orders WHERE order_id={}""".format(parcel_id)
+        response = SenditDb.retrieve_one(input_query)
+        if not response:
+            return False
+        update_query = """UPDATE orders SET destination = 'new_dest' WHERE order_id={}""".format(parcel_id)
+        SenditDb.update_row(update_query)
+        return payload
+
         

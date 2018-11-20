@@ -33,7 +33,7 @@ class SenditDb:
         email character varying(50) NOT NULL,
         role character varying(50),
         password character varying(50) NOT NULL
-        )"""
+        );"""
         )
         cls.conn.commit()
 
@@ -60,7 +60,15 @@ class SenditDb:
         """
         cls.cur.execute(query_string)
         return cls.cur.fetchall()
-    
+        
+    @classmethod
+    def update_row(cls, query_string):
+        """
+        method that sends an update query to the database
+        """
+        cls.cur.execute(query_string)
+        cls.conn.commit()
+
     @classmethod
     def drop_all(cls):
         """
