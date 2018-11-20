@@ -1,8 +1,5 @@
-import os
-from .dbmodel import SenditDb
 
-uri = os.getenv('DEV_DB_URI')
-SenditDb.start_db(uri)
+from .dbmodel import SenditDb
 
 class OrderParcel:
     """
