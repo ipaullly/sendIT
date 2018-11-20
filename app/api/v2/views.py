@@ -47,13 +47,16 @@ class ParcelList(Resource):
             }), 400) 
 
         res = order.create_order(item, pickup, dest, pricing, author)
+
+        if res == "User already ordered this item":
+            return make_response(jsonify({
+                "message" : res
+            }), 409)
+
         return make_response(jsonify({
             "message" : "delivery order created successfully",
             "data" : res
         }), 201)
-        
-        
-            }), 400) 
     
     def get(self):
         """

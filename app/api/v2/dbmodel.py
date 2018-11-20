@@ -46,11 +46,11 @@ class SenditDb:
         cls.conn.commit()
     
     @classmethod
-    def retrieve_one(cls, query_string, tuple_data):
+    def retrieve_one(cls, query_string):
         """
         method returns data on a particular row from the database
         """
-        cls.cur.execute(query_string, tuple_data)
+        cls.cur.execute(query_string)
         return cls.cur.fetchone()
 
     @classmethod

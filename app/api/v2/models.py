@@ -19,10 +19,16 @@ class OrderParcel:
             "pricing" : pricing,
             "user_id" : user_id
         }
-        query = """INSERT INTO orders (item_name, pickup_location, destination \
+
+        input_query = """INSERT INTO orders (item_name, pickup_location, destination \
         , pricing, user_id) VALUES (%s, %s, %s, %s, %s)"""
+        user_query = """SELECT * FROM orders WHERE user_id={}""".format(user_id)
+        response = SenditDb.retrieve_one(user_query)
+        if response['item_name'] == item:
+            message = "User already ordered this item"
+            return message
         tup = (item, pickup, dest, pricing, user_id)
-        SenditDb.add_to_db(query, tup)
+        SenditDb.add_to_db(input_query, tup)
         
         return payload
 
