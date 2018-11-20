@@ -1,14 +1,16 @@
 import unittest
 import json
-from ... import test_app
+from ... import create_app
+from ...api.v2.dbmodel import SenditDb
 
 class AuthTestCase(unittest.TestCase):
     """
     test class for the registration endpoint
     """
     def setUp(self):
-        test_app().testing = True
-        self.app = test_app().test_client()
+        test_app = create_app(config_option="TestConfig")
+        test_app.testing = True
+        self.app = test_app.test_client()
         self.mock_data = {
             'email' : 'test@hotmail.com',
             'password' : 'Goriguty'
@@ -17,6 +19,9 @@ class AuthTestCase(unittest.TestCase):
             'email' : 'qarth@hotmail.com',
             'password' : 'Hannniabl'
         }
+    
+    def tearDown(self):
+        SenditDb.drop_all
           
     
     def test_signup(self):

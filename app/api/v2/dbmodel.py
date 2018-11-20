@@ -54,11 +54,11 @@ class SenditDb():
         return cls.cur.fetchone()
 
     @classmethod
-    def retrieve_all(cls, query_string, tuple_data):
+    def retrieve_all(cls, query_string):
         """
         returns all specified columns from table rows
         """
-        cls.cur.execute(query_string, tuple_data)
+        cls.cur.execute(query_string)
         return cls.cur.fetchall()
     
     @classmethod
