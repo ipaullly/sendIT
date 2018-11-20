@@ -1,7 +1,7 @@
 import unittest
 import json
-from ... import create_app
-from ...api.v2.dbmodel import SenditDb
+from app import create_app
+from app.api.v2.dbmodel import SenditDb
 
 class LoginTestCase(unittest.TestCase):
     """
@@ -38,7 +38,7 @@ class LoginTestCase(unittest.TestCase):
 
     def tearDown(self):
         SenditDb.drop_all()
-        
+
 if __name__ == "__main__":
     unittest.main()
         

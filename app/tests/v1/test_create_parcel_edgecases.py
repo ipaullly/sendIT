@@ -1,7 +1,7 @@
 import unittest
 import json
-from ... import create_app
-from ...api.v2.dbmodel import SenditDb as db
+from app import create_app
+from app.api.v2.dbmodel import SenditDb as db
 
 
 class TestEdgeCases(unittest.TestCase):
