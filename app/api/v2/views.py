@@ -49,7 +49,7 @@ class ParcelList(Resource):
         res = order.create_order(item, pickup, dest, pricing, author)
         return make_response(jsonify({
             "message" : "delivery order created successfully",
-            "new delivery order" : res
+            "data" : res
         }), 201)
         
         
