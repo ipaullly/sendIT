@@ -33,4 +33,5 @@ class OrderParcel:
         query = """SELECT item_name, pickup_location, destination FROM orders"""
         resp = SenditDb.retrieve_all(query)
         return resp
-        
+    
+    

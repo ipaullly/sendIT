@@ -59,3 +59,22 @@ class ParcelList(Resource):
         if resp:
             return jsonify(resp)
         return jsonify({"message" : "No orders in the database"})
+
+class CancelParcel(Resource):
+    """
+    User endpoint to update delivery order destination
+    """
+    def put(self, id):
+        """
+        PUT request to update parcel destination to 'cancelled'
+        """ 
+        cancel_parcel = order.cancel_order(id)
+        if cancel_parcel:
+            return make_response(jsonify({
+                "message" : "order is cancelled",
+                "cancelled order" : cancel_parcel
+            }), 201)
+        else:
+            return make_response(jsonify({
+                    "message" : "Cancel failed. no order by that id"
+                }), 400) 
