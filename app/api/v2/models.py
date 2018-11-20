@@ -1,12 +1,13 @@
-from ...db_config import init_db
+import os
+from .dbmodel import SenditDb
+
+uri = os.getenv('DEV_DB_URI')
+SenditDb.start_db(uri)
 
 class OrderParcel:
     """
     model for performing CRUD on orders table in the database
     """
-    def __init__(self):
-        self.db = init_db()
-    
     def create_order(self, item, pickup, dest, pricing, user_id):
         """
         instance method to generate new entry into delivery orders list
@@ -19,19 +20,17 @@ class OrderParcel:
             "user_id" : user_id
         }
         query = """INSERT INTO orders (item_name, pickup_location, destination \
-        , pricing, user_id) VALUES (%(item_name)s, %(pickup_location)s, \
-        %(destination)s, %(pricing)s, %(user_id)s)"""
-        curr = self.db.cursor()
-        curr.execute(query, payload)
-        self.db.commit()
+        , pricing, user_id) VALUES (%s, %s, %s, %s, %s)"""
+        tup = (item, pickup, dest, pricing, user_id)
+        SenditDb.add_to_db(query, tup)
+        
         return payload
 
     def order_list(self):
         """
         retrieves entire list of delivery orders
         """
-        curr = self.db.cursor()
-        curr.execute("""SELECT item_name, pickup_location, destination FROM orders""")
-        resp = curr.fetchall()
+        query = """SELECT item_name, pickup_location, destination FROM orders"""
+        resp = SenditDb.retrieve_all(query)
         return resp
         

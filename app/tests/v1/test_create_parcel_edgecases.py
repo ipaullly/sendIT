@@ -1,6 +1,8 @@
 import unittest
+import unittest
 import json
-from ... import test_app
+from ... import create_app
+from ...api.v2.dbmodel import SenditDb
 
 
 class TestEdgeCases(unittest.TestCase):
@@ -11,8 +13,9 @@ class TestEdgeCases(unittest.TestCase):
         """
         Initialize app and define test variables
         """
-        test_app().testing = True
-        self.app = test_app().test_client()
+        test_app = create_app(config_option="TestConfig")
+        test_app.testing = True
+        self.app = test_app.test_client()
         self.blank_name = {
             "item" : "   ",
             "pickup" : "muranga",
