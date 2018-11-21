@@ -88,4 +88,16 @@ class OrderParcel:
         SenditDb.update_row(status_query)
         return True
 
-        
+    def get_orders_by_user(self, user_id):
+        """
+        retrieves a list of parcels by user id
+        """
+        input_query = """SELECT order_id, item_name, destination, status, \
+         current_location FROM orders WHERE user_id={}""".format(user_id)
+        response = SenditDb.retrieve_all(input_query)
+        if not response:
+            return False
+        payload = {
+            "user orders" : response
+        }
+        return payload

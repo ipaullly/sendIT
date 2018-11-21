@@ -159,3 +159,20 @@ class CancelParcel(Resource):
             return make_response(jsonify({
                     "message" : "Cancel failed. no order by that id"
                 }), 400) 
+
+class UserOrders(Resource):
+    """
+    class for endpoint that restrieves all the orders made by a specific user
+    """
+    def get(self, id):
+        user_orders = order.get_orders_by_user(id)
+        if user_orders:
+            return make_response(jsonify({
+                "message" : "Ok",
+                "data" : user_orders
+            }), 200)
+        else:
+            response = {
+                "message" : "Invalid user id"
+            }
+            return make_response(jsonify(response), 400)
