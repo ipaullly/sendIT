@@ -4,21 +4,23 @@ class OrderParcel:
     """
     model for performing CRUD on orders table in the database
     """
-    def create_order(self, item, pickup, dest, pricing, user_id):
+    def create_order(self, item, pickup, dest, pricing, user_id, status, current_location):
         """
         instance method to generate new entry into delivery orders list
         """
         payload = {
-            "item_name" : item,
-            "pickup_location" : pickup,
+            "item name" : item,
+            "pickup location" : pickup,
             "destination" : dest,
             "pricing" : pricing,
-            "user_id" : user_id
+            "user id" : user_id,
+            "status" : status,
+            "current location": current_location
         }
 
         input_query = """INSERT INTO orders (item_name, pickup_location, destination \
-        , pricing, user_id) VALUES (%s, %s, %s, %s, %s);"""
-        tup = (item, pickup, dest, pricing, user_id)
+        , pricing, user_id, status, current_location) VALUES (%s, %s, %s, %s, %s, %s, %s);"""
+        tup = (item, pickup, dest, pricing, user_id, status, current_location)
         SenditDb.add_to_db(input_query, tup)
         
         return payload
@@ -27,7 +29,7 @@ class OrderParcel:
         """
         retrieves entire list of delivery orders
         """
-        query = """SELECT item_name, pickup_location, destination FROM orders;"""
+        query = """SELECT item_name, destination, status, current_location, order_id FROM orders ORDER BY order_id ASC;"""
         resp = SenditDb.retrieve_all(query)
         return resp
     

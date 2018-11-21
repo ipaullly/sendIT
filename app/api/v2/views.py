@@ -19,6 +19,8 @@ class ParcelList(Resource):
         dest = data['dest']
         pricing = data['pricing']
         author = data['user_id']
+        status = "pending"
+        current_location = "sendIT HQ"
 
         if not check_for_space(item):
            return make_response(jsonify({
@@ -46,7 +48,8 @@ class ParcelList(Resource):
                 "message" : "Invalid user id"
             }), 400) 
 
-        res = order.create_order(item, pickup, dest, pricing, author)
+
+        res = order.create_order(item, pickup, dest, pricing, author, status, current_location)
 
         if res == "User already ordered this item":
             return make_response(jsonify({
@@ -82,9 +85,14 @@ class ParcelDestination(Resource):
         PUT request to update parcel status to 'cancelled'
         """ 
         new_destination = request.get_json()['new_destination']
-        item_id = request.get_json()['item_id']
+
+        if not check_for_space(new_destination):
+            return make_response(jsonify({
+                "message" : "Invalid destination value"
+            }), 400)
+
     
-        updated_parcel = order.update_destination(new_destination, item_id)
+        updated_parcel = order.update_destination(new_destination, id)
         if updated_parcel:
             return make_response(jsonify({
                 "message" : "New destination updated",

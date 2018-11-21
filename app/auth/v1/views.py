@@ -1,7 +1,7 @@
 from flask_restful import Resource
 from flask import make_response,jsonify, request
-from .models import User
-from ...utilities.validation_functions import check_for_space, check_email_format, check_password_strength
+from app.auth.v1.models import User
+from app.utilities.validation_functions import check_for_space, check_email_format, check_password_strength
 
 class Registration(Resource):
     """
@@ -60,7 +60,8 @@ class SignIn(Resource):
                 auth_token = user.generate_token(user_id)
                 if auth_token:
                     response = {
-                        'message' : 'Successfully logged in'
+                        'message' : 'Successfully logged in',
+                        'data' : auth_token.decode('UTF-8')
                     }
                     return make_response(jsonify(response), 200)
             else:

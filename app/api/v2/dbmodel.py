@@ -34,7 +34,7 @@ class SenditDb:
         id serial PRIMARY KEY NOT NULL,
         email character varying(50) NOT NULL,
         role character varying(50),
-        password character varying(50) NOT NULL
+        password character varying(300) NOT NULL
         );"""
         )
         cls.conn.commit()
@@ -47,7 +47,14 @@ class SenditDb:
         response = cls.cur.execute(query_string, tuple_data)
         cls.conn.commit()
         return response
-    
+    @classmethod
+    def check_email(cls, query_string, tuple_data):
+        """
+        method that saves queries into the database
+        """
+        cls.cur.execute(query_string, tuple_data)
+        return cls.cur.fetchone()
+        
     @classmethod
     def retrieve_one(cls, query_string):
         """
