@@ -73,7 +73,7 @@ class ParcelList(Resource):
             }), 400) 
 
 
-class SingleParcel(Resource):
+class ParcelDestination(Resource):
     """
     class for endpoint to allow user to update order destination
     """
@@ -122,7 +122,7 @@ class ParcelStatus(Resource):
                     "message" : "Status entered is invalid"
                 }), 400) 
     
-class ParcelLocation(Resource):
+class ParcelCurrentLocation(Resource):
     """
     class for endpoint to cancel parcel order
     """
