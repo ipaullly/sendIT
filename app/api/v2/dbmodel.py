@@ -26,8 +26,8 @@ class SenditDb:
         pickup_location character varying(50) NOT NULL,
         destination character varying(50) NOT NULL,
         pricing numeric NOT NULL,
-        current_location character varying(50),
         status character varying(10),
+        current_location character varying(50),
         timestamp timestamp default current_timestamp
         );
         CREATE TABLE IF NOT EXISTS users (
@@ -44,8 +44,9 @@ class SenditDb:
         """
         method that saves queries into the database
         """
-        cls.cur.execute(query_string, tuple_data)
+        response = cls.cur.execute(query_string, tuple_data)
         cls.conn.commit()
+        return response
     
     @classmethod
     def retrieve_one(cls, query_string):
@@ -79,4 +80,4 @@ class SenditDb:
         cls.cur.execute("""DROP TABLE IF EXISTS users CASCADE;\
         DROP TABLE IF EXISTS orders CASCADE;""")
         cls.conn.commit()
-    
+  

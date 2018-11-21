@@ -18,11 +18,6 @@ class OrderParcel:
 
         input_query = """INSERT INTO orders (item_name, pickup_location, destination \
         , pricing, user_id) VALUES (%s, %s, %s, %s, %s);"""
-        user_query = """SELECT * FROM orders WHERE user_id={};""".format(user_id)
-        response = SenditDb.retrieve_one(user_query)
-        if response['item_name'] == item:
-            message = "User already ordered this item"
-            return message
         tup = (item, pickup, dest, pricing, user_id)
         SenditDb.add_to_db(input_query, tup)
         
@@ -62,8 +57,21 @@ class OrderParcel:
         response = SenditDb.retrieve_one(input_query)
         if not response:
             return False
-        status_query = """UPDATE orders SET status = 'status' WHERE order_id={}""".format(parcel_id)
+        status_query = """UPDATE orders SET status = '{}' WHERE order_id={}""".format(status, parcel_id)
         SenditDb.update_row(status_query)
         return payload
 
-    
+    def update_current_location(self, new_location, parcel_id):
+        """
+        updates the current location of the parcel delivery order
+        """
+        payload = {
+            "Updated location" : new_location
+        }
+        input_query = """SELECT * FROM orders WHERE order_id={}""".format(parcel_id)
+        response = SenditDb.retrieve_one(input_query)
+        if not response:
+            return False
+        status_query = """UPDATE orders SET current_location = '{}' WHERE order_id={}""".format(new_location, parcel_id)
+        SenditDb.update_row(status_query)
+        return payload

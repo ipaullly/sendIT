@@ -64,8 +64,13 @@ class ParcelList(Resource):
         """
         resp = order.order_list()
         if resp:
-            return jsonify(resp)
-        return jsonify({"message" : "No orders in the database"})
+            return make_response(jsonify({
+                "message" : "ok",
+                "data" : resp
+            }), 200)
+        return make_response(jsonify({
+                "message" : "No orders in the database"
+            }), 400) 
 
 
 class SingleParcel(Resource):
@@ -99,11 +104,10 @@ class ParcelStatus(Resource):
         PUT request to update parcel status to
         """ 
         order_status = request.get_json()['status']
-        item_id = request.get_json()['item_id']
         
         if order_status == 'In transit' or order_status == 'Arrived':
             
-            order_status = order.update_order_status(order_status, item_id)
+            order_status = order.update_order_status(order_status, id)
             if order_status:
                 return make_response(jsonify({
                     "message" : "Success",
@@ -118,4 +122,24 @@ class ParcelStatus(Resource):
                     "message" : "Status entered is invalid"
                 }), 400) 
     
+class ParcelLocation(Resource):
+    """
+    class for endpoint to cancel parcel order
+    """
+    def put(self, id):
+        """
+        PUT request to update parcel status to
+        """ 
+        order_location = request.get_json()['current_location']
+        
+        new_location = order.update_current_location(order_location, id)
+        if new_location:
+            return make_response(jsonify({
+                "message" : "Success",
+                "data" : new_location
+            }), 201)
+        else:
+            return make_response(jsonify({
+                "message" : "Update of current order failed. no order by that id"
+            }), 400)
     
