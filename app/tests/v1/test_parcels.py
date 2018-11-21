@@ -1,6 +1,7 @@
+from app import create_app
+from app.api.v2.dbmodel import SenditDb
 import unittest
 import json
-from ... import test_app
 
 class TestPracelCreation(unittest.TestCase):
     """
@@ -10,8 +11,8 @@ class TestPracelCreation(unittest.TestCase):
         """
         Initialize app and define test variables
         """
-        test_app().testing = True
-        self.app = test_app().test_client()
+        test_app = create_app(config_option="TestConfig")
+        self.app = test_app.test_client()
         self.data = {
             "item" : "seven ballons",
             "pickup" : "Biashara street",
@@ -19,12 +20,15 @@ class TestPracelCreation(unittest.TestCase):
             "pricing": "250",
             "user_id" : "12"
         }
+    
+    def tearDown(self):
+        SenditDb.drop_all
 
     def test_POST_create_delivery_order(self):
         """
         Test whether API can create a new delivery order via POSt request
         """
-        response = self.app.post('/api/v1/parcels', data=json.dumps(self.data), content_type='application/json')
+        response = self.app.post('/api/v2/parcels', data=json.dumps(self.data), content_type='application/json')
         result = json.loads(response.data)
         self.assertEqual(response.status_code, 201)
         self.assertIn('delivery order created', str(result))
@@ -33,9 +37,9 @@ class TestPracelCreation(unittest.TestCase):
         """
         Test if API can retrieve a list of delivery orders
         """
-        response = self.app.post('/api/v1/parcels', data=json.dumps(self.data), content_type='application/json')
+        response = self.app.post('/api/v2/parcels', data=json.dumps(self.data), content_type='application/json')
         self.assertEqual(response.status_code, 201)
-        response = self.app.get('/api/v1/parcels', content_type='application/json')
+        response = self.app.get('/api/v2/parcels', content_type='application/json')
         self.assertEqual(response.status_code, 200)
         result = json.loads(response.data)
         self.assertIn('seven ballons', str(result))

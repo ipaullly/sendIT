@@ -1,14 +1,19 @@
 from flask import Flask, Blueprint
-from .api.v1 import version1
-from .api.v2 import version2
-from .auth.v1 import auth
-from .db_config import create_tables
+from app import config
+from app.api.v1 import version1
+from app.api.v2 import version2
+from app.api.v2.dbmodel import SenditDb
+from app.auth.v1 import auth
 #from db_config import create_tables, destroy_tables
 
-def create_app():
+def create_app(config_option="DevConfig"):
+    """
+    Initialize the app for a development environment
+    """
     app = Flask(__name__, instance_relative_config=True)
-    create_tables()
-    app.config.from_pyfile('config.py')
+    app.config.from_object(config.config[config_option])
+    SenditDb.start_db(app.config['DATABASE_URI'])
+    SenditDb.build_all()
     app.register_blueprint(version1)
     app.register_blueprint(version2)
     app.register_blueprint(auth)

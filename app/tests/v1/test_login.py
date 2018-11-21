@@ -1,14 +1,15 @@
 import unittest
 import json
-from ... import test_app
+from app import create_app
+from app.api.v2.dbmodel import SenditDb
 
 class LoginTestCase(unittest.TestCase):
     """
     test class for the registration endpoint
     """
     def setUp(self):
-        test_app().testing = True
-        self.app = test_app().test_client()
+        test_app = create_app(config_option="TestConfig")
+        self.app = test_app.test_client()
         self.mock_data = {
             'email' : 'test@chocoly.com',
             'password' : 'Balerion'
@@ -35,6 +36,8 @@ class LoginTestCase(unittest.TestCase):
         self.assertIn("{'message': 'wrong email format, please enter email again'}", str(result))
         self.assertEqual(res.status_code, 400)
 
+    def tearDown(self):
+        SenditDb.drop_all()
 
 if __name__ == "__main__":
     unittest.main()

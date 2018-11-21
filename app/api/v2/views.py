@@ -47,13 +47,16 @@ class ParcelList(Resource):
             }), 400) 
 
         res = order.create_order(item, pickup, dest, pricing, author)
+
+        if res == "User already ordered this item":
+            return make_response(jsonify({
+                "message" : res
+            }), 409)
+
         return make_response(jsonify({
             "message" : "delivery order created successfully",
             "data" : res
         }), 201)
-        
-        
-            }), 400) 
     
     def get(self):
         """
@@ -63,3 +66,26 @@ class ParcelList(Resource):
         if resp:
             return jsonify(resp)
         return jsonify({"message" : "No orders in the database"})
+
+
+class SingleParcel(Resource):
+    """
+    class for endpoint to allow user to update order destination
+    """
+    def put(self, id):
+        """
+        PUT request to update parcel status to 'cancelled'
+        """ 
+        new_destination = request.get_json()['new_destination']
+        item_id = request.get_json()['item_id']
+    
+        updated_parcel = order.update_destination(new_destination, item_id)
+        if updated_parcel:
+            return make_response(jsonify({
+                "message" : "New destination updated",
+                "data" : updated_parcel
+            }), 201)
+        else:
+            return make_response(jsonify({
+                    "message" : "Destination update failed. no order by that id"
+                }), 400) 

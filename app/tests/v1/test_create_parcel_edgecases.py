@@ -1,6 +1,7 @@
 import unittest
 import json
-from ... import test_app
+from app import create_app
+from app.api.v2.dbmodel import SenditDb as db
 
 
 class TestEdgeCases(unittest.TestCase):
@@ -11,8 +12,8 @@ class TestEdgeCases(unittest.TestCase):
         """
         Initialize app and define test variables
         """
-        test_app().testing = True
-        self.app = test_app().test_client()
+        test_app = create_app(config_option="TestConfig")
+        self.app = test_app.test_client()
         self.blank_name = {
             "item" : "   ",
             "pickup" : "muranga",
@@ -48,6 +49,8 @@ class TestEdgeCases(unittest.TestCase):
             "pricing": "250",
             "user_id" : "  "
         }
+    def tearDown(self):
+        db.drop_all()
 
     def test_blank_item_name(self):
         response = self.app.post('/api/v1/parcels', data=json.dumps(self.blank_name), content_type='application/json')
@@ -74,7 +77,7 @@ class TestEdgeCases(unittest.TestCase):
         result = json.loads(response.data)
         self.assertEqual(response.status_code, 400)
         self.assertIn('Invalid user id', str(result))
-    
+
   
 if __name__ == "__main__":
     unittest.main()
