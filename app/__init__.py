@@ -4,7 +4,6 @@ from app.api.v1 import version1
 from app.api.v2 import version2
 from app.api.v2.dbmodel import SenditDb
 from app.auth.v1 import auth
-#from db_config import create_tables, destroy_tables
 
 def create_app(config_option="DevConfig"):
     """

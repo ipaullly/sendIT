@@ -1,4 +1,3 @@
-
 from .dbmodel import SenditDb
 
 class OrderParcel:
@@ -52,4 +51,19 @@ class OrderParcel:
         SenditDb.update_row(update_query)
         return payload
 
-        
+    def update_order_status(self, status, parcel_id):
+        """
+        updates the status of the parcel delivery order
+        """
+        payload = {
+            "order status" : status
+        }
+        input_query = """SELECT * FROM orders WHERE order_id={}""".format(parcel_id)
+        response = SenditDb.retrieve_one(input_query)
+        if not response:
+            return False
+        status_query = """UPDATE orders SET status = 'status' WHERE order_id={}""".format(parcel_id)
+        SenditDb.update_row(status_query)
+        return payload
+
+    
