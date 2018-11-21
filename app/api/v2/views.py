@@ -142,4 +142,20 @@ class ParcelLocation(Resource):
             return make_response(jsonify({
                 "message" : "Update of current order failed. no order by that id"
             }), 400)
-    
+class CancelParcel(Resource):
+    """
+    class for endpoint to cancel parcel order
+    """
+    def put(self, id):
+        """
+        PUT request to update parcel status to 'cancelled'
+        """ 
+        cancel_parcel = order.cancel_order(id)
+        if cancel_parcel:
+            return make_response(jsonify({
+                "message" : "order is cancelled"
+            }), 201)
+        else:
+            return make_response(jsonify({
+                    "message" : "Cancel failed. no order by that id"
+                }), 400) 

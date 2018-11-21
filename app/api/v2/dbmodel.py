@@ -69,8 +69,9 @@ class SenditDb:
         """
         method that sends an update query to the database
         """
-        cls.cur.execute(query_string)
+        resp = cls.cur.execute(query_string)
         cls.conn.commit()
+        return resp
 
     @classmethod
     def drop_all(cls):
