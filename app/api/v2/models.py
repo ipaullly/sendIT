@@ -1,11 +1,5 @@
-<<<<<<< HEAD
-
 from .dbmodel import SenditDb
 
-=======
-from .dbmodel import SenditDb
-
->>>>>>> a161771... [starts #162109897] Create update parcel status
 class OrderParcel:
     """
     model for performing CRUD on orders table in the database
@@ -57,9 +51,6 @@ class OrderParcel:
         SenditDb.update_row(update_query)
         return payload
 
-<<<<<<< HEAD
-        
-=======
     def update_order_status(self, status, parcel_id):
         """
         updates the status of the parcel delivery order
@@ -76,4 +67,3 @@ class OrderParcel:
         return payload
 
     
->>>>>>> a161771... [starts #162109897] Create update parcel status
