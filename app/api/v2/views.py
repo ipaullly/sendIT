@@ -89,3 +89,33 @@ class SingleParcel(Resource):
             return make_response(jsonify({
                     "message" : "Destination update failed. no order by that id"
                 }), 400) 
+
+class ParcelStatus(Resource):
+    """
+    class for endpoint to cancel parcel order
+    """
+    def put(self, id):
+        """
+        PUT request to update parcel status to
+        """ 
+        order_status = request.get_json()['status']
+        item_id = request.get_json()['item_id']
+        
+        if order_status == 'In transit' or order_status == 'Arrived':
+            
+            order_status = order.update_order_status(order_status, item_id)
+            if order_status:
+                return make_response(jsonify({
+                    "message" : "Success",
+                    "data" : order_status
+                }), 201)
+            else:
+                return make_response(jsonify({
+                        "message" : "Update of order status failed. no order by that id"
+                    }), 400)
+        else:
+            return make_response(jsonify({
+                    "message" : "Status entered is invalid"
+                }), 400) 
+    
+    

@@ -1,6 +1,11 @@
+<<<<<<< HEAD
 
 from .dbmodel import SenditDb
 
+=======
+from .dbmodel import SenditDb
+
+>>>>>>> a161771... [starts #162109897] Create update parcel status
 class OrderParcel:
     """
     model for performing CRUD on orders table in the database
@@ -52,4 +57,23 @@ class OrderParcel:
         SenditDb.update_row(update_query)
         return payload
 
+<<<<<<< HEAD
         
+=======
+    def update_order_status(self, status, parcel_id):
+        """
+        updates the status of the parcel delivery order
+        """
+        payload = {
+            "order status" : status
+        }
+        input_query = """SELECT * FROM orders WHERE order_id={}""".format(parcel_id)
+        response = SenditDb.retrieve_one(input_query)
+        if not response:
+            return False
+        status_query = """UPDATE orders SET status = 'status' WHERE order_id={}""".format(parcel_id)
+        SenditDb.update_row(status_query)
+        return payload
+
+    
+>>>>>>> a161771... [starts #162109897] Create update parcel status

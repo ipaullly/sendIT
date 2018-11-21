@@ -26,7 +26,9 @@ class SenditDb:
         pickup_location character varying(50) NOT NULL,
         destination character varying(50) NOT NULL,
         pricing numeric NOT NULL,
-        status character varying(10)
+        current_location character varying(50),
+        status character varying(10),
+        timestamp timestamp default current_timestamp
         );
         CREATE TABLE IF NOT EXISTS users (
         id serial PRIMARY KEY NOT NULL,
