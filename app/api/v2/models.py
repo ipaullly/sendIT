@@ -42,7 +42,7 @@ class OrderParcel:
         response = SenditDb.retrieve_one(input_query)
         if not response:
             return False
-        update_query = """UPDATE orders SET destination = 'new_dest' WHERE order_id={}""".format(parcel_id)
+        update_query = """UPDATE orders SET destination = '{}' WHERE order_id={}""".format(new_dest, parcel_id)
         SenditDb.update_row(update_query)
         return payload
 
@@ -75,3 +75,17 @@ class OrderParcel:
         status_query = """UPDATE orders SET current_location = '{}' WHERE order_id={}""".format(new_location, parcel_id)
         SenditDb.update_row(status_query)
         return payload
+
+    def cancel_order(self, parcel_id):
+        """
+        cancels a parcel delivery order by id
+        """
+        input_query = """SELECT * FROM orders WHERE order_id={}""".format(parcel_id)
+        response = SenditDb.retrieve_one(input_query)
+        if not response:
+            return False
+        status_query = """UPDATE orders SET status = 'cancelled' WHERE order_id={}""".format(parcel_id)
+        SenditDb.update_row(status_query)
+        return True
+
+        
