@@ -44,8 +44,9 @@ class SenditDb:
         """
         method that saves queries into the database
         """
-        response = cls.cur.execute(query_string, tuple_data)
+        cls.cur.execute(query_string, tuple_data)
         cls.conn.commit()
+        response = cls.cur.fetchall()
         return response
     @classmethod
     def check_email(cls, query_string, tuple_data):

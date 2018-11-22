@@ -10,7 +10,7 @@ def create_app(config_option="DevConfig"):
     """
     Initialize the app for a development environment
     """
-    app = Flask(__name__, instance_relative_config=True)
+    app = Flask(__name__)
     app.config.from_object(config.config[config_option])
     SenditDb.start_db(app.config['DATABASE_URI'])
     SenditDb.build_all()
