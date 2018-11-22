@@ -33,10 +33,18 @@ class SenditDb:
         CREATE TABLE IF NOT EXISTS users (
         id serial PRIMARY KEY NOT NULL,
         email character varying(50) NOT NULL,
-        role character varying(50),
+        role BIT,
         password character varying(300) NOT NULL
         );"""
         )
+        cls.conn.commit()
+    
+    @classmethod
+    def persist_to_db(cls, query_string, tuple_data):
+        """
+        method that saves queries into the database
+        """
+        cls.cur.execute(query_string, tuple_data)
         cls.conn.commit()
 
     @classmethod

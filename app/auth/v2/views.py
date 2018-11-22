@@ -1,5 +1,7 @@
 from flask_restful import Resource
 from flask import make_response,jsonify, request
+#from ...auth.v2.models import User
+#from ...utilities.validation_functions import check_for_space, check_email_format, check_password_strength
 from app.auth.v2.models import User
 from app.utilities.validation_functions import check_for_space, check_email_format, check_password_strength
 
@@ -11,9 +13,8 @@ class SignUp(Resource):
     """
     def post(self):
         data = request.get_json()
-        email = data['email']
         password = data['password']
-        
+        email = data['email']
 
         if not check_for_space(email):
             response = {
@@ -58,9 +59,15 @@ class SignIn(Resource):
         
         queried_user = user.get_user_by_email(email)
 
+        if not check_email_format(email):
+            response = {
+                'message' : 'Invalid email. please check the format'
+            }
+            return make_response(jsonify(response), 400)
+
         if not queried_user:
             response = {
-                'message' : 'No user by that email exists. please enter information again'
+                'message' : 'incorrect login credentials. please enter details again'
             }
             return make_response(jsonify(response), 401)
         
@@ -68,7 +75,7 @@ class SignIn(Resource):
         check_password = user.validate_password(password, email)
         if not check_password:
             response = {
-                'message' : 'incorrect password. please enter again'
+                'message' : 'incorrect login credentials. please enter details again'
             }
             return make_response(jsonify(response), 401)
         auth_token = user.generate_token(user_id)

@@ -1,7 +1,9 @@
-from app import create_app
-from app.api.v2.dbmodel import SenditDb
 import unittest
 import json
+#from ... import create_app
+#from ...api.v2.dbmodel import SenditDb
+from app import create_app
+from app.api.v2.dbmodel import SenditDb
 
 class TestPracelCreation(unittest.TestCase):
     """
@@ -11,8 +13,9 @@ class TestPracelCreation(unittest.TestCase):
         """
         Initialize app and define test variables
         """
-        test_app = create_app(config_option="TestConfig")
-        self.app = test_app.test_client()
+        self.test_app = create_app(config_option="TestConfig")
+        self.app = self.test_app.test_client()
+        self.test_app.testing = True
         self.data = {
             "item" : "seven ballons",
             "pickup" : "Biashara street",
@@ -48,9 +51,9 @@ class TestPracelCreation(unittest.TestCase):
         """
         Test if API can retrieve a single delivery order by its id
         """
-        response = self.app.post('/api/v1/parcels', data=json.dumps(self.data), content_type='application/json')
+        response = self.app.post('/api/v2/parcels', data=json.dumps(self.data), content_type='application/json')
         self.assertEqual(response.status_code, 201)
-        result = self.app.get('/api/v1/parcels/1')
+        result = self.app.get('/api/v2/parcels/1')
         self.assertEqual(result.status_code, 200)
         self.assertIn('seven ballons', str(result.data))
 
@@ -58,9 +61,9 @@ class TestPracelCreation(unittest.TestCase):
         """
         Test if API can retrieve orders made by a spefic user
         """
-        response = self.app.post('/api/v1/parcels', data=json.dumps(self.data), content_type='application/json')
+        response = self.app.post('/api/v2/parcels', data=json.dumps(self.data), content_type='application/json')
         self.assertEqual(response.status_code, 201)
-        res = self.app.get('/api/v1/user/12/parcels')
+        res = self.app.get('/api/v2/user/12/parcels')
         self.assertEqual(res.status_code, 200)
         self.assertIn('orders by single user', str(res.data))
 
@@ -68,9 +71,9 @@ class TestPracelCreation(unittest.TestCase):
         """
         Test if API can cancel order by changing order status
         """
-        response = self.app.post('/api/v1/parcels', data=json.dumps(self.data), content_type='application/json')
+        response = self.app.post('/api/v2/parcels', data=json.dumps(self.data), content_type='application/json')
         self.assertEqual(response.status_code, 201)
-        result = self.app.put('/api/v1/parcels/1/cancel')
+        result = self.app.put('/api/v2/parcels/1/cancel')
         self.assertEqual(result.status_code, 201)
         self.assertIn('order is cancelled', str(result.data))
         
