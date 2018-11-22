@@ -2,6 +2,8 @@ import os
 from datetime import datetime, timedelta
 import jwt
 from werkzeug.security import generate_password_hash, check_password_hash
+#from ...api.v2.dbmodel import SenditDb
+
 from app.api.v2.dbmodel import SenditDb
 
 #secret_key = os.environ.get('SECRET_KEY')
@@ -15,7 +17,7 @@ class User:
         email_query = """SELECT * FROM users WHERE email = '{}'""".format(email)
         duplicate_email = SenditDb.retrieve_all(email_query)
         if duplicate_email:
-            return False
+            return False    
         user_query = """INSERT INTO users (email, password) VALUES (%s, %s) RETURNING email, id"""
         tup = (email, hashed_password)
         resp = SenditDb.add_to_db(user_query, tup)
@@ -43,7 +45,7 @@ class User:
        
         try:
             payload = {
-                'exp' : datetime.utcnow()+timedelta(minutes=2),
+                'exp' : datetime.utcnow()+timedelta(minutes=60),
                 'iat' : datetime.utcnow(),
                 'id' : userID
             }

@@ -1,5 +1,6 @@
 from flask import Blueprint
 from flask_restful import Api
+#from ...auth.v2.views import SignUp, SignIn
 from app.auth.v2.views import SignUp, SignIn
 
 auth2 = Blueprint('authV2', __name__, url_prefix="/auth/v2")

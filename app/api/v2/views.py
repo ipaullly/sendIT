@@ -1,7 +1,10 @@
 from flask_restful import Resource
 from flask import make_response, jsonify, request
+#from ...utilities.token_function import decode_token
+#from ...utilities.validation_functions import check_for_space
+#from ...api.v2.models import OrderParcel
 from app.utilities.token_function import decode_token
-from app.utilities.validation_functions import check_for_space
+from app.utilities.validation_functions import check_for_space, check_createparcel_keys
 from app.api.v2.models import OrderParcel
 
 order = OrderParcel()
@@ -14,14 +17,48 @@ class ParcelList(Resource):
         """
         post method to add new order to list of orders
         """
-        data = request.get_json()
-        item = data['item']
-        pickup = data['pickup']
-        dest = data['dest']
-        pricing = data['pricing']
-        author = data['user_id']
-        status = "pending"
-        current_location = "sendIT HQ"
+        """
+        auth_header = request.headers.get('Authorization')
+        if not auth_header:
+            return make_response(jsonify({
+                "message" : "Protected route. Add token to header"
+            }), 400)
+        access_token = auth_header.split(" ")[1]
+        if not access_token:
+            return make_response(jsonify({
+                "message" : "No token in the header"
+            }), 400)
+        
+        user_id = decode_token(access_token)
+
+        if isinstance(user_id, str):
+            return make_response(jsonify({
+                "message" : "Invalid token type"
+            }), 400)
+        """
+        try:
+            data = request.get_json()
+            item = data['item']
+            pickup = data['pickup']
+            dest = data['dest']
+            pricing = data['pricing']
+            author = data['user_id']
+            status = "pending"
+            current_location = "sendIT HQ"  
+        except Exception:
+            return make_response(jsonify({
+                "message" : "Invalid key field"
+            }), 400)
+        
+        if not pricing.isdigit():
+            return make_response(jsonify({
+                "message" : "pricing field can only contain numbers"
+            }), 400)
+
+        if not author.isdigit():
+            return make_response(jsonify({
+                "message" : "user field can only contain a numeral"
+            }), 400)
 
         if not check_for_space(item):
            return make_response(jsonify({

@@ -1,7 +1,7 @@
 from flask_restful import Resource
 from flask import make_response, jsonify, request
-from app.api.v1.models import Parcels
-from app.utilities.validation_functions import check_for_space
+from ...api.v1.models import Parcels
+from ...utilities.validation_functions import check_for_space
 
 order = Parcels()
 

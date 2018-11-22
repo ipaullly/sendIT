@@ -1,3 +1,4 @@
+#from ...api.v2.dbmodel import SenditDb
 from app.api.v2.dbmodel import SenditDb
 
 class OrderParcel:
@@ -21,7 +22,7 @@ class OrderParcel:
         input_query = """INSERT INTO orders (item_name, pickup_location, destination \
         , pricing, user_id, status, current_location) VALUES (%s, %s, %s, %s, %s, %s, %s);"""
         tup = (item, pickup, dest, pricing, user_id, status, current_location)
-        SenditDb.add_to_db(input_query, tup)
+        SenditDb.persist_to_db(input_query, tup)
         
         return payload
 
