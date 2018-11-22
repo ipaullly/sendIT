@@ -1,5 +1,6 @@
 from flask_restful import Resource
 from flask import make_response, jsonify, request
+from app.utilities.token_function import decode_token
 from app.utilities.validation_functions import check_for_space
 from app.api.v2.models import OrderParcel
 
@@ -84,6 +85,24 @@ class ParcelDestination(Resource):
         """
         PUT request to update parcel status to 'cancelled'
         """ 
+        auth_header = request.headers.get('Authorization')
+        if not auth_header:
+            return make_response(jsonify({
+                "message" : "Protected route. Add token to header"
+            }), 400)
+        access_token = auth_header.split(" ")[1]
+        if not access_token:
+            return make_response(jsonify({
+                "message" : "No token in the header"
+            }), 400)
+        
+        user_id = decode_token(access_token)
+
+        if isinstance(user_id, str):
+            return make_response(jsonify({
+                "message" : "Invalid token type"
+            }), 400)
+
         new_destination = request.get_json()['new_destination']
 
         if not check_for_space(new_destination):
@@ -111,6 +130,23 @@ class ParcelStatus(Resource):
         """
         PUT request to update parcel status to
         """ 
+        auth_header = request.headers.get('Authorization')
+        if not auth_header:
+            return make_response(jsonify({
+                "message" : "Protected route. Add token to header"
+            }), 400)
+        access_token = auth_header.split(" ")[1]
+        if not access_token:
+            return make_response(jsonify({
+                "message" : "No token in the header"
+            }), 400)
+        
+        user_id = decode_token(access_token)
+
+        if isinstance(user_id, str):
+            return make_response(jsonify({
+                "message" : "Invalid token type"
+            }), 400)
         order_status = request.get_json()['status']
         
         if order_status == 'In transit' or order_status == 'Arrived':
@@ -138,6 +174,24 @@ class ParcelCurrentLocation(Resource):
         """
         PUT request to update parcel status to
         """ 
+        auth_header = request.headers.get('Authorization')
+        if not auth_header:
+            return make_response(jsonify({
+                "message" : "Protected route. Add token to header"
+            }), 400)
+        access_token = auth_header.split(" ")[1]
+        if not access_token:
+            return make_response(jsonify({
+                "message" : "No token in the header"
+            }), 400)
+        
+        user_id = decode_token(access_token)
+
+        if isinstance(user_id, str):
+            return make_response(jsonify({
+                "message" : "Invalid token type"
+            }), 400)
+
         order_location = request.get_json()['current_location']
         
         new_location = order.update_current_location(order_location, id)
@@ -158,6 +212,24 @@ class CancelParcel(Resource):
         """
         PUT request to update parcel status to 'cancelled'
         """ 
+        auth_header = request.headers.get('Authorization')
+        if not auth_header:
+            return make_response(jsonify({
+                "message" : "Protected route. Add token to header"
+            }), 400)
+        access_token = auth_header.split(" ")[1]
+        if not access_token:
+            return make_response(jsonify({
+                "message" : "No token in the header"
+            }), 400)
+        
+        user_id = decode_token(access_token)
+
+        if isinstance(user_id, str):
+            return make_response(jsonify({
+                "message" : "Invalid token type"
+            }), 400)
+
         cancel_parcel = order.cancel_order(id)
         if cancel_parcel:
             return make_response(jsonify({
@@ -173,6 +245,25 @@ class UserOrders(Resource):
     class for endpoint that restrieves all the orders made by a specific user
     """
     def get(self, id):
+        
+        auth_header = request.headers.get('Authorization')
+        if not auth_header:
+            return make_response(jsonify({
+                "message" : "Protected route. Add token to header"
+            }), 400)
+        access_token = auth_header.split(" ")[1]
+        if not access_token:
+            return make_response(jsonify({
+                "message" : "No token in the header"
+            }), 400)
+        
+        user_id = decode_token(access_token)
+
+        if isinstance(user_id, str):
+            return make_response(jsonify({
+                "message" : "Invalid token type"
+            }), 400)
+        
         user_orders = order.get_orders_by_user(id)
         if user_orders:
             return make_response(jsonify({
