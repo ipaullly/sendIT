@@ -1,8 +1,10 @@
+import os
 from datetime import datetime, timedelta
-from flask import current_app
 import jwt
 from werkzeug.security import generate_password_hash, check_password_hash
 from app.api.v2.dbmodel import SenditDb
+
+#secret_key = os.environ.get('SECRET_KEY')
 
 class User:
     """
@@ -47,7 +49,7 @@ class User:
             }
             token = jwt.encode(
                 payload,
-                current_app.config.get('SECRET_KEY'),
+                os.environ.get('SECRET_KEY'),
                 algorithm='HS256'
             )
             return token
