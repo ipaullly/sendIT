@@ -1,4 +1,4 @@
-from .dbmodel import SenditDb
+from app.api.v2.dbmodel import SenditDb
 
 class OrderParcel:
     """
