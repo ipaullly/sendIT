@@ -1,6 +1,6 @@
 from flask import Blueprint
 from flask_restful import Api
-from .views import Registration, SignIn
+from app.auth.v1.views import Registration, SignIn
 
 auth = Blueprint('authV1', __name__, url_prefix="/auth/v1")
 

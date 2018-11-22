@@ -1,7 +1,7 @@
 from flask_restful import Resource
 from flask import make_response, jsonify, request
-from ...utilities.validation_functions import check_for_space
-from .models import OrderParcel
+from app.utilities.validation_functions import check_for_space
+from app.api.v2.models import OrderParcel
 
 order = OrderParcel()
 
@@ -19,6 +19,8 @@ class ParcelList(Resource):
         dest = data['dest']
         pricing = data['pricing']
         author = data['user_id']
+        status = "pending"
+        current_location = "sendIT HQ"
 
         if not check_for_space(item):
            return make_response(jsonify({
@@ -46,7 +48,8 @@ class ParcelList(Resource):
                 "message" : "Invalid user id"
             }), 400) 
 
-        res = order.create_order(item, pickup, dest, pricing, author)
+
+        res = order.create_order(item, pickup, dest, pricing, author, status, current_location)
 
         if res == "User already ordered this item":
             return make_response(jsonify({
@@ -73,7 +76,7 @@ class ParcelList(Resource):
             }), 400) 
 
 
-class SingleParcel(Resource):
+class ParcelDestination(Resource):
     """
     class for endpoint to allow user to update order destination
     """
@@ -82,9 +85,14 @@ class SingleParcel(Resource):
         PUT request to update parcel status to 'cancelled'
         """ 
         new_destination = request.get_json()['new_destination']
-        item_id = request.get_json()['item_id']
+
+        if not check_for_space(new_destination):
+            return make_response(jsonify({
+                "message" : "Invalid destination value"
+            }), 400)
+
     
-        updated_parcel = order.update_destination(new_destination, item_id)
+        updated_parcel = order.update_destination(new_destination, id)
         if updated_parcel:
             return make_response(jsonify({
                 "message" : "New destination updated",
@@ -122,7 +130,7 @@ class ParcelStatus(Resource):
                     "message" : "Status entered is invalid"
                 }), 400) 
     
-class ParcelLocation(Resource):
+class ParcelCurrentLocation(Resource):
     """
     class for endpoint to cancel parcel order
     """
@@ -159,3 +167,20 @@ class CancelParcel(Resource):
             return make_response(jsonify({
                     "message" : "Cancel failed. no order by that id"
                 }), 400) 
+
+class UserOrders(Resource):
+    """
+    class for endpoint that restrieves all the orders made by a specific user
+    """
+    def get(self, id):
+        user_orders = order.get_orders_by_user(id)
+        if user_orders:
+            return make_response(jsonify({
+                "message" : "Ok",
+                "data" : user_orders
+            }), 200)
+        else:
+            response = {
+                "message" : "Invalid user id"
+            }
+            return make_response(jsonify(response), 400)
