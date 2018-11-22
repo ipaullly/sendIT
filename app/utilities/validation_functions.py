@@ -18,3 +18,15 @@ def check_password_strength(password):
     capital_regex = re.compile(r'[A-Z]')
     uppercase = True if capital_regex.search(password) != None else False
     return(leng and uppercase == True)
+
+def check_createparcel_keys(req_data, item, pickup, dest, pricing, user_id):
+    if item == None:
+        return False
+    if pickup == None:
+        return False
+    if dest == None:
+        return False
+    if pricing == None:
+        return False
+    if user_id == None:
+        return False

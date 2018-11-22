@@ -12,9 +12,16 @@ class SignUp(Resource):
     class that handles registration of new user
     """
     def post(self):
-        data = request.get_json()
-        password = data['password']
-        email = data['email']
+        
+        try:
+            data = request.get_json()
+            password = data['password']
+            email = data['email']
+        except Exception:
+            response = {
+                'message' : 'Invalid key field'
+            }
+            return make_response(jsonify(response), 400)
 
         if not check_for_space(email):
             response = {
@@ -53,10 +60,15 @@ class SignIn(Resource):
     class that handles logging into user accounts and token generation
     """
     def post(self):
-        data = request.get_json()
-        email = data['email']
-        password = data['password']
-        
+        try:
+            data = request.get_json()
+            email = data['email']
+            password = data['password']
+        except Exception:
+            response = {
+                'message' : 'Invalid key field'
+            }
+            return make_response(jsonify(response), 400)
         queried_user = user.get_user_by_email(email)
 
         if not check_email_format(email):
