@@ -48,7 +48,7 @@ class SenditDb:
         cls.conn.commit()
 
     @classmethod
-    def add_to_db(cls, query_string, tuple_data):
+    def insert_fetch_from_db(cls, query_string, tuple_data):
         """
         method that saves queries into the database
         """
@@ -70,7 +70,8 @@ class SenditDb:
         method returns data on a particular row from the database
         """
         cls.cur.execute(query_string)
-        return cls.cur.fetchone()
+        result = cls.cur.fetchone()
+        return result
 
     @classmethod
     def retrieve_all(cls, query_string):

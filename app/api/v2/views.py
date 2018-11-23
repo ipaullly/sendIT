@@ -113,6 +113,28 @@ class ParcelList(Resource):
                 "message" : "No orders in the database"
             }), 400) 
 
+class IndividualParcel(Resource):
+    """
+    class for API endpoints for retrieving single order and cancelling particular order
+    """
+    def get(self, id):
+        """
+        get method to retrieve order by id
+        """
+        
+        individ_order = order.order_list()
+    
+        for parcel in individ_order:
+            if parcel["order_id"] == id:
+                return make_response(jsonify({
+                    "message" : "Ok",
+                    "order" : parcel
+                }), 200)
+        else:
+            response = {
+                "message" : "Invalid id"
+            }
+            return make_response(jsonify(response), 400)
 
 class ParcelDestination(Resource):
     """
