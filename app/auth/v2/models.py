@@ -20,7 +20,7 @@ class User:
             return False    
         user_query = """INSERT INTO users (email, password) VALUES (%s, %s) RETURNING email, id"""
         tup = (email, hashed_password)
-        resp = SenditDb.add_to_db(user_query, tup)
+        resp = SenditDb.insert_fetch_from_db(user_query, tup)
         payload = resp
         return payload
  

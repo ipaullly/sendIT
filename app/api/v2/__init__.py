@@ -1,7 +1,8 @@
 from flask import Blueprint
 from flask_restful import Api
 #from ...api.v2.views import ParcelList, ParcelDestination, ParcelStatus, ParcelCurrentLocation, CancelParcel, UserOrders
-from app.api.v2.views import ParcelList, ParcelDestination, ParcelStatus, ParcelCurrentLocation, CancelParcel, UserOrders
+from app.api.v2.views import ParcelList, ParcelDestination, ParcelStatus,  \
+ParcelCurrentLocation, CancelParcel, UserOrders, IndividualParcel
 
 version2 = Blueprint('v2', __name__, url_prefix="/api/v2")
 
@@ -13,3 +14,4 @@ api.add_resource(ParcelStatus, '/parcels/<int:id>/status')
 api.add_resource(ParcelCurrentLocation, '/parcels/<int:id>/presentLocation')
 api.add_resource(CancelParcel, '/parcels/<int:id>/cancel')
 api.add_resource(UserOrders, '/users/<int:id>/parcels')
+api.add_resource(IndividualParcel, '/parcels/<int:id>')
