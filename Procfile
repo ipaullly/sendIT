@@ -1,1 +1,1 @@
-web: gunicorn 'app:create_app(config_option="ProdConfig")'
+web: gunicorn 'app:create_app()'
