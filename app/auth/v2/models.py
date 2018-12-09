@@ -27,7 +27,7 @@ class User:
         duplicate_email = SenditDb.retrieve_all(email_query)
         if duplicate_email:
             return True
-            
+
     def check_admin(self, user_id):
         """
         method checks whether a user is an admin by id
@@ -80,11 +80,7 @@ class User:
                 'iat' : datetime.utcnow(),
                 'id' : userID
             }
-            token = jwt.encode(
-                payload,
-                os.environ.get('SECRET_KEY'),
-                algorithm='HS256'
-            )
+            token = jwt.encode(payload, os.environ.get('SECRET_KEY'), algorithm='HS256').decode('utf-8')
             return token
         except Exception as err:
             return str(err)
