@@ -13,7 +13,7 @@ from app.auth.v2 import auth2
 #from .auth.v1 import auth
 #from .auth.v2 import auth2
 
-def create_app(config_option="DevConfig"):
+def create_app(config_option="ProdConfig"):
     """
     Initialize the app for a development environment
     """
