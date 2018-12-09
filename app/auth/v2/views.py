@@ -98,7 +98,7 @@ class SignIn(Resource):
             }
             return make_response(jsonify(response), 401)
         auth_token = user.generate_token(user_id)
-        
+        str_token = str(auth_token)
         if not auth_token:
             response = {
                 'message' : 'token generation failed'
@@ -106,7 +106,7 @@ class SignIn(Resource):
             return make_response(jsonify(response), 401)
         response = {
             'message' : 'Successfully logged in',
-            'data' : str(auth_token)
+            'data' : str_token
         }
         return make_response(jsonify(response), 200)
       
