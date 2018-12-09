@@ -4,7 +4,6 @@ from flask import make_response,jsonify, request
 #from ...utilities.validation_functions import check_for_space, check_email_format, check_password_strength
 from app.auth.v2.models import User
 from app.utilities.validation_functions import check_for_space, check_email_format, check_password_strength
-from app.utilities.token_function import convert_token
 
 user = User()
 
@@ -99,8 +98,6 @@ class SignIn(Resource):
             }
             return make_response(jsonify(response), 401)
         auth_token = user.generate_token(user_id)
-
-        str_token = convert_token(auth_token)
         
         if not auth_token:
             response = {
@@ -109,7 +106,7 @@ class SignIn(Resource):
             return make_response(jsonify(response), 401)
         response = {
             'message' : 'Successfully logged in',
-            'data' : str_token
+            'data' : auth_token.decode('ASCII')
         }
         return make_response(jsonify(response), 200)
       
