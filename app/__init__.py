@@ -19,8 +19,7 @@ def create_app(config_option="DevConfig"):
     """
     app = Flask(__name__)
     app.config.from_object(config.config[config_option])
-    app.config.from_pyfile('config.py')
-    SenditDb.start_db(app)
+    SenditDb.start_db('postgres://vhgobajxbehppp:b05d8b59b7552e74c763d86945c5b29c2fd11c5e000cfc417190eca27f8eb3d5@ec2-54-204-40-248.compute-1.amazonaws.com:5432/d4v7duckviarp9')
     SenditDb.build_all()
     app.register_blueprint(version1)
     app.register_blueprint(version2)
