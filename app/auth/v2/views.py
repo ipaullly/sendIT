@@ -40,16 +40,23 @@ class SignUp(Resource):
                 'message' : 'Ensure your password is at least 8 charaters and includes an Uppercase letter'
             }
             return make_response(jsonify(response), 400)
-        
-        new_user = user.add_user(email, password)
-        
-        if not new_user:
+
+        checked_email = user.check_duplicate_email(email)
+        if checked_email:
             response = {
                 'message' : 'User with the email already exists'
             }
             return make_response(jsonify(response), 400)
+            
+        role = user.check_role()
+        
+        if role:
+            user_role = "user"
+        if not role:
+            user_role = "admin"
 
-
+        new_user = user.add_user(email, password, user_role)
+        
         return make_response(jsonify({
             'message' : 'you have successfully registered an account',
             'data' : new_user

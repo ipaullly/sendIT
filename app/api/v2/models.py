@@ -33,6 +33,15 @@ class OrderParcel:
         query = """SELECT item_name, destination, status, current_location, order_id FROM orders ORDER BY order_id ASC;"""
         resp = SenditDb.retrieve_all(query)
         return resp
+    
+    def order_identification(self):
+        """
+        retrieves object containing user and order ids
+        """
+        query = """SELECT user_id, order_id FROM orders ORDER BY order_id ASC;"""
+        resp = SenditDb.retrieve_all(query)
+        return resp
+
     def retrieve_single_order(self, parcel_id):
         """
         retrieves an order by id

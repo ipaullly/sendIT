@@ -15,3 +15,4 @@ def decode_token(token):
     except jwt.InvalidTokenError:
         #the token is not valid, throw error
         return "Unworthy token. Please login to get fresh authorization"
+

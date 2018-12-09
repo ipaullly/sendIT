@@ -33,7 +33,7 @@ class SenditDb:
         CREATE TABLE IF NOT EXISTS users (
         id serial PRIMARY KEY NOT NULL,
         email character varying(50) NOT NULL,
-        role BIT,
+        role character varying(50),
         password character varying(300) NOT NULL
         );"""
         )
