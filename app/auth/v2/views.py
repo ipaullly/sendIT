@@ -106,7 +106,7 @@ class SignIn(Resource):
             return make_response(jsonify(response), 401)
         response = {
             'message' : 'Successfully logged in',
-            'data' : auth_token
+            'data' : auth_token.decode("utf-8")
         }
         return make_response(jsonify(response), 200)
       
