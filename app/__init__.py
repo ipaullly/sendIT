@@ -19,7 +19,8 @@ def create_app(config_option="DevConfig"):
     """
     app = Flask(__name__)
     app.config.from_object(config.config[config_option])
-    SenditDb.start_db(app.config['ProdConfig'])
+    app.config.from_pyfile('config.py')
+    SenditDb.start_db(app)
     SenditDb.build_all()
     app.register_blueprint(version1)
     app.register_blueprint(version2)
