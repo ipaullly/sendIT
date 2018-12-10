@@ -107,11 +107,11 @@ class SignIn(Resource):
             }
             return make_response(jsonify(response), 401)
         
-        str_token = str(object=auth_token, encoding='utf-8', errors='strict')
+        #str_token = str(object=auth_token, encoding='utf-8', errors='strict')
 
         response = {
             'message' : 'Successfully logged in',
-            'data' : str_token
+            'data' : auth_token.decode("utf-8")
         }
         return make_response(jsonify(response), 200)
       
