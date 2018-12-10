@@ -109,10 +109,11 @@ class SignIn(Resource):
         
         #str_token = str(object=auth_token, encoding='utf-8', errors='strict')
         #str_token = auth_token.encode()
+        str_token = ''.join(auth_token.split('b', 1))
 
         response = {
             'message' : 'Successfully logged in',
-            'data' : str(auth_token, 'utf-8')
+            'data' : str_token
         }
         return make_response(jsonify(response), 200)
       
