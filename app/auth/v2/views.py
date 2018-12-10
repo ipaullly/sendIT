@@ -1,3 +1,4 @@
+import codecs
 from flask_restful import Resource
 from flask import make_response,jsonify, request
 #from ...auth.v2.models import User
@@ -97,6 +98,7 @@ class SignIn(Resource):
                 'message' : 'incorrect login credentials. please enter details again'
             }
             return make_response(jsonify(response), 401)
+        
         auth_token = user.generate_token(user_id)
         
         if not auth_token:
@@ -104,9 +106,12 @@ class SignIn(Resource):
                 'message' : 'token generation failed'
             }
             return make_response(jsonify(response), 401)
+
+        str_token = codecs.decode(auth_token, encoding='utf-8', errors='strict')
+
         response = {
             'message' : 'Successfully logged in',
-            'data' : auth_token
+            'data' : str_token
         }
         return make_response(jsonify(response), 200)
       
