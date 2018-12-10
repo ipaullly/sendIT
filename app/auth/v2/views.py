@@ -115,7 +115,7 @@ class SignIn(Resource):
 
         response = {
             'message' : 'Successfully logged in',
-            'data' : str_token
+            'data' : print(str_token)
         }
         return make_response(jsonify(response), 200)
       
