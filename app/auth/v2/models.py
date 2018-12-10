@@ -80,7 +80,7 @@ class User:
                 'iat' : datetime.utcnow(),
                 'id' : userID
             }
-            token = jwt.encode(payload, os.environ.get('SECRET_KEY')).decode()
+            token = jwt.encode(payload, os.environ.get('SECRET_KEY')).decode('utf-8', errors='ignore')
             return token
         except Exception as err:
             return str(err)
