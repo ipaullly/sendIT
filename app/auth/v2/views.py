@@ -111,11 +111,11 @@ class SignIn(Resource):
         #str_token = auth_token.encode()
 
         token_to_string = str(auth_token)
-        #str_token = ''.join(token_to_string.split('b', 1))
+        str_token = ''.join(token_to_string.split('b', 1))
 
         response = {
             'message' : 'Successfully logged in',
-            'data' : token_to_string
+            'data' : str_token
         }
         return make_response(jsonify(response), 200)
       
