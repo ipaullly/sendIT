@@ -106,8 +106,9 @@ class SignIn(Resource):
                 'message' : 'token generation failed'
             }
             return make_response(jsonify(response), 401)
+        print(auth_token)
 
-        str_token = codecs.decode(auth_token, encoding='utf-8', errors='strict')
+        str_token = auth_token.decode('utf-8', 'backslashreplace')
 
         response = {
             'message' : 'Successfully logged in',
