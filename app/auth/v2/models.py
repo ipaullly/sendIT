@@ -82,7 +82,7 @@ class User:
             }
             token = jwt.encode(payload, os.environ.get('SECRET_KEY'))
             return token
-        except Exception as err:
-            return str(err)
+        except Exception:
+            return "problem with the token generation"
     
 
