@@ -3,3 +3,5 @@ venv
 .pytest_cache
 app/
 .vscode
+.env
+node_modules/
