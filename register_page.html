@@ -34,13 +34,10 @@
                     <hr>
                       
                     <label for="uname"><b>Email</b></label>
-                    <input type="text" placeholder="Provide Username" name="uname" required>
+                    <input id="signemail" type="text" placeholder="Provide Email" name="uname" required>
                       
                     <label for="secretword"><b>Password</b></label>
-                    <input type="password" placeholder="Provide a Password" name="secretword" required>
-                      
-                    <label for="secretword-repeat"><b>Confirm Password</b></label>
-                    <input type="password" placeholder="Confirm Password" name="secretword-repeat" required>
+                    <input id="signpassword" type="password" placeholder="Provide a Password" name="secretword" required>
                       
                     <label>
                     <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
@@ -50,7 +47,7 @@
                       
                     <div class="downfix">
                     <button type="button" class="delbtn">Cancel</button>
-                    <button type="submit" class="regbtn">Register Account</button>
+                    <button id="signupbutton" type="button" class="regbtn">Register Account</button>
                     </div>
                 </div>
             </form>   
@@ -63,6 +60,6 @@
     <footer>
         <p>Send-IT, Copyright &copy; 2018</p>
     </footer>
-    <script src="build/main.bundle.js"></script>
+    <script src="./js/main.js"></script>
 </body>
 </html>
