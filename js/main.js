@@ -1,16 +1,24 @@
 document.getElementById('signupbutton').addEventListener('click', signUp);
 
 function signUp(){
-    let email = document.getElementById('signemail').nodeValue;
-    let password = document.getElementById('signpassword').nodeValue;
 
     fetch('https://sendit-versiontwo.herokuapp.com/auth/v2/signup', {
+        mode: 'cors',
         method: 'POST',
         headers: {
-            'Content-type': 'application/json'
+            Accept: "application/json",
+            "Content-Type": "application/json; charset=UTF-8"
         },
-        body: JSON.stringify({email:email, password:password})
+        body: JSON.stringify({
+            email: document.getElementById('signemail').value,
+            password: document.getElementById('signpassword').value
+        })
     })
     .then((res) => res.json())
-    .then((data) => console.log(data))
+    .then((data) => {
+        let output = `<p style="background: #a60000;color: white;text-align: center;padding: 20px;">${data.message}</p>`;
+        document.getElementById('signupresponse').innerHTML = output;
+    });
+
+    //.catch((error) => console.log('Request failed', error));
 }
