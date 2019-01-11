@@ -1,3 +1,4 @@
+import codecs
 from flask_restful import Resource
 from flask import make_response,jsonify, request
 #from ...auth.v2.models import User
@@ -40,16 +41,23 @@ class SignUp(Resource):
                 'message' : 'Ensure your password is at least 8 charaters and includes an Uppercase letter'
             }
             return make_response(jsonify(response), 400)
-        
-        new_user = user.add_user(email, password)
-        
-        if not new_user:
+
+        checked_email = user.check_duplicate_email(email)
+        if checked_email:
             response = {
                 'message' : 'User with the email already exists'
             }
             return make_response(jsonify(response), 400)
+            
+        role = user.check_role()
+        
+        if role:
+            user_role = "user"
+        if not role:
+            user_role = "admin"
 
-
+        new_user = user.add_user(email, password, user_role)
+        
         return make_response(jsonify({
             'message' : 'you have successfully registered an account',
             'data' : new_user
@@ -90,6 +98,7 @@ class SignIn(Resource):
                 'message' : 'incorrect login credentials. please enter details again'
             }
             return make_response(jsonify(response), 401)
+        
         auth_token = user.generate_token(user_id)
         
         if not auth_token:
@@ -97,9 +106,16 @@ class SignIn(Resource):
                 'message' : 'token generation failed'
             }
             return make_response(jsonify(response), 401)
+        
+        #str_token = str(object=auth_token, encoding='utf-8', errors='strict')
+        #str_token = auth_token.encode()
+
+        token_to_string = str(auth_token)
+        str_token = ''.join(token_to_string.split('b', 1))
+
         response = {
             'message' : 'Successfully logged in',
-            'data' : auth_token.decode()
+            'data' : str_token
         }
         return make_response(jsonify(response), 200)
       

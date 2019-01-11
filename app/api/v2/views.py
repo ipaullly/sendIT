@@ -6,8 +6,10 @@ from flask import make_response, jsonify, request
 from app.utilities.token_function import decode_token
 from app.utilities.validation_functions import check_for_space, check_createparcel_keys
 from app.api.v2.models import OrderParcel
+from app.auth.v2.models import User
 
 order = OrderParcel()
+user = User()
 
 class ParcelList(Resource):
     """
@@ -16,7 +18,6 @@ class ParcelList(Resource):
     def post(self):
         """
         post method to add new order to list of orders
-        """
         """
         auth_header = request.headers.get('Authorization')
         if not auth_header:
@@ -35,14 +36,14 @@ class ParcelList(Resource):
             return make_response(jsonify({
                 "message" : "Invalid token type"
             }), 400)
-        """
+        
         try:
             data = request.get_json()
             item = data['item']
             pickup = data['pickup']
             dest = data['dest']
             pricing = data['pricing']
-            author = data['user_id']
+            #author = data['user_id']
             status = "pending"
             current_location = "sendIT HQ"  
         except Exception:
@@ -53,11 +54,6 @@ class ParcelList(Resource):
         if not pricing.isdigit():
             return make_response(jsonify({
                 "message" : "pricing field can only contain numbers"
-            }), 400)
-
-        if not author.isdigit():
-            return make_response(jsonify({
-                "message" : "user field can only contain a numeral"
             }), 400)
 
         if not check_for_space(item):
@@ -80,14 +76,7 @@ class ParcelList(Resource):
                 "message" : "Invalid price value"
             }), 400)
 
-
-        if not check_for_space(author):
-            return make_response(jsonify({
-                "message" : "Invalid user id"
-            }), 400) 
-
-
-        res = order.create_order(item, pickup, dest, pricing, author, status, current_location)
+        res = order.create_order(item, pickup, dest, pricing, user_id, status, current_location)
 
         if res == "User already ordered this item":
             return make_response(jsonify({
@@ -113,6 +102,28 @@ class ParcelList(Resource):
                 "message" : "No orders in the database"
             }), 400) 
 
+class IndividualParcel(Resource):
+    """
+    class for API endpoints for retrieving single order and cancelling particular order
+    """
+    def get(self, id):
+        """
+        get method to retrieve order by id
+        """
+        
+        individ_order = order.order_list()
+    
+        for parcel in individ_order:
+            if parcel["order_id"] == id:
+                return make_response(jsonify({
+                    "message" : "Ok",
+                    "order" : parcel
+                }), 200)
+        else:
+            response = {
+                "message" : "Invalid id"
+            }
+            return make_response(jsonify(response), 400)
 
 class ParcelDestination(Resource):
     """
@@ -140,14 +151,29 @@ class ParcelDestination(Resource):
                 "message" : "Invalid token type"
             }), 400)
 
-        new_destination = request.get_json()['new_destination']
+        individ_order = order.order_identification()
+    
+        for parcel in individ_order:
+            if parcel["order_id"] == id:
+                if not parcel["user_id"] == user_id:
+                    return make_response(jsonify({
+                        "message" : "Sorry you cannot edit the destination of orders you did not place."
+                    }), 400)
+        
+        try:
+            new_destination = request.get_json()['new_destination']
+        except Exception:
+            return make_response(jsonify({
+                "message" : "invalid new destination key"
+            }), 400)
+        
 
         if not check_for_space(new_destination):
             return make_response(jsonify({
                 "message" : "Invalid destination value"
             }), 400)
 
-    
+        
         updated_parcel = order.update_destination(new_destination, id)
         if updated_parcel:
             return make_response(jsonify({
@@ -184,7 +210,20 @@ class ParcelStatus(Resource):
             return make_response(jsonify({
                 "message" : "Invalid token type"
             }), 400)
-        order_status = request.get_json()['status']
+        
+        admin = user.check_admin(user_id)
+
+        if not admin:
+            return make_response(jsonify({
+                "message" : "action only accessible to accounts with admin privileges"
+            }), 403)
+
+        try:
+            order_status = request.get_json()['status']
+        except Exception:
+            return make_response(jsonify({
+                "message" : "invalid status key"
+            }), 400)
         
         if order_status == 'In transit' or order_status == 'Arrived':
             
@@ -228,8 +267,20 @@ class ParcelCurrentLocation(Resource):
             return make_response(jsonify({
                 "message" : "Invalid token type"
             }), 400)
+            
+        admin = user.check_admin(user_id)
 
-        order_location = request.get_json()['current_location']
+        if not admin:
+            return make_response(jsonify({
+                "message" : "action only accessible to accounts with admin privileges"
+            }), 403)
+
+        try:
+            order_location = request.get_json()['current_location']
+        except Exception:
+            return make_response(jsonify({
+                "message" : "invalid current location key"
+            }), 400)
         
         new_location = order.update_current_location(order_location, id)
         if new_location:

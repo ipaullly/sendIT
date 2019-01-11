@@ -15,3 +15,9 @@ def decode_token(token):
     except jwt.InvalidTokenError:
         #the token is not valid, throw error
         return "Unworthy token. Please login to get fresh authorization"
+
+def convert_token(auth_token):
+    """
+    function to change generated token from byte to string
+    """
+    return "".join( chr(x) for x in auth_token)

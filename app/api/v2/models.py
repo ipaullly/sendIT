@@ -34,6 +34,23 @@ class OrderParcel:
         resp = SenditDb.retrieve_all(query)
         return resp
     
+    def order_identification(self):
+        """
+        retrieves object containing user and order ids
+        """
+        query = """SELECT user_id, order_id FROM orders ORDER BY order_id ASC;"""
+        resp = SenditDb.retrieve_all(query)
+        return resp
+
+    def retrieve_single_order(self, parcel_id):
+        """
+        retrieves an order by id
+        """
+        
+        query = """SELECT * FROM orders WHERE order_id={}""".format(parcel_id)
+        resp = SenditDb.retrieve_one(query)
+        return resp
+        
     def update_destination(self, new_dest, parcel_id):
         """
         updates the destination of a user's parcels
@@ -41,6 +58,7 @@ class OrderParcel:
         payload = {
             "updated_destination" : new_dest
         }
+        
         input_query = """SELECT destination FROM orders WHERE order_id={}""".format(parcel_id)
         response = SenditDb.retrieve_one(input_query)
         if not response:
