@@ -5,3 +5,4 @@ venv
 *.pytest_cache
 .travis.yml
 *.pytest_cache
+node_modules
