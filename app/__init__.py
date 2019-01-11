@@ -1,4 +1,5 @@
 from flask import Flask, Blueprint
+from flask_cors import CORS
 from app import config
 from app.api.v1 import version1
 from app.api.v2 import version2
@@ -26,6 +27,7 @@ def create_app(config_option="DevConfig"):
     app.register_blueprint(version2)
     app.register_blueprint(auth)
     app.register_blueprint(auth2)
+    CORS(app)
     return app
 
 
