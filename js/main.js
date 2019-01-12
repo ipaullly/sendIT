@@ -28,7 +28,5 @@ function signUp(){
             })
         }
     });
-    
-
-    //.catch((error) => console.log('Request failed', error));
 }
+
