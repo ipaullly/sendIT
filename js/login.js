@@ -15,12 +15,16 @@ function logIn(){
         })
     })
     .then((res) => {
-      /*  if (res.ok){
-            return res.json().then((myJson) => {
-                output = `<p style="background: #004e00;color: white;text-align: center;padding: 20px;font-size: 1.3em;font-family: 'Boogaloo', cursive;">${myJson.message}</p>`;
-                return document.getElementById('signupresponse').innerHTML = output;
-            })
-        }*/
+        if (res.ok){
+            redirect: window.location.assign("./orders_display_users.html")
+            /*return res.json().then((myJson) => {
+                let token = myJson.data;
+                let message = myJson.message;
+                return token, message;     
+            }).catch((error) => {
+                console.log(error);
+            }) */
+        }
         if (res.status == 400){
             return res.json().then((myJson) => {
                 output = `<p style="background: #a60000;color: white;text-align: center;padding: 20px;font-size: 1.3em;font-family: 'Boogaloo', cursive;">${myJson.message}</p>`;
@@ -35,3 +39,4 @@ function logIn(){
         }
     });
 }
+//export { token, message };
