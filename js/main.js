@@ -1,7 +1,7 @@
 document.getElementById('signupbutton').addEventListener('click', signUp);
 
 function signUp(){
-
+    let output;
     fetch('https://sendit-versiontwo.herokuapp.com/auth/v2/signup', {
         mode: 'cors',
         method: 'POST',
@@ -14,11 +14,21 @@ function signUp(){
             password: document.getElementById('signpassword').value
         })
     })
-    .then((res) => res.json())
-    .then((data) => {
-        let output = `<p style="background: #a60000;color: white;text-align: center;padding: 20px;">${data.message}</p>`;
-        document.getElementById('signupresponse').innerHTML = output;
+    .then((res) => {
+        if (res.ok){
+            return res.json().then((data) => {
+                output = `<p style="background: #004e00;color: white;text-align: center;padding: 20px;font-size: 1.3em;">${data.message}</p>`;
+                return document.getElementById('signupresponse').innerHTML = output;
+            })
+        }
+        if (res.status == 400){
+            return res.json().then((data) => {
+                output = `<p style="background: #a60000;color: white;text-align: center;padding: 20px;font-size: 1.3em;">${data.message}</p>`;
+                return document.getElementById('signupresponse').innerHTML = output;
+            })
+        }
     });
+    
 
     //.catch((error) => console.log('Request failed', error));
 }
