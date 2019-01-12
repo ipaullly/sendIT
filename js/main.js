@@ -17,13 +17,13 @@ function signUp(){
     .then((res) => {
         if (res.ok){
             return res.json().then((data) => {
-                output = `<p style="background: #004e00;color: white;text-align: center;padding: 20px;font-size: 1.3em;">${data.message}</p>`;
+                output = `<p style="background: #004e00;color: white;text-align: center;padding: 20px;font-size: 1.3em;font-family: 'Boogaloo', cursive;">${data.message}</p>`;
                 return document.getElementById('signupresponse').innerHTML = output;
             })
         }
         if (res.status == 400){
             return res.json().then((data) => {
-                output = `<p style="background: #a60000;color: white;text-align: center;padding: 20px;font-size: 1.3em;">${data.message}</p>`;
+                output = `<p style="background: #a60000;color: white;text-align: center;padding: 20px;font-size: 1.3em;font-family: 'Boogaloo', cursive;">${data.message}</p>`;
                 return document.getElementById('signupresponse').innerHTML = output;
             })
         }
