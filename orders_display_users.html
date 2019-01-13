@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css?family=Boogaloo" rel="stylesheet">
     <link rel="icon" type="image/png" href="./img/favicomatic (1)/favicon-32x32.png" sizes="32x32" />
 </head>
-<body  onload="loginResponse()">
+<body onload="loginResponse()">
     <header>
         <div class="container">
             <div id="brand">
@@ -29,7 +29,8 @@
         <div class="container">
             <article id="about-col">
                 <p id="redirectedlogin"></p>
-                <h1>Orders</h1>
+                <h2>Orders</h2>
+                <button id="userorders" class="button_1" style="margin: 10px;" type="button">View my orders</button>
                 <ul id="orders">
                     <li>
                         <a href="order_display_page.html"><h3>A carton of crayons</h3></a>
@@ -67,7 +68,6 @@
                         <label>Price:</label>
                         <input id="parcelprice" type="text" placeholder="Enter price in figures">
                     </div>
-                    <div id="createdsuccess"></div>
                     <button id="createparcel" class="button_1" type="button">Create</button>
                 </form>
             </aside>
