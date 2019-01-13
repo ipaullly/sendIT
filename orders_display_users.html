@@ -53,21 +53,22 @@
                 <form class="create">
                     <div>
                         <label>Parcel name:</label>
-                        <input type="text" placeholder="item">
-                    </div>
-                    <div>
-                        <label>Price:</label>
-                        <input type="text" placeholder="Enter price in figures">
+                        <input id="parcelname" type="text" placeholder="item">
                     </div>
                     <div>
                         <label>Pickup location:</label>
-                        <input type="text" placeholder="enter starting point">
+                        <input id="parcelpickup" type="text" placeholder="enter starting point">
                     </div>
                     <div>
                         <label>Destination:</label>
-                        <input type="text" placeholder="enter destination">
+                        <input id="parceldestination" type="text" placeholder="enter destination">
                     </div>
-                    <button class="button_1" type="submit">Create</button>
+                    <div>
+                        <label>Price:</label>
+                        <input id="parcelprice" type="text" placeholder="Enter price in figures">
+                    </div>
+                    <div id="createdsuccess"></div>
+                    <button id="createparcel" class="button_1" type="button">Create</button>
                 </form>
             </aside>
         </div>
