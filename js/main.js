@@ -2,6 +2,7 @@ const registerButton = document.getElementById('signupbutton');
 const loginButton = document.getElementById('loginbut');
 const createOrderButton = document.getElementById('createparcel');
 const userOrderButton = document.getElementById('userorders');
+const singleParcelIdButton = document.getElementById('singleordersearch');
 
 function signUp(){
     let output;
@@ -119,7 +120,7 @@ function createParcel(){
     });
 
 }
-
+let orderList = '';
 function retrieveUserOrders(){
     let token = sessionStorage.getItem( 'token' ).replace("'", "");
     token = token.substr(0, token.length-1); 
@@ -139,12 +140,12 @@ function retrieveUserOrders(){
         if (res.ok){
             return res.json().then((myJson) => {
                 let output;
-                let orderList = myJson.data;
+                orderList = myJson.data;
                 orderList = orderList[Object.keys(orderList)[0]]; 
                 orderList.forEach((order) => {
                     output += `
-                    <li>
-                        <a href="order_display_page.html"><h3>${order.item_name}</h3></a>
+                    <li onclick="changeToOrderPage(this)">
+                        <a href="#"><h3>${order.item_name}</h3></a>
                         <p>Present Location: ${order.current_location}</p>
                         <p>Destination: ${order.destination}</p>
                         <p>Order Id: ${order.order_id}</p>
@@ -153,7 +154,7 @@ function retrieveUserOrders(){
                 });
                 let message = `<p style="background: #004e00;color: white;text-align: center;padding: 20px;font-size: 1.3em;font-family: 'Boogaloo', cursive;">${myJson.message}</p>`;
                 return document.getElementById('redirectedlogin').innerHTML = message,
-                document.getElementById('singleuserorders').innerHTML = output;
+                document.getElementById('singleuserorders').innerHTML = output, orderList;
 
             })
         }
@@ -167,6 +168,56 @@ function retrieveUserOrders(){
 
 }
 
+function changeToOrderPage(li){
+    redirect: window.location.assign("./order_display_page.html")
+}
+
+function singleParcelSearch(){
+    let output;
+    let orderId = document.getElementById('parcelorderid').value;
+    if (orderId.toFixed) {
+        fetch('https://sendit-versiontwo.herokuapp.com/api/v2/parcels/'+orderId+'', {
+            mode: 'cors',
+            method: 'GET',
+            headers: {
+                Accept: "application/json",
+                "Access-Control-Allow-Origin": null,
+                "Content-Type": "application/json; charset=UTF-8"
+            }
+        })
+        .then((res) => {
+            if (res.ok){
+                return res.json().then((myJson) => {
+                    orderList = myJson.order;
+                    orderList = orderList[Object.keys(orderList)[0]];
+                   
+                    output += `
+                    <li>
+                        <h3>${orderList.item_name}</h3>
+                        <p>Present Location: ${orderList.current_location}</p>
+                        <p>Destination: ${orderList.destination}</p>
+                        <p>Order Id: ${orderList.order_id}</p>
+                        <p>Order Status: ${orderList.status}</p>
+                    </li>
+                    `;
+                    let message = `<p style="background: #004e00;color: white;text-align: center;padding: 20px;font-size: 1.3em;font-family: 'Boogaloo', cursive;">${myJson.message}</p>`;
+                    return document.getElementById('redirectedorderpage').innerHTML = message,
+                    document.getElementById('singleorderinformation').innerHTML = output;
+                })
+            }
+            if (res.status == 400){
+                return res.json().then((myJson) => {
+                    output = `<p style="background: #a60000;color: white;text-align: center;padding: 20px;font-size: 1.3em;font-family: 'Boogaloo', cursive;">${myJson.message}</p>`;
+                    return document.getElementById('redirectedorderpage').innerHTML = output;
+                })
+            }
+        });
+    } else {
+        output = `<p style="background: #a60000;color: white;text-align: center;padding: 20px;font-size: 1.3em;font-family: 'Boogaloo', cursive;">Order Id can only be numerals</p>`;
+        return document.getElementById('redirectedorderpage').innerHTML = output;
+    }
+}
+    
 if (registerButton){
     registerButton.addEventListener('click', signUp);
 }
@@ -178,4 +229,7 @@ if (createOrderButton){
 }
 if (userOrderButton){
     userOrderButton.addEventListener('click', retrieveUserOrders);
+}
+if (singleParcelIdButton){
+    singleParcelIdButton.addEventListener('click', singleParcelSearch);
 }

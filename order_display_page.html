@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="./css/order_display.css" />
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Boogaloo" rel="stylesheet">
     <link rel="icon" type="image/png" href="./img/favicomatic (1)/favicon-32x32.png" sizes="32x32" />
 </head>
 <body>
@@ -27,26 +28,35 @@
     <section>
         <div class="container">
             <article id="about-col">
+                <p id="redirectedorderpage"></p>
                 <h1>Order</h1>
                 <hr>
                 <ul id="orders">
-                    <li>
-                        <h3>A carton of crayons</h3>
-                        <p>Order id: 435-456</p>
-                        <p>Sent from: Muthunguri</p>
-                        <p>Destination: Machakos</p>
-                        <p>status: Transit</p>
-                        <p>Sent on: 27th October</p>
-                        <p>Sender name: Kasuku stationaries</p>
-                        <p>Sender email: kasuk@gmail.com</p>
-                        <p>Courier id: KCX 347C</p>
-                        <p>Courier no.: +25472796120</p>   
+                    <div id="singleorderinformation">
+                        <li>
+                            <h3>A carton of crayons</h3>
+                            <p>Order id: 435-456</p>
+                            <p>Sent from: Muthunguri</p>
+                            <p>Destination: Machakos</p>
+                            <p>status: Transit</p>
+                            <p>Sent on: 27th October</p>
+                            <p>Sender name: Kasuku stationaries</p>
+                            <p>Sender email: kasuk@gmail.com</p>
+                            <p>Courier id: KCX 347C</p>
+                            <p>Courier no.: +25472796120</p>   
                     </li>
                 </ul>
             </article>
 
             <aside id="leftbar">
                 <h3>Update Order Destination</h3>
+                <form class="create">
+                    <div class="label">
+                        <label>Enter Parcel ID:</label><br>
+                        <input id="parcelorderid" type="text" placeholder="Enter order id">
+                    </div>
+                    <button id="singleordersearch" class="button_1" type="button">Search</button>
+                </form>
                 <form class="create">
                     <div class="label">
                         <label>Enter new destination:</label><br>
@@ -61,6 +71,6 @@
     <footer>
         <p>Send-IT, Copyright &copy; 2018</p>
     </footer>
-    
+    <script src="./js/main.js"></script>
 </body>
 </html>
