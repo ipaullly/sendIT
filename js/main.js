@@ -138,8 +138,23 @@ function retrieveUserOrders(){
     .then((res) => {
         if (res.ok){
             return res.json().then((myJson) => {
-                output = `<p style="background: #004e00;color: white;text-align: center;padding: 20px;font-size: 1.3em;font-family: 'Boogaloo', cursive;">${myJson.message}</p>`;
-                return document.getElementById('redirectedlogin').innerHTML = output;
+                let output;
+                let orderList = myJson.data;
+                orderList = orderList[Object.keys(orderList)[0]]; 
+                orderList.forEach((order) => {
+                    output += `
+                    <li>
+                        <a href="order_display_page.html"><h3>${order.item_name}</h3></a>
+                        <p>Present Location: ${order.current_location}</p>
+                        <p>Destination: ${order.destination}</p>
+                        <p>Order Id: ${order.order_id}</p>
+                    </li>
+                    `;
+                });
+                let message = `<p style="background: #004e00;color: white;text-align: center;padding: 20px;font-size: 1.3em;font-family: 'Boogaloo', cursive;">${myJson.message}</p>`;
+                return document.getElementById('redirectedlogin').innerHTML = message,
+                document.getElementById('singleuserorders').innerHTML = output;
+
             })
         }
         if (res.status == 400){
