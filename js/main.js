@@ -385,19 +385,20 @@ function presentLocation(){
             if (res.ok){
                 return res.json().then((myJson) => {
                     let newDestination = myJson.data;
-                   
-                    output += `
-                    <p id="generateupdatedestination">Destination: ${newDestination.updated_destination}</p>
+                    newDestination = newDestination[Object.keys(newDestination)[0]];
+                    output = `
+                    <p id="generatepresentdestination">Destination: ${newDestination}</p>
                     `;
                     let message = `<p style="background: #004e00;color: white;text-align: center;padding: 20px;font-size: 1.3em;font-family: 'Boogaloo', cursive;">${myJson.message}</p>`;
-                    return document.getElementById('redirectedorderpage').innerHTML = message,
-                    document.getElementById('generateupdatedestination').innerHTML = output;
+                    return document.getElementById('redirectedlogin').innerHTML = message;
+
+                    //document.getElementById('generatepresentdestination').innerHTML = output;
                 })
             }
             if (res.status == 400){
                 return res.json().then((myJson) => {
                     output = `<p style="background: #a60000;color: white;text-align: center;padding: 20px;font-size: 1.3em;font-family: 'Boogaloo', cursive;">${myJson.message}</p>`;
-                    return document.getElementById('redirectedorderpage').innerHTML = output;
+                    return document.getElementById('redirectedlogin').innerHTML = output;
                 })
             }
         });
