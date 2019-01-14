@@ -216,7 +216,7 @@ function singleParcelSearch(){
             }
         });
     } else {
-        output = `<p style="background: #a60000;color: white;text-align: center;padding: 20px;font-size: 1.3em;font-family: 'Boogaloo', cursive;">Order Id can only be numerals</p>`;
+        output = `<p style="background: #a60000;color: white;text-align: center;padding: 20px;font-size: 1.3em;font-family: 'Boogaloo', cursive;">Order Id can only be numeric</p>`;
         return document.getElementById('redirectedorderpage').innerHTML = output;
     }
 }
