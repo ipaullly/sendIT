@@ -7,6 +7,7 @@ const updateDestinationButton = document.getElementById('updateorderdestination'
 const cancelOrderButton = document.getElementById('cancelorderbut');
 const allOrdersButton = document.getElementById('allordersbut');
 const updateLocationButton = document.getElementById('updatelocationbut');
+const changeStatusButton = document.getElementById('changestatusbut');
 
 function decodeJwt (token) {
     let base64Url = token.split('.')[1];
@@ -404,6 +405,48 @@ function presentLocation(){
         });
     }
 }
+function changeStatus(){
+    let output;
+    let orderId = document.getElementById('deliveryorderid').value;
+    let changeStatus = document.getElementById('changeparcelstatus').value;
+    if (hasNumber(changeStatus)){
+        output = `<p style="background: #a60000;color: white;text-align: center;padding: 20px;font-size: 1.3em;font-family: 'Boogaloo', cursive;">status can only be a string</p>`;
+        return document.getElementById('redirectedlogin').innerHTML = output;
+    }
+    else{
+        let token = sessionStorage.getItem( 'token' ).replace("'", "");
+        token = token.substr(0, token.length-1);
+        fetch('https://sendit-versiontwo.herokuapp.com/api/v2/parcels/'+orderId+'/status', {
+            mode: 'cors',
+            method: 'PUT',
+            headers: {
+                Accept: "application/json",
+                "Access-Control-Allow-Origin": null,
+                "Content-Type": "application/json; charset=UTF-8",
+                "Authorization": "Bearer " + token
+            },
+            body: JSON.stringify({
+                status: changeStatus
+            })
+
+        })
+        .then((res) => {
+            if (res.ok){
+                return res.json().then((myJson) => {
+                    let message = `<p style="background: #004e00;color: white;text-align: center;padding: 20px;font-size: 1.3em;font-family: 'Boogaloo', cursive;">${myJson.message}</p>`;
+                    return document.getElementById('redirectedlogin').innerHTML = message;
+
+                })
+            }
+            if (res.status == 400){
+                return res.json().then((myJson) => {
+                    output = `<p style="background: #a60000;color: white;text-align: center;padding: 20px;font-size: 1.3em;font-family: 'Boogaloo', cursive;">${myJson.message}</p>`;
+                    return document.getElementById('redirectedlogin').innerHTML = output;
+                })
+            }
+        });
+    }
+}
 if (registerButton){
     registerButton.addEventListener('click', signUp);
 }
@@ -430,4 +473,7 @@ if (allOrdersButton){
 }
 if (updateLocationButton){
     updateLocationButton.addEventListener('click', presentLocation);
+}
+if (changeStatusButton){
+    changeStatusButton.addEventListener('click', changeStatus);
 }
