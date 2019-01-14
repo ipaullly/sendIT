@@ -5,6 +5,7 @@ const userOrderButton = document.getElementById('userorders');
 const singleParcelIdButton = document.getElementById('singleordersearch');
 const updateDestinationButton = document.getElementById('updateorderdestination');
 const cancelOrderButton = document.getElementById('cancelorderbut');
+const allOrdersButton = document.getElementById('allordersbut');
 
 function decodeJwt (token) {
     let base64Url = token.split('.')[1];
@@ -314,7 +315,45 @@ function cancelOrder(){
         }
     });
 }
-
+function retrieveAllOrders(){
+    let output;
+    fetch('https://sendit-versiontwo.herokuapp.com/api/v2/parcels', {
+        mode: 'cors',
+        method: 'GET',
+        headers: {
+            Accept: "application/json",
+            "Access-Control-Allow-Origin": null,
+            "Content-Type": "application/json; charset=UTF-8"
+        }
+    })
+    .then((res) => {
+        if (res.ok){
+            return res.json().then((myJson) => {
+                orderList = myJson.data;
+                orderList.forEach((order) => {
+                    output += `
+                    <li>
+                        <h3>${order.item_name}</h3>
+                        <p>Present Location: ${order.current_location}</p>
+                        <p>Destination: ${order.destination}</p>
+                        <p>Order Id: ${order.order_id}</p>
+                        <p>Order Status: ${order.status}</p>
+                    </li>
+                    `;
+                });
+                let message = `<p style="background: #004e00;color: white;text-align: center;padding: 20px;font-size: 1.3em;font-family: 'Boogaloo', cursive;">${myJson.message}</p>`;
+                return document.getElementById('redirectedlogin').innerHTML = message,
+                document.getElementById('alldeliveryorders').innerHTML = output;
+            })
+        }
+        if (res.status == 400){
+            return res.json().then((myJson) => {
+                output = `<p style="background: #a60000;color: white;text-align: center;padding: 20px;font-size: 1.3em;font-family: 'Boogaloo', cursive;">${myJson.message}</p>`;
+                return document.getElementById('redirectedlogin').innerHTML = output;
+            })
+        }
+    });
+}
 if (registerButton){
     registerButton.addEventListener('click', signUp);
 }
@@ -335,4 +374,7 @@ if (updateDestinationButton){
 }
 if (cancelOrderButton){
     cancelOrderButton.addEventListener('click', cancelOrder);
+}
+if (allOrdersButton){
+    allOrdersButton.addEventListener('click', retrieveAllOrders);
 }
