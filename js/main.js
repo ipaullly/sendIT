@@ -167,15 +167,19 @@ function retrieveUserOrders(){
     });
 
 }
-
+//function to redirect to a UI that displays information for a given parcel that the user made
 function changeToOrderPage(li){
     redirect: window.location.assign("./order_display_page.html")
+}
+//function to check whether the input from the user is a digit
+function hasNumber(myString) {
+    return /\d/.test(myString);
 }
 
 function singleParcelSearch(){
     let output;
     let orderId = document.getElementById('parcelorderid').value;
-    if (orderId.toFixed) {
+    if (hasNumber(orderId)) {
         fetch('https://sendit-versiontwo.herokuapp.com/api/v2/parcels/'+orderId+'', {
             mode: 'cors',
             method: 'GET',
@@ -189,7 +193,6 @@ function singleParcelSearch(){
             if (res.ok){
                 return res.json().then((myJson) => {
                     orderList = myJson.order;
-                    orderList = orderList[Object.keys(orderList)[0]];
                    
                     output += `
                     <li>
