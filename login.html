@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="./css/style.css" />
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Boogaloo" rel="stylesheet">
+    <link rel="icon" type="image/png" href="./img/favicomatic (1)/favicon-32x32.png" sizes="32x32" />
 </head>
 <body>
     <header>
@@ -17,7 +19,7 @@
             <nav>
                 <ul>
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="registration.html">Register</a></li>
+                    <li><a href="register_page.html">Register</a></li>
                     <li><a href="about.html">About</a></li>
                 </ul>
             </nav>
@@ -31,13 +33,14 @@
                 </div>
                       
                 <div class="inputfield">
-                    <label for="username"><b>Username</b></label>
-                    <input type="text" placeholder="Enter Username" name="username" required>
+                    <p id="loginresponse"></p>
+                    <label for="username"><b>Email</b></label>
+                    <input id="loginemail" type="text" placeholder="Enter Email" name="username" required>
                       
                     <label for="password"><b>Password</b></label>
-                    <input type="password" placeholder="Enter Password" name="password" required>
+                    <input id="loginpass" type="password" placeholder="Enter Password" name="password" required>
                       
-                    <button id="loginbut" type="submit">Login</button>
+                    <button id="loginbut" type="button">Login</button>
                     <label>
                     <input type="checkbox" checked="checked" name="remember"> Remember me
                     </label>
@@ -56,6 +59,6 @@
     <footer>
         <p>Send-IT, Copyright &copy; 2018</p>
     </footer>
-    
+    <script src="./js/main.js"></script>
 </body>
 </html>

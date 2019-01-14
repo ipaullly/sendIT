@@ -121,7 +121,7 @@ input[type=text], input[type=password] {
   
   /* style buttons */
   .delbtn, .regbtn {
-    background-color: #4CAF50;
+    background-color:#584e76;
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
@@ -138,7 +138,7 @@ input[type=text], input[type=password] {
   /* more style for cancel button */
   .delbtn {
     padding: 14px 20px;
-    background-color: #f44336;
+    background-color: #5e5e5e;
   }
   
   /* Float cancel and register account buttons*/

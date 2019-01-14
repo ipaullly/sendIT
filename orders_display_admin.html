@@ -7,8 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="./css/admin_style.css" />
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Boogaloo" rel="stylesheet">
+    <link rel="icon" type="image/png" href="./img/favicomatic (1)/favicon-32x32.png" sizes="32x32" />
 </head>
-<body>
+<body onload="loginResponse()">
     <header>
         <div class="container">
             <div id="brand">
@@ -25,32 +27,33 @@
     <section>
         <div class="container">
             <article id="about-col">
+                <p id="redirectedlogin"></p>
+                <button id="allordersbut" class="button_1" style="margin: 10px;" type="button">View all Orders</button>
                 <h1>Orders</h1>
                 <ul id="orders">
-                    <li>
-                        <h3>A carton of crayons</h3>
-                        <p>User: Hannibal Scorpio</p>
-                        <p>Sent from: Muthunguri</p>
-                        <p>Destination: Machakos</p>
-                        <p>status: Transist</p>
-                        <button class="button_1" type="submit">Toggle Status</button>
-                    </li>
-                    <li>
-                        <h3>'Autumn is here' monthly periodical</h3>
-                        <p>User: Lafayette Madison</p>
-                        <p>Sent from: Webuye</p>
-                        <p>Destination: Muranga</p>
-                        <p>status: Arrived</p>
-                        <button class="button_1" type="submit">Toggle Status</button>
-                    </li>
-                    <li>
-                        <h3>Two goats</h3>
-                        <p>User: Homer Socrates</p>
-                        <p>Sent from: Isiolo</p>
-                        <p>Destination: Sagana</p>
-                        <p>status: Transist</p>
-                        <button class="button_1" type="submit">Toggle Status</button>
-                    </li>
+                    <div id="alldeliveryorders">
+                        <li>
+                            <h3>A carton of crayons</h3>
+                            <p>User: Hannibal Scorpio</p>
+                            <p>Sent from: Muthunguri</p>
+                            <p>Destination: Machakos</p>
+                            <p>status: Transist</p>
+                        </li>
+                        <li>
+                            <h3>'Autumn is here' monthly periodical</h3>
+                            <p>User: Lafayette Madison</p>
+                            <p>Sent from: Webuye</p>
+                            <p>Destination: Muranga</p>
+                            <p>status: Arrived</p>
+                        </li>
+                        <li>
+                            <h3>Two goats</h3>
+                            <p>User: Homer Socrates</p>
+                            <p>Sent from: Isiolo</p>
+                            <p>Destination: Sagana</p>
+                            <p>status: Transist</p>
+                        </li>
+                    </div>
                 </ul>
             </article>
 
@@ -58,14 +61,19 @@
                 <h3>Update Current Location</h3>
                 <form class="create">
                     <div class="label">
-                        <label>Order Item:</label><br>
-                        <input type="text" placeholder="item">
+                        <label>Order Id:</label><br>
+                        <input id="deliveryorderid" type="text" placeholder="enter order id">
                     </div>
                     <div class="label">
                         <label>Present Location:</label><br>
-                        <input type="text" placeholder="current location">
+                        <input id="parcelpresentlocation" type="text" placeholder="current location">
+                        <button id="updatelocationbut" class="button_1" type="button">Update</button>
                     </div>
-                    <button class="button_1" type="submit">Update</button>
+                    <div class="label">
+                        <label>Status:</label><br>
+                        <input id="changeparcelstatus" type="text" placeholder="In transit/Arrived">
+                        <button id="changestatusbut" class="button_1" type="button">Change Status</button>
+                    </div>
                 </form>
             </aside>
         </div>
@@ -74,6 +82,6 @@
     <footer>
         <p>Send-IT, Copyright &copy; 2018</p>
     </footer>
-    
+    <script src="./js/main.js"></script>
 </body>
 </html>

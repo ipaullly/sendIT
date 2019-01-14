@@ -1,0 +1,27 @@
+{
+  "name": "sendit",
+  "version": "1.0.0",
+  "description": "1. Users can create an account and log in. 2. Users can create a parcel delivery order. 3. Users can change the destination of a parcel delivery order. 4. Users can cancel parcel delivery order. 5. Users can see the details of a delivery order. 6. Admin can change the **status** and **Current-location** of a parcel delivery order.",
+  "main": "index.js",
+  "scripts": {
+    "babel": "babel --presets es2015 js/main.js -o build/main.bundle.js",
+    "start": "http-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ipaullly/sendIT.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ipaullly/sendIT/issues"
+  },
+  "homepage": "https://github.com/ipaullly/sendIT#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-preset-es2015": "^6.24.1",
+    "http-server": "^0.11.1"
+  }
+}

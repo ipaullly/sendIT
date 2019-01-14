@@ -7,8 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="./css/orders_display.css" />
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Boogaloo" rel="stylesheet">
+    <link rel="icon" type="image/png" href="./img/favicomatic (1)/favicon-32x32.png" sizes="32x32" />
 </head>
-<body>
+<body onload="loginResponse()">
     <header>
         <div class="container">
             <div id="brand">
@@ -26,23 +28,27 @@
     <section>
         <div class="container">
             <article id="about-col">
-                <h1>Orders</h1>
+                <p id="redirectedlogin"></p>
+                <button id="userorders" class="button_1" style="margin: 10px;" type="button">View my orders</button>
+                <h2>Orders</h2>
                 <ul id="orders">
-                    <li>
-                        <a href="order_display_page.html"><h3>A carton of crayons</h3></a>
-                        <p>Sent from: Muthunguri</p>
-                        <p>status: Transit</p>
-                    </li>
-                    <li>
-                        <a href="order_display_page.html"><h3>'Autumn is here' monthly periodical</h3></a>
-                        <p>Sent from: Gilgil</p>
-                        <p>status: Transit</p>
-                    </li>
-                    <li>
-                        <a href="order_display_page.html"><h3>Two goats</h3></a>
-                        <p>Sent from: Isiolo</p>
-                        <p>status: Arrived</p>
-                    </li>
+                    <div id="singleuserorders">
+                        <li>
+                            <a href="order_display_page.html"><h3>A carton of crayons</h3></a>
+                            <p>Sent from: Muthunguri</p>
+                            <p>status: Transit</p>
+                        </li>
+                        <li>
+                            <a href="order_display_page.html"><h3>'Autumn is here' monthly periodical</h3></a>
+                            <p>Sent from: Gilgil</p>
+                            <p>status: Transit</p>
+                        </li>
+                        <li>
+                            <a href="order_display_page.html"><h3>Two goats</h3></a>
+                            <p>Sent from: Isiolo</p>
+                            <p>status: Arrived</p>
+                        </li>
+                    </div>        
                 </ul>
             </article>
             <aside id="leftbar">
@@ -50,21 +56,21 @@
                 <form class="create">
                     <div>
                         <label>Parcel name:</label>
-                        <input type="text" placeholder="item">
-                    </div>
-                    <div>
-                        <label>Price:</label>
-                        <input type="text" placeholder="Enter price in figures">
+                        <input id="parcelname" type="text" placeholder="item">
                     </div>
                     <div>
                         <label>Pickup location:</label>
-                        <input type="text" placeholder="enter starting point">
+                        <input id="parcelpickup" type="text" placeholder="enter starting point">
                     </div>
                     <div>
                         <label>Destination:</label>
-                        <input type="text" placeholder="enter destination">
+                        <input id="parceldestination" type="text" placeholder="enter destination">
                     </div>
-                    <button class="button_1" type="submit">Create</button>
+                    <div>
+                        <label>Price:</label>
+                        <input id="parcelprice" type="text" placeholder="Enter price in figures">
+                    </div>
+                    <button id="createparcel" class="button_1" type="button">Create</button>
                 </form>
             </aside>
         </div>
@@ -72,5 +78,6 @@
     <footer>
         <p>Send-IT, Copyright &copy; 2018</p>
     </footer>
+    <script src="./js/main.js"></script>
 </body>
 </html>

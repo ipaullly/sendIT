@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="./css/order_display.css" />
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Boogaloo" rel="stylesheet">
+    <link rel="icon" type="image/png" href="./img/favicomatic (1)/favicon-32x32.png" sizes="32x32" />
 </head>
 <body>
     <header>
@@ -26,21 +28,19 @@
     <section>
         <div class="container">
             <article id="about-col">
+                <p id="redirectedorderpage"></p>
                 <h1>Order</h1>
                 <hr>
                 <ul id="orders">
-                    <li>
-                        <h3>A carton of crayons</h3>
-                        <p>Order id: 435-456</p>
-                        <p>Sent from: Muthunguri</p>
-                        <p>Destination: Machakos</p>
-                        <p>status: Transit</p>
-                        <p>Sent on: 27th October</p>
-                        <p>Sender name: Kasuku stationaries</p>
-                        <p>Sender email: kasuk@gmail.com</p>
-                        <p>Courier id: KCX 347C</p>
-                        <p>Courier no.: +25472796120</p>   
-                    </li>
+                    <div id="singleorderinformation">
+                        <li>
+                            <h3>A carton of crayons</h3>
+                            <p>Order id: 435-456</p>
+                            <p>Sent from: Muthunguri</p>
+                            <p>Destination: Machakos</p>
+                            <p>status: Transit</p>
+                        </li>
+                    </div>
                 </ul>
             </article>
 
@@ -48,10 +48,18 @@
                 <h3>Update Order Destination</h3>
                 <form class="create">
                     <div class="label">
-                        <label>Enter new destination:</label><br>
-                        <input type="text" placeholder="type new destination">
+                        <label>Enter Parcel ID:</label><br>
+                        <input id="parcelorderid" type="text" placeholder="Enter order id">
                     </div>
-                    <button class="button_1" type="submit">Update</button>
+                    <button id="singleordersearch" class="button_1" type="button">Search</button>
+                </form>
+                <form class="create">
+                    <div class="label">
+                        <label>Enter new destination:</label><br>
+                        <input id="parcelupdatedestination" type="text" placeholder="type new destination">
+                    </div>
+                    <button id="updateorderdestination" class="button_1" type="button">Update</button>
+                    <button id="cancelorderbut" style="margin-top: 20px;" class="button_1" type="button">Cancel Order</button>
                 </form>
             </aside>
         </div>
@@ -60,6 +68,6 @@
     <footer>
         <p>Send-IT, Copyright &copy; 2018</p>
     </footer>
-    
+    <script src="./js/main.js"></script>
 </body>
 </html>
