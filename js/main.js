@@ -4,6 +4,7 @@ const createOrderButton = document.getElementById('createparcel');
 const userOrderButton = document.getElementById('userorders');
 const singleParcelIdButton = document.getElementById('singleordersearch');
 const updateDestinationButton = document.getElementById('updateorderdestination');
+const cancelOrderButton = document.getElementById('cancelorderbut');
 
 function signUp(){
     let output;
@@ -201,7 +202,7 @@ function singleParcelSearch(){
                         <p>Present Location: ${orderList.current_location}</p>
                         <p id="generateupdatedestination">Destination: ${orderList.destination}</p>
                         <p>Order Id: ${orderList.order_id}</p>
-                        <p>Order Status: ${orderList.status}</p>
+                        <p id="generatestatus">Order Status: ${orderList.status}</p>
                     </li>
                     `;
                     let message = `<p style="background: #004e00;color: white;text-align: center;padding: 20px;font-size: 1.3em;font-family: 'Boogaloo', cursive;">${myJson.message}</p>`;
@@ -270,6 +271,41 @@ function updateParcelDestination (){
     }
 }
 
+function cancelOrder(){
+    let output;
+    let orderId = document.getElementById('parcelorderid').value;
+    let token = sessionStorage.getItem( 'token' ).replace("'", "");
+    token = token.substr(0, token.length-1);
+    fetch('https://sendit-versiontwo.herokuapp.com/api/v2/parcels/'+orderId+'/cancel', {
+        mode: 'cors',
+        method: 'PUT',
+        headers: {
+            Accept: "application/json",
+            "Access-Control-Allow-Origin": null,
+            "Content-Type": "application/json; charset=UTF-8",
+            "Authorization": "Bearer " + token
+        },
+    })
+    .then((res) => {
+        if (res.ok){
+            return res.json().then((myJson) => {
+                output += `
+                <p id="generatestatus">Status: cancelled</p>
+                `;
+                let message = `<p style="background: #004e00;color: white;text-align: center;padding: 20px;font-size: 1.3em;font-family: 'Boogaloo', cursive;">${myJson.message}</p>`;
+                return document.getElementById('redirectedorderpage').innerHTML = message,
+                document.getElementById('generatestatus').innerHTML = output;
+            })
+        }
+        if (res.status == 400){
+            return res.json().then((myJson) => {
+                output = `<p style="background: #a60000;color: white;text-align: center;padding: 20px;font-size: 1.3em;font-family: 'Boogaloo', cursive;">${myJson.message}</p>`;
+                return document.getElementById('redirectedorderpage').innerHTML = output;
+            })
+        }
+    });
+}
+
 if (registerButton){
     registerButton.addEventListener('click', signUp);
 }
@@ -287,4 +323,7 @@ if (singleParcelIdButton){
 }
 if (updateDestinationButton){
     updateDestinationButton.addEventListener('click', updateParcelDestination);
+}
+if (cancelOrderButton){
+    cancelOrderButton.addEventListener('click', cancelOrder);
 }
