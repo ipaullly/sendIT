@@ -6,6 +6,18 @@ const singleParcelIdButton = document.getElementById('singleordersearch');
 const updateDestinationButton = document.getElementById('updateorderdestination');
 const cancelOrderButton = document.getElementById('cancelorderbut');
 
+function decodeJwt (token) {
+    let base64Url = token.split('.')[1];
+    let base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    return JSON.parse(window.atob(base64));
+}
+
+function loginResponse(){
+    let response = sessionStorage.getItem( 'loginResponse' );
+    let output = `<p style="background: #004e00;color: white;text-align: center;padding: 20px;font-family: 'Boogaloo', cursive;">${response}</p>`;
+    return document.getElementById('redirectedlogin').innerHTML = output;
+}
+
 function signUp(){
     let output;
     fetch('https://sendit-versiontwo.herokuapp.com/auth/v2/signup', {
@@ -52,10 +64,20 @@ function logIn(){
     })
     .then((res) => {
         if (res.ok){
-            redirect: window.location.assign("./orders_display_users.html")
             return res.json().then((myJson) => {
                 sessionStorage.setItem( 'token', myJson.data );
-                sessionStorage.setItem( 'loginResponse', myJson.message );                     
+                sessionStorage.setItem( 'loginResponse', myJson.message );
+
+                let token = sessionStorage.getItem( 'token' ).replace("'", "");
+                token = token.substr(0, token.length-1); 
+                let decodedToken = decodeJwt(token);
+                decodedTokenId = Object.values(decodedToken)[2];
+                console.log(decodedTokenId);
+                if (decodedTokenId == 1){
+                    redirect: window.location.assign("./orders_display_admin.html")
+                }else{
+                    redirect: window.location.assign("./orders_display_users.html")
+                }  
             })
         }
         if (res.status == 400){
@@ -72,19 +94,6 @@ function logIn(){
         }
     });
 }
-
-function decodeJwt (token) {
-    let base64Url = token.split('.')[1];
-    let base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    return JSON.parse(window.atob(base64));
-}
-
-function loginResponse(){
-    let response = sessionStorage.getItem( 'loginResponse' );
-    let output = `<p style="background: #004e00;color: white;text-align: center;padding: 20px;font-family: 'Boogaloo', cursive;">${response}</p>`;
-    return document.getElementById('redirectedlogin').innerHTML = output;
-}
-
 
 function createParcel(){
     let output;
