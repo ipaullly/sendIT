@@ -3,6 +3,7 @@ const loginButton = document.getElementById('loginbut');
 const createOrderButton = document.getElementById('createparcel');
 const userOrderButton = document.getElementById('userorders');
 const singleParcelIdButton = document.getElementById('singleordersearch');
+const updateDestinationButton = document.getElementById('updateorderdestination');
 
 function signUp(){
     let output;
@@ -220,7 +221,11 @@ function singleParcelSearch(){
         return document.getElementById('redirectedorderpage').innerHTML = output;
     }
 }
+
+function updateParcelDestination (){
     
+}
+
 if (registerButton){
     registerButton.addEventListener('click', signUp);
 }
@@ -235,4 +240,7 @@ if (userOrderButton){
 }
 if (singleParcelIdButton){
     singleParcelIdButton.addEventListener('click', singleParcelSearch);
+}
+if (updateDestinationButton){
+    updateDestinationButton.addEventListener('click', updateParcelDestination);
 }
