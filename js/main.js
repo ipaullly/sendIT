@@ -199,9 +199,7 @@ function singleParcelSearch(){
                     <li>
                         <h3>${orderList.item_name}</h3>
                         <p>Present Location: ${orderList.current_location}</p>
-                        <div id="generateupdatedestination">
-                        <p>Destination: ${orderList.destination}</p>
-                        </div>
+                        <p id="generateupdatedestination">Destination: ${orderList.destination}</p>
                         <p>Order Id: ${orderList.order_id}</p>
                         <p>Order Status: ${orderList.status}</p>
                     </li>
@@ -255,7 +253,7 @@ function updateParcelDestination (){
                     let newDestination = myJson.data;
                    
                     output += `
-                        <p>Destination: ${newDestination.updated_destination}</p>
+                    <p id="generateupdatedestination">Destination: ${newDestination.updated_destination}</p>
                     `;
                     let message = `<p style="background: #004e00;color: white;text-align: center;padding: 20px;font-size: 1.3em;font-family: 'Boogaloo', cursive;">${myJson.message}</p>`;
                     return document.getElementById('redirectedorderpage').innerHTML = message,
