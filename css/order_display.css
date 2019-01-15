@@ -16,7 +16,7 @@ article#about-col{
     float: right;
     width: 65%;
 }
-aside#leftbar .create input{
+aside#leftbar{
     float: left;
     width: 30%;
     margin-top: 10px;
