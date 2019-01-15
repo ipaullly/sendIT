@@ -27,46 +27,43 @@
     </header>
     <section>
         <div class="container">
-            <article id="about-col">
-                <p id="redirectedorderpage"></p>
-                <h1>Order</h1>
-                <hr>
-                <ul id="orders">
-                    <div id="singleorderinformation">
-                        <li>
-                            <h3>A carton of crayons</h3>
-                            <p>Order id: 435-456</p>
-                            <p>Sent from: Muthunguri</p>
-                            <p>Destination: Machakos</p>
-                            <p>status: Transit</p>
-                        </li>
-                    </div>
-                </ul>
-            </article>
-
             <aside id="leftbar">
                 <h3>Update Order Destination</h3>
                 <form class="create">
                     <div class="label">
                         <label>Enter Parcel ID:</label><br>
                         <input id="parcelorderid" type="text" placeholder="Enter order id">
+                        <button id="singleordersearch" class="button_1" type="button">Search</button>
                     </div>
-                    <button id="singleordersearch" class="button_1" type="button">Search</button>
-                </form>
-                <form class="create">
                     <div class="label">
-                        <label>Enter new destination:</label><br>
+                        <label style="margin-top: 10px;">Enter new destination:</label><br>
                         <input id="parcelupdatedestination" type="text" placeholder="type new destination">
+                        <button id="updateorderdestination" class="button_1" type="button">Update</button>
+                        <button id="cancelorderbut" style="margin-top: 20px;" class="button_1" type="button">Cancel Order</button>    
                     </div>
-                    <button id="updateorderdestination" class="button_1" type="button">Update</button>
-                    <button id="cancelorderbut" style="margin-top: 20px;" class="button_1" type="button">Cancel Order</button>
                 </form>
             </aside>
+            <article id="about-col">
+                <p id="redirectedorderpage"></p>
+                <h1>Order</h1>
+                <ul id="orders">
+                    <div id="singleorderinformation">
+                        <li>
+                                <p style="font-weight: bold;">Enter Order ID and Click 'Search' to display information on single order.</p>
+                            <h3>Parcel Name</h3>
+                            <p>Order id: Parcel ID</p>
+                            <p>Sent from: Pickup Location</p>
+                            <p>Destination: Parcel Destination</p>
+                            <p>status: status</p>
+                        </li>
+                    </div>
+                </ul>
+            </article>
         </div>
     </section>
 
     <footer>
-        <p>Send-IT, Copyright &copy; 2018</p>
+        <p>Send-IT, Copyright &copy; 2019</p>
     </footer>
     <script src="./js/main.js"></script>
 </body>
