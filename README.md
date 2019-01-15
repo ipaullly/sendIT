@@ -10,20 +10,17 @@
 5. Users can see the details of a delivery order.
 6. Admin can change the **status** and **Current-location** of a parcel delivery order.
 
-## User Interface elements
+## User Interface
 
-1. [Welcome Page](https://ipaullly.github.io/sendIT/UI/index.html)
-2. [Login Page](https://ipaullly.github.io/sendIT/UI/login.html)
-3. [Registration Page](https://ipaullly.github.io/sendIT/UI/register_page.html)
-4. [User Dashboard](https://ipaullly.github.io/sendIT/UI/orders_display_users.html)
-5. [Admin Dashboard](https://ipaullly.github.io/sendIT/UI/orders_display_admin.html)
-6. [Single Order Page](https://ipaullly.github.io/sendIT/UI/order_display_page.html)
-7. [Profile Page](https://ipaullly.github.io/sendIT/UI/profile.html)
+1. [Welcome Page](https://ipaullly.github.io/sendIT/index.html)
+2. [Login Page](https://ipaullly.github.io/sendIT/login.html)
+3. [Registration Page](https://ipaullly.github.io/sendIT/register_page.html)
 
 ## Built Using
 
 1.HTML
 2.CSS
+3.JAVASCRIPT
 
 # Author
 
