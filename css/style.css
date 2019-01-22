@@ -148,6 +148,7 @@ footer{
 
 
 /* Styles for input fields */
+
 input[type=text], input[type=password] {
     width: 100%;
     padding: 12px 20px;
@@ -183,6 +184,7 @@ img.userlog {
 
 /* Add padding to containers */
 .inputfield {
+    width: 100%;
     padding: 16px;
 }
 

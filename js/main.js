@@ -1,4 +1,4 @@
-const registerButton = document.getElementById('signupbutton');
+const registerButton = document.getElementById('signUpButton');
 const loginButton = document.getElementById('loginbut');
 const createOrderButton = document.getElementById('createparcel');
 const userOrderButton = document.getElementById('userorders');
@@ -31,22 +31,22 @@ function signUp(){
             "Content-Type": "application/json; charset=UTF-8"
         },
         body: JSON.stringify({
-            email: document.getElementById('signemail').value,
-            password: document.getElementById('signpassword').value
+            email: document.getElementById('signEmail').value,
+            password: document.getElementById('signPassword').value
         })
     })
     .then((res) => {
         if (res.ok){
             return res.json().then((data) => {
                 output = `<p style="background: #004e00;color: white;text-align: center;padding: 20px;font-size: 1.3em;font-family: 'Boogaloo', cursive;">${data.message}</p>`;
-                return document.getElementById('signupresponse').innerHTML = output;
-            })
+                return document.getElementById('signUpResponse').innerHTML = output;
+            });
         }
         if (res.status == 400){
             return res.json().then((data) => {
-                output = `<p style="background: #a60000;color: white;text-align: center;padding: 20px;font-size: 1.3em;font-family: 'Boogaloo', cursive;">${data.message}</p>`;
-                return document.getElementById('signupresponse').innerHTML = output;
-            })
+                output = `<p style="background: #a60000;color: white;text-align: center;padding: 20px;font-size: 1.3em;font-family: 'Boogaloo', cursive;" data-testid="responseBox">${data.message}</p>`;
+                return document.getElementById('signUpResponse').innerHTML = output;
+            });
         }
     });
 }
@@ -77,23 +77,23 @@ function logIn(){
                 decodedTokenId = Object.values(decodedToken)[2];
                 console.log(decodedTokenId);
                 if (decodedTokenId == 1){
-                    redirect: window.location.assign("./orders_display_admin.html")
+                    redirect: window.location.assign("./orders_display_admin.html");
                 }else{
-                    redirect: window.location.assign("./orders_display_users.html")
+                    redirect: window.location.assign("./orders_display_users.html");
                 }  
-            })
+            });
         }
         if (res.status == 400){
             return res.json().then((myJson) => {
                 output = `<p style="background: #a60000;color: white;text-align: center;padding: 20px;font-size: 1.3em;font-family: 'Boogaloo', cursive;">${myJson.message}</p>`;
                 return document.getElementById('loginresponse').innerHTML = output;
-            })
+            });
         }
         if (res.status == 401){
             return res.json().then((myJson) => {
                 output = `<p style="background: #a60000;color: white;text-align: center;padding: 20px;font-size: 1.3em;font-family: 'Boogaloo', cursive;">${myJson.message}</p>`;
                 return document.getElementById('loginresponse').innerHTML = output;
-            })
+            });
         }
     });
 }
@@ -183,7 +183,7 @@ function retrieveUserOrders(){
 }
 //function to redirect to a UI that displays information for a given parcel that the user made
 function changeToOrderPage(li){
-    redirect: window.location.assign("./order_display_page.html")
+    redirect: window.location.assign("./order_display_page.html");
 }
 //function to check whether the input from the user is a digit
 function hasNumber(myString) {
@@ -220,13 +220,13 @@ function singleParcelSearch(){
                     let message = `<p style="background: #004e00;color: white;text-align: center;padding: 20px;font-size: 1.3em;font-family: 'Boogaloo', cursive;">${myJson.message}</p>`;
                     return document.getElementById('redirectedorderpage').innerHTML = message,
                     document.getElementById('singleorderinformation').innerHTML = output;
-                })
+                });
             }
             if (res.status == 400){
                 return res.json().then((myJson) => {
                     output = `<p style="background: #a60000;color: white;text-align: center;padding: 20px;font-size: 1.3em;font-family: 'Boogaloo', cursive;">${myJson.message}</p>`;
                     return document.getElementById('redirectedorderpage').innerHTML = output;
-                })
+                });
             }
         });
     } else {
@@ -271,13 +271,13 @@ function updateParcelDestination (){
                     let message = `<p style="background: #004e00;color: white;text-align: center;padding: 20px;font-size: 1.3em;font-family: 'Boogaloo', cursive;">${myJson.message}</p>`;
                     return document.getElementById('redirectedorderpage').innerHTML = message,
                     document.getElementById('generateupdatedestination').innerHTML = output;
-                })
+                });
             }
             if (res.status == 400){
                 return res.json().then((myJson) => {
                     output = `<p style="background: #a60000;color: white;text-align: center;padding: 20px;font-size: 1.3em;font-family: 'Boogaloo', cursive;">${myJson.message}</p>`;
                     return document.getElementById('redirectedorderpage').innerHTML = output;
-                })
+                });
             }
         });
     }
@@ -307,13 +307,13 @@ function cancelOrder(){
                 let message = `<p style="background: #004e00;color: white;text-align: center;padding: 20px;font-size: 1.3em;font-family: 'Boogaloo', cursive;">${myJson.message}</p>`;
                 return document.getElementById('redirectedorderpage').innerHTML = message,
                 document.getElementById('generatestatus').innerHTML = output;
-            })
+            });
         }
         if (res.status == 400){
             return res.json().then((myJson) => {
                 output = `<p style="background: #a60000;color: white;text-align: center;padding: 20px;font-size: 1.3em;font-family: 'Boogaloo', cursive;">${myJson.message}</p>`;
                 return document.getElementById('redirectedorderpage').innerHTML = output;
-            })
+            });
         }
     });
 }
@@ -346,13 +346,13 @@ function retrieveAllOrders(){
                 let message = `<p style="background: #004e00;color: white;text-align: center;padding: 20px;font-size: 1.3em;font-family: 'Boogaloo', cursive;">${myJson.message}</p>`;
                 return document.getElementById('redirectedlogin').innerHTML = message,
                 document.getElementById('alldeliveryorders').innerHTML = output;
-            })
+            });
         }
         if (res.status == 400){
             return res.json().then((myJson) => {
                 output = `<p style="background: #a60000;color: white;text-align: center;padding: 20px;font-size: 1.3em;font-family: 'Boogaloo', cursive;">${myJson.message}</p>`;
                 return document.getElementById('redirectedlogin').innerHTML = output;
-            })
+            });
         }
     });
 }
@@ -394,13 +394,13 @@ function presentLocation(){
                     return document.getElementById('redirectedlogin').innerHTML = message;
 
                     //document.getElementById('generatepresentdestination').innerHTML = output;
-                })
+                });
             }
             if (res.status == 400){
                 return res.json().then((myJson) => {
                     output = `<p style="background: #a60000;color: white;text-align: center;padding: 20px;font-size: 1.3em;font-family: 'Boogaloo', cursive;">${myJson.message}</p>`;
                     return document.getElementById('redirectedlogin').innerHTML = output;
-                })
+                });
             }
         });
     }
@@ -436,13 +436,13 @@ function changeStatus(){
                     let message = `<p style="background: #004e00;color: white;text-align: center;padding: 20px;font-size: 1.3em;font-family: 'Boogaloo', cursive;">${myJson.message}</p>`;
                     return document.getElementById('redirectedlogin').innerHTML = message;
 
-                })
+                });
             }
             if (res.status == 400){
                 return res.json().then((myJson) => {
                     output = `<p style="background: #a60000;color: white;text-align: center;padding: 20px;font-size: 1.3em;font-family: 'Boogaloo', cursive;">${myJson.message}</p>`;
                     return document.getElementById('redirectedlogin').innerHTML = output;
-                })
+                });
             }
         });
     }

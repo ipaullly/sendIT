@@ -27,18 +27,18 @@
 
     <section>
         <div class="container">
-            <form action="">
+            <form data-testid="registerForm" action="">
                 <div class="regisdiv">
-                    <p id="signupresponse"></p>
+                    <p id="signUpResponse"></p>
                     <h1>REGISTER TO SEND-IT</h1>
                     <p>kINDLY FILL IN YOUR PERSONAL DETAILS</p>
                     <hr>
                       
                     <label for="uname"><b>Email</b></label>
-                    <input id="signemail" type="text" placeholder="Provide Email" name="uname" required>
+                    <input id="signEmail" type="text" placeholder="Provide Email" name="uname" data-testid="emailInput" required>
                       
                     <label for="secretword"><b>Password</b></label>
-                    <input id="signpassword" type="password" placeholder="Provide a Password" name="secretword" required>
+                    <input id="signPassword" type="password" placeholder="Provide a Password" name="secretword" data-testid="passwordInput" required>
                       
                     <label>
                     <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
@@ -48,7 +48,7 @@
                       
                     <div class="downfix">
                     
-                    <button id="signupbutton" type="button" class="regbtn">Register Account</button>
+                    <button id="signUpButton" type="button" class="regbtn" data-testid="registerSubmitButton" >Register Account</button>
                     </div>
                 </div>
             </form>   
