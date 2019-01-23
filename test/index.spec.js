@@ -93,15 +93,20 @@ describe('Login', () => {
         const errorMessage = await page.$eval('[data-testid="logInResponseBox"]', el => el.textContent)
         expect(errorMessage).toEqual("incorrect login credentials. please enter details again")
     });
- /*   test('duplicate email response message', async () => {
-        await page.type('[data-testid="emailInput"]', user.emailFail)
-        await page.click('[data-testid="passwordInput"]')
-        await page.type('[data-testid="passwordInput"]', user.passwordFail)
-        await page.click('[data-testid="registerSubmitButton"]')
-        await page.waitForSelector('[data-testid="responseBox"]')
-        const duplicateEmail = await page.$eval('[data-testid="responseBox"]', el => el.textContent)
-        expect(duplicateEmail).toEqual("User with the email already exists")
+    test('Successful login triggers a redirect to user account', async () => {
+        await page.goto(routes.public.login)
+        await page.waitForSelector('[data-testid="logInForm"]')
+        await page.click('[data-testid="logInEmailInput"]')
+        await page.type('[data-testid="logInEmailInput"]', user.email)
+        await page.click('[data-testid="logInPasswordInput"]')
+        await page.type('[data-testid="logInPasswordInput"]', user.password)
+        await page.click('[data-testid="loginSubmitButton"]')
+        await page.waitForNavigation({waitUntil: "networkidle2"})
+        await page.waitForSelector('[data-testid="logInRedirectResponse"]')
+        const duplicateEmail = await page.$eval('[data-testid="logInRedirectResponse"]', el => el.textContent)
+        expect(duplicateEmail).toEqual("Successfully logged in")  
     });
+    /*
     test('wrong email format message', async () => {
         await page.goto(routes.public.register)
         await page.waitForSelector('[data-testid="registerForm"]')

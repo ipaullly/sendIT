@@ -17,8 +17,8 @@ function decodeJwt (token) {
 
 function loginResponse(){
     let response = sessionStorage.getItem( 'loginResponse' );
-    let output = `<p style="background: #004e00;color: white;text-align: center;padding: 20px;font-family: 'Boogaloo', cursive;">${response}</p>`;
-    return document.getElementById('redirectedlogin').innerHTML = output;
+    let output = `<p style="background: #004e00;color: white;text-align: center;padding: 20px;font-family: 'Boogaloo', cursive;" data-testid="logInRedirectResponse">${response}</p>`;
+    return document.getElementById('redirectedLogIn').innerHTML = output;
 }
 
 function signUp(){
