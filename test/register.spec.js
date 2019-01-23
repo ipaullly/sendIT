@@ -34,7 +34,7 @@ beforeAll(async () => {
     page = await browser.newPage();
 });
 
-describe('registration', () => {
+describe('Registration', () => {
     test('generation of response', async () => {
         await page.goto(routes.public.register)
         await page.waitForSelector('[data-testid="registerForm"]')
@@ -68,7 +68,54 @@ describe('registration', () => {
     });
 });
 
-
-afterAll(() => {
+describe('Login', () => {
+    test('throws error message for invalid email format', async () => {
+        await page.goto(routes.public.login)
+        await page.waitForSelector('[data-testid="logInForm"]')
+        await page.click('[data-testid="logInEmailInput"]')
+        await page.type('[data-testid="logInEmailInput"]', user.emailFail)
+        await page.click('[data-testid="logInPasswordInput"]')
+        await page.type('[data-testid="logInPasswordInput"]', user.password)
+        await page.click('[data-testid="loginSubmitButton"]')
+        await page.waitForSelector('[data-testid="logInResponseBox"]')
+        const errorMessage = await page.$eval('[data-testid="logInResponseBox"]', el => el.textContent)
+        expect(errorMessage).toEqual("Invalid email. please check the format")
+    });
+    test('throws error message for wrong login credentials', async () => {
+        await page.goto(routes.public.login)
+        await page.waitForSelector('[data-testid="logInForm"]')
+        await page.click('[data-testid="logInEmailInput"]')
+        await page.type('[data-testid="logInEmailInput"]', user.email)
+        await page.click('[data-testid="logInPasswordInput"]')
+        await page.type('[data-testid="logInPasswordInput"]', '  ')
+        await page.click('[data-testid="loginSubmitButton"]')
+        await page.waitForSelector('[data-testid="logInResponseBox"]')
+        const errorMessage = await page.$eval('[data-testid="logInResponseBox"]', el => el.textContent)
+        expect(errorMessage).toEqual("incorrect login credentials. please enter details again")
+    });
+ /*   test('duplicate email response message', async () => {
+        await page.type('[data-testid="emailInput"]', user.emailFail)
+        await page.click('[data-testid="passwordInput"]')
+        await page.type('[data-testid="passwordInput"]', user.passwordFail)
+        await page.click('[data-testid="registerSubmitButton"]')
+        await page.waitForSelector('[data-testid="responseBox"]')
+        const duplicateEmail = await page.$eval('[data-testid="responseBox"]', el => el.textContent)
+        expect(duplicateEmail).toEqual("User with the email already exists")
+    });
+    test('wrong email format message', async () => {
+        await page.goto(routes.public.register)
+        await page.waitForSelector('[data-testid="registerForm"]')
+        await page.click('[data-testid="emailInput"]')
+        await page.type('[data-testid="emailInput"]', user.emailFail)
+        await page.click('[data-testid="passwordInput"]')
+        await page.type('[data-testid="passwordInput"]', user.password)
+        await page.click('[data-testid="registerSubmitButton"]')
+        await page.waitForSelector('[data-testid="responseBox"]')
+        const wrongEmailFormat = await page.$eval('[data-testid="responseBox"]', el => el.textContent)
+        expect(wrongEmailFormat).toEqual("Invalid email format")
+    });*/
+});
+afterAll(async (done) => {
     browser.close();
+    done();
 });

@@ -159,7 +159,7 @@ input[type=text], input[type=password] {
 }
 
 /* style for button */
-#loginbut {
+#logInButton {
     background-color: #584e76;
     color: white;
     padding: 14px 20px;

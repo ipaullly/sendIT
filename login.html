@@ -26,20 +26,20 @@
     </header>
     <section>
         <div class="container">
-            <form action="">
+            <form data-testid="logInForm" action="">
                 <div class="sizeimg">
                     <img src="./img/download.png" alt="Avatar" class="userlog">
                 </div>
                       
                 <div class="inputfield">
-                    <p id="loginresponse"></p>
+                    <p id="logInResponse"></p>
                     <label for="username"><b>Email</b></label>
-                    <input id="loginemail" type="text" placeholder="Enter Email" name="username" required>
+                    <input id="logInEmail" type="text" placeholder="Enter Email" name="username" data-testid="logInEmailInput" required>
                       
                     <label for="password"><b>Password</b></label>
-                    <input id="loginpass" type="password" placeholder="Enter Password" name="password" required>
+                    <input id="logInPass" type="password" placeholder="Enter Password" name="password" data-testid="logInPasswordInput" required>
                       
-                    <button id="loginbut" type="button">Login</button>
+                    <button id="logInButton" type="button" data-testid="loginSubmitButton">Login</button>
                     <label>
                     <input type="checkbox" checked="checked" name="remember"> Remember me
                     </label>

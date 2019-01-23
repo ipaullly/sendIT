@@ -1,5 +1,5 @@
 const registerButton = document.getElementById('signUpButton');
-const loginButton = document.getElementById('loginbut');
+const loginButton = document.getElementById('logInButton');
 const createOrderButton = document.getElementById('createparcel');
 const userOrderButton = document.getElementById('userorders');
 const singleParcelIdButton = document.getElementById('singleordersearch');
@@ -61,8 +61,8 @@ function logIn(){
             "Content-Type": "application/json; charset=UTF-8"
         },
         body: JSON.stringify({
-            email: document.getElementById('loginemail').value,
-            password: document.getElementById('loginpass').value
+            email: document.getElementById('logInEmail').value,
+            password: document.getElementById('logInPass').value
         })
     })
     .then((res) => {
@@ -85,14 +85,14 @@ function logIn(){
         }
         if (res.status == 400){
             return res.json().then((myJson) => {
-                output = `<p style="background: #a60000;color: white;text-align: center;padding: 20px;font-size: 1.3em;font-family: 'Boogaloo', cursive;">${myJson.message}</p>`;
-                return document.getElementById('loginresponse').innerHTML = output;
+                output = `<p style="background: #a60000;color: white;text-align: center;padding: 20px;font-size: 1.3em;font-family: 'Boogaloo', cursive;" data-testid="logInResponseBox">${myJson.message}</p>`;
+                return document.getElementById('logInResponse').innerHTML = output;
             });
         }
         if (res.status == 401){
             return res.json().then((myJson) => {
-                output = `<p style="background: #a60000;color: white;text-align: center;padding: 20px;font-size: 1.3em;font-family: 'Boogaloo', cursive;">${myJson.message}</p>`;
-                return document.getElementById('loginresponse').innerHTML = output;
+                output = `<p style="background: #a60000;color: white;text-align: center;padding: 20px;font-size: 1.3em;font-family: 'Boogaloo', cursive;" data-testid="logInResponseBox">${myJson.message}</p>`;
+                return document.getElementById('logInResponse').innerHTML = output;
             });
         }
     });
