@@ -93,7 +93,7 @@ describe('Login', () => {
         const errorMessage = await page.$eval('[data-testid="logInResponseBox"]', el => el.textContent)
         expect(errorMessage).toEqual("incorrect login credentials. please enter details again")
     });
-    test('Successful login triggers a redirect to user account', async () => {
+    test('successful login triggers a redirect to user account', async () => {
         await page.goto(routes.public.login)
         await page.waitForSelector('[data-testid="logInForm"]')
         await page.click('[data-testid="logInEmailInput"]')
@@ -106,19 +106,19 @@ describe('Login', () => {
         const duplicateEmail = await page.$eval('[data-testid="logInRedirectResponse"]', el => el.textContent)
         expect(duplicateEmail).toEqual("Successfully logged in")  
     });
-    /*
-    test('wrong email format message', async () => {
-        await page.goto(routes.public.register)
-        await page.waitForSelector('[data-testid="registerForm"]')
-        await page.click('[data-testid="emailInput"]')
-        await page.type('[data-testid="emailInput"]', user.emailFail)
-        await page.click('[data-testid="passwordInput"]')
-        await page.type('[data-testid="passwordInput"]', user.password)
-        await page.click('[data-testid="registerSubmitButton"]')
-        await page.waitForSelector('[data-testid="responseBox"]')
-        const wrongEmailFormat = await page.$eval('[data-testid="responseBox"]', el => el.textContent)
-        expect(wrongEmailFormat).toEqual("Invalid email format")
-    });*/
+    test('successful login triggers a redirect to admin account', async () => {
+        await page.goto(routes.public.login)
+        await page.waitForSelector('[data-testid="logInForm"]')
+        await page.click('[data-testid="logInEmailInput"]')
+        await page.type('[data-testid="logInEmailInput"]', admin.email)
+        await page.click('[data-testid="logInPasswordInput"]')
+        await page.type('[data-testid="logInPasswordInput"]', admin.password)
+        await page.click('[data-testid="loginSubmitButton"]')
+        await page.waitForNavigation({waitUntil: "networkidle2"})
+        await page.waitForSelector('[data-testid="allOrdersAdmin"]')
+        const duplicateEmail = await page.$eval('[data-testid="allOrdersAdmin"]', el => el.textContent)
+        expect(duplicateEmail).toEqual("View all Orders")  
+    });
 });
 afterAll(async (done) => {
     browser.close();
