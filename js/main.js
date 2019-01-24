@@ -1,7 +1,7 @@
 const registerButton = document.getElementById('signUpButton');
 const loginButton = document.getElementById('logInButton');
 const createOrderButton = document.getElementById('createParcel');
-const userOrderButton = document.getElementById('userorders');
+const userOrderButton = document.getElementById('userOrders');
 const singleParcelIdButton = document.getElementById('singleordersearch');
 const updateDestinationButton = document.getElementById('updateorderdestination');
 const cancelOrderButton = document.getElementById('cancelorderbut');
@@ -158,7 +158,7 @@ function retrieveUserOrders(){
                 orderList = orderList[Object.keys(orderList)[0]]; 
                 orderList.forEach((order) => {
                     output += `
-                    <li onclick="changeToOrderPage(this)">
+                    <li onclick="changeToOrderPage(this)" data-testid="generatedUserOrders">
                         <a href="#"><h3>${order.item_name}</h3></a>
                         <p>Present Location: ${order.current_location}</p>
                         <p>Destination: ${order.destination}</p>
@@ -168,7 +168,7 @@ function retrieveUserOrders(){
                 });
                 let message = `<p style="background: #004e00;color: white;text-align: center;padding: 20px;font-size: 1.3em;font-family: 'Boogaloo', cursive;">${myJson.message}</p>`;
                 return document.getElementById('redirectedLogIn').innerHTML = message,
-                document.getElementById('singleuserorders').innerHTML = output, orderList;
+                document.getElementById('singleUserOrders').innerHTML = output, orderList;
 
             })
         }

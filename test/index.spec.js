@@ -120,6 +120,23 @@ describe('Login', () => {
         expect(duplicateEmail).toEqual("View all Orders")  
     });
 });
+
+describe('User interactions', () => {
+    test('assert user can view all orders they make', async () => {
+        await page.goto(routes.public.login)
+        await page.waitForSelector('[data-testid="logInForm"]')
+        await page.click('[data-testid="logInEmailInput"]')
+        await page.type('[data-testid="logInEmailInput"]', user.email)
+        await page.click('[data-testid="logInPasswordInput"]')
+        await page.type('[data-testid="logInPasswordInput"]', user.password)
+        await page.click('[data-testid="loginSubmitButton"]')
+        await page.waitForNavigation({waitUntil: "networkidle2"})
+        await page.waitForSelector('[data-testid="viewUserOrderButton"]')
+        await page.click('[data-testid="viewUserOrderButton"]')
+        await page.waitForSelector('[data-testid="generatedUserOrders"]')        
+    });
+});
+
 afterAll(async (done) => {
     browser.close();
     done();
