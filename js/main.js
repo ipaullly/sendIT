@@ -1,6 +1,6 @@
 const registerButton = document.getElementById('signUpButton');
 const loginButton = document.getElementById('logInButton');
-const createOrderButton = document.getElementById('createparcel');
+const createOrderButton = document.getElementById('createParcel');
 const userOrderButton = document.getElementById('userorders');
 const singleParcelIdButton = document.getElementById('singleordersearch');
 const updateDestinationButton = document.getElementById('updateorderdestination');
@@ -112,23 +112,23 @@ function createParcel(){
             "Authorization": "Bearer " + token
         },
         body: JSON.stringify({
-            item: document.getElementById('parcelname').value,
-            pickup: document.getElementById('parcelpickup').value,
-            dest: document.getElementById('parceldestination').value,
-            pricing: document.getElementById('parcelprice').value,
+            item: document.getElementById('parcelName').value,
+            pickup: document.getElementById('parcelPickUp').value,
+            dest: document.getElementById('parcelDestination').value,
+            pricing: document.getElementById('parcelPrice').value,
         })
     })
     .then((res) => {
         if (res.ok){
             return res.json().then((myJson) => {
-                output = `<p style="background: #004e00;color: white;text-align: center;padding: 20px;font-size: 1.3em;font-family: 'Boogaloo', cursive;">${myJson.message}</p>`;
-                return document.getElementById('redirectedlogin').innerHTML = output;
+                let output = `<p style="background: #004e00;color: white;text-align: center;padding: 20px;font-size: 1.3em;font-family: 'Boogaloo', cursive;">${myJson.message}</p>`;
+                return document.getElementById('redirectedLogIn').innerHTML = output;
             })
         }
         if (res.status == 400){
             return res.json().then((myJson) => {
                 output = `<p style="background: #a60000;color: white;text-align: center;padding: 20px;font-size: 1.3em;font-family: 'Boogaloo', cursive;">${myJson.message}</p>`;
-                return document.getElementById('redirectedlogin').innerHTML = output;
+                return document.getElementById('redirectedLogIn').innerHTML = output;
             })
         }
     });
@@ -167,7 +167,7 @@ function retrieveUserOrders(){
                     `;
                 });
                 let message = `<p style="background: #004e00;color: white;text-align: center;padding: 20px;font-size: 1.3em;font-family: 'Boogaloo', cursive;">${myJson.message}</p>`;
-                return document.getElementById('redirectedlogin').innerHTML = message,
+                return document.getElementById('redirectedLogIn').innerHTML = message,
                 document.getElementById('singleuserorders').innerHTML = output, orderList;
 
             })
@@ -175,7 +175,7 @@ function retrieveUserOrders(){
         if (res.status == 400){
             return res.json().then((myJson) => {
                 output = `<p style="background: #a60000;color: white;text-align: center;padding: 20px;font-size: 1.3em;font-family: 'Boogaloo', cursive;">${myJson.message}</p>`;
-                return document.getElementById('redirectedlogin').innerHTML = output;
+                return document.getElementById('redirectedLogIn').innerHTML = output;
             })
         }
     });
@@ -344,14 +344,14 @@ function retrieveAllOrders(){
                     `;
                 });
                 let message = `<p style="background: #004e00;color: white;text-align: center;padding: 20px;font-size: 1.3em;font-family: 'Boogaloo', cursive;">${myJson.message}</p>`;
-                return document.getElementById('redirectedlogin').innerHTML = message,
+                return document.getElementById('redirectedLogIn').innerHTML = message,
                 document.getElementById('alldeliveryorders').innerHTML = output;
             });
         }
         if (res.status == 400){
             return res.json().then((myJson) => {
                 output = `<p style="background: #a60000;color: white;text-align: center;padding: 20px;font-size: 1.3em;font-family: 'Boogaloo', cursive;">${myJson.message}</p>`;
-                return document.getElementById('redirectedlogin').innerHTML = output;
+                return document.getElementById('redirectedLogIn').innerHTML = output;
             });
         }
     });
@@ -363,7 +363,7 @@ function presentLocation(){
     let presentDestination = document.getElementById('parcelpresentlocation').value;
     if (hasNumber(presentDestination)){
         output = `<p style="background: #a60000;color: white;text-align: center;padding: 20px;font-size: 1.3em;font-family: 'Boogaloo', cursive;">Order destination can only be a string</p>`;
-        return document.getElementById('redirectedlogin').innerHTML = output;
+        return document.getElementById('redirectedLogIn').innerHTML = output;
     }
     else{
         let token = sessionStorage.getItem( 'token' ).replace("'", "");
@@ -391,7 +391,7 @@ function presentLocation(){
                     <p id="generatepresentdestination">Destination: ${newDestination}</p>
                     `;
                     let message = `<p style="background: #004e00;color: white;text-align: center;padding: 20px;font-size: 1.3em;font-family: 'Boogaloo', cursive;">${myJson.message}</p>`;
-                    return document.getElementById('redirectedlogin').innerHTML = message;
+                    return document.getElementById('redirectedLogIn').innerHTML = message;
 
                     //document.getElementById('generatepresentdestination').innerHTML = output;
                 });
@@ -399,7 +399,7 @@ function presentLocation(){
             if (res.status == 400){
                 return res.json().then((myJson) => {
                     output = `<p style="background: #a60000;color: white;text-align: center;padding: 20px;font-size: 1.3em;font-family: 'Boogaloo', cursive;">${myJson.message}</p>`;
-                    return document.getElementById('redirectedlogin').innerHTML = output;
+                    return document.getElementById('redirectedLogIn').innerHTML = output;
                 });
             }
         });
@@ -411,7 +411,7 @@ function changeStatus(){
     let changeStatus = document.getElementById('changeparcelstatus').value;
     if (hasNumber(changeStatus)){
         output = `<p style="background: #a60000;color: white;text-align: center;padding: 20px;font-size: 1.3em;font-family: 'Boogaloo', cursive;">status can only be a string</p>`;
-        return document.getElementById('redirectedlogin').innerHTML = output;
+        return document.getElementById('redirectedLogIn').innerHTML = output;
     }
     else{
         let token = sessionStorage.getItem( 'token' ).replace("'", "");
@@ -434,14 +434,14 @@ function changeStatus(){
             if (res.ok){
                 return res.json().then((myJson) => {
                     let message = `<p style="background: #004e00;color: white;text-align: center;padding: 20px;font-size: 1.3em;font-family: 'Boogaloo', cursive;">${myJson.message}</p>`;
-                    return document.getElementById('redirectedlogin').innerHTML = message;
+                    return document.getElementById('redirectedLogIn').innerHTML = message;
 
                 });
             }
             if (res.status == 400){
                 return res.json().then((myJson) => {
                     output = `<p style="background: #a60000;color: white;text-align: center;padding: 20px;font-size: 1.3em;font-family: 'Boogaloo', cursive;">${myJson.message}</p>`;
-                    return document.getElementById('redirectedlogin').innerHTML = output;
+                    return document.getElementById('redirectedLogIn').innerHTML = output;
                 });
             }
         });
