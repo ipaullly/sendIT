@@ -25,6 +25,19 @@ const admin = {
     email: 'Davidtroy@sendIT.org',
     password: 'Tykenyke'
 };
+const parcel = {
+    name: 'Twenty Heifer Skins',
+    pickup: 'Kisumu',
+    dest: 'Turkwell',
+    price: '6000'
+}
+const dummyParcel = {
+    name: ' ',
+    pickup: ' ',
+    dest: ' ',
+    price: ' '
+}
+
 
 let browser;
 let page;
@@ -121,7 +134,8 @@ describe('Login', () => {
     });
 });
 
-describe('User interactions', () => {
+describe('User dashboard', () => {
+    
     test('assert user can view all orders they make', async () => {
         await page.goto(routes.public.login)
         await page.waitForSelector('[data-testid="logInForm"]')
@@ -135,7 +149,44 @@ describe('User interactions', () => {
         await page.click('[data-testid="viewUserOrderButton"]')
         await page.waitForSelector('[data-testid="generatedUserOrders"]')        
     });
+    
+    test('assert user can redirect to single order info page', async () => {
+        await page.waitForSelector('[data-testid="generatedUserOrders"]')
+        await page.click('[data-testid="generatedUserOrders"]')
+        await page.waitForNavigation({waitUntil: "networkidle2"})
+        await page.waitForSelector('[data-testid="singleOrderPage"]')    
+    });
+
 });
+
+/*
+describe('User parcel creation', () => {
+    
+    test('assert user can view all orders they make', async () => {
+        await page.goto(routes.public.login)
+        await page.waitForSelector('[data-testid="logInForm"]')
+        await page.click('[data-testid="logInEmailInput"]')
+        await page.type('[data-testid="logInEmailInput"]', user.email)
+        await page.click('[data-testid="logInPasswordInput"]')
+        await page.type('[data-testid="logInPasswordInput"]', user.password)
+        await page.click('[data-testid="loginSubmitButton"]')
+        await page.waitForNavigation({waitUntil: "networkidle2"})
+        await page.waitForSelector('[data-testid="parcelCreationForm"]')
+        await page.click('[data-testid="orderNameInput"]')
+        await page.type('[data-testid="orderNameInput"]', dummyParcel.name)
+        await page.click('[data-testid="orderPickUpInput"]')
+        await page.type('[data-testid="orderPickUpInput"]', parcel.pickup)
+        await page.click('[data-testid="orderDestInput"]')
+        await page.type('[data-testid="orderDestInput"]', parcel.dest)
+        await page.click('[data-testid="orderPriceInput"]')
+        await page.type('[data-testid="orderPriceInput"]', parcel.price)
+        await page.click('[data-testid="createParcelSubmitButton"]')
+        await page.waitForSelector('[data-testid="redirectedLogIn"]')
+        expect.assertions(1)
+        const invalidParcelName = await page.$eval('[data-testid="redirectedLogIn"]', el => el.textContent)
+        return expect(invalidParcelName).toEqual("Invalid item name format")       
+    });
+}); */
 
 afterAll(async (done) => {
     browser.close();
