@@ -2,6 +2,7 @@
 
 
 # Send-IT  
+[![Build Status](https://travis-ci.com/ipaullly/sendIT.svg?branch=gh-pages)](https://travis-ci.com/ipaullly/sendIT)
 This is an app that allows users to create accounts and make delivery orders. The front-end was built using vanilla javaScript and consumed endpoints built with python/flask.
 
 ## Installation
