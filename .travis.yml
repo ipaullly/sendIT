@@ -7,7 +7,6 @@ cache:
 script:
 - npm start &
 - npm test
-- npm run coveralls
 services:
 - http-server
 
