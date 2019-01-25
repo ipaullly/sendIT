@@ -5,7 +5,8 @@
 [![Build Status](https://travis-ci.com/ipaullly/sendIT.svg?branch=ch-test-user-interactions-163458249)](https://travis-ci.com/ipaullly/sendIT)
 
 This is an app that allows users to create accounts and make delivery orders. The front-end was built using vanilla javaScript and consumed endpoints built with python/flask.
-
+The app is live on the github-pages [link](https://ipaullly.github.io/sendIT/index.html) for this repo.
+  
 ## Installation
 Clone the repository to your local machine
 ```
@@ -31,7 +32,10 @@ npm start
 
 ## Testing
 Tests run using **jest** and **puppeteer**. run the following command within the project folder to see the test coverage
-> npm test
+```
+npm test
+```
+Alternatively view the [Travis-CI](https://travis-ci.com/ipaullly/sendIT) build report to view coverage.
 
 ## App features
 - [ ] Users can create an account and log in.
@@ -40,10 +44,6 @@ Tests run using **jest** and **puppeteer**. run the following command within the
 - [ ] Users can cancel parcel delivery order.
 - [ ] Users can see the details of a delivery order.
 - [ ] Admin can change the **status** and **Current-location** of a parcel delivery order.
-
-## User Interface
-The interface is available at
-> [Welcome Page](https://ipaullly.github.io/sendIT/index.html)
 
 ## Built Using
 1.HTML
