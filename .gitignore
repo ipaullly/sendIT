@@ -7,4 +7,3 @@ app/
 node_modules/
 npm-debug.log
 coverage/
-build/
