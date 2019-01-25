@@ -156,6 +156,7 @@ describe('User dashboard', () => {
         await page.waitForNavigation({waitUntil: "networkidle2"})
         await page.waitForSelector('[data-testid="singleOrderPage"]')    
     });
+    
 
 });
 
