@@ -6,15 +6,26 @@ This is an app that allows users to create accounts and make delivery orders. Th
 
 ## Installation
 Clone the repository to your local machine
-> git clone https://github.com/ipaullly/sendIT.git
+```
+git clone https://github.com/ipaullly/sendIT.git
+```
 Move into the project directory created after the clone command
-> cd *project_directory*
+```
+cd *project_directory*
+```
 Initialize node for the project
-> npm init
+
+```
+npm init
+```
 Install all related dependencies from the package.json
-> npm install
+```
+npm install
+```
 To run the project on your local server
-> npm start
+```
+npm start
+```
 
 ## Testing
 Tests run using **jest** and **puppeteer**. run the following command within the project folder to see the test coverage
