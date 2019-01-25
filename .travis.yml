@@ -4,9 +4,8 @@ node_js:
 cache:
   directories:
   - "node_modules"
-before_script:
-- "./start-server.sh"
 script:
+- npm start &
 - npm test
 - npm run coveralls
 services:
