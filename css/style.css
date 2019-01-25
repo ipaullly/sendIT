@@ -148,6 +148,7 @@ footer{
 
 
 /* Styles for input fields */
+
 input[type=text], input[type=password] {
     width: 100%;
     padding: 12px 20px;
@@ -158,7 +159,7 @@ input[type=text], input[type=password] {
 }
 
 /* style for button */
-#loginbut {
+#logInButton {
     background-color: #584e76;
     color: white;
     padding: 14px 20px;
@@ -183,6 +184,7 @@ img.userlog {
 
 /* Add padding to containers */
 .inputfield {
+    width: 100%;
     padding: 16px;
 }
 

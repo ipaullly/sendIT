@@ -18,8 +18,6 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="profile.html">Profile</a></li>
-                    <li><a href="about.html">About</a></li>
                     <li><a href="index.html">Logout</a></li>
                 </ul>
             </nav>
@@ -29,32 +27,32 @@
         <div class="container">
             <aside id="leftbar">
                 <h3>Place New Order</h3>
-                <form class="create">
+                <form data-testid="parcelCreationForm" class="create">
                     <div>
                         <label>Parcel name:</label>
-                        <input id="parcelname" type="text" placeholder="item">
+                        <input id="parcelName" type="text" placeholder="item" data-testid="orderNameInput">
                     </div>
                     <div>
                         <label>Pickup location:</label>
-                        <input id="parcelpickup" type="text" placeholder="enter starting point">
+                        <input id="parcelPickUp" type="text" placeholder="enter starting point" data-testid="orderPickUpInput">
                     </div>
                     <div>
                         <label>Destination:</label>
-                        <input id="parceldestination" type="text" placeholder="enter destination">
+                        <input id="parcelDestination" type="text" placeholder="enter destination" data-testid="orderDestInput">
                     </div>
                     <div>
                         <label>Price:</label>
-                        <input id="parcelprice" type="text" placeholder="Enter price in figures">
+                        <input id="parcelPrice" type="text" placeholder="Enter price in figures" data-testid="orderPriceInput">
                     </div>
-                    <button id="createparcel" class="button_1" type="button">Create</button>
+                    <button id="createParcel" class="button_1" type="button" data-testid="createParcelSubmitButton">Create</button>
                 </form>
             </aside>
             <article id="about-col">
-                <p id="redirectedlogin"></p>
-                <button id="userorders" class="button_1" style="margin: 10px;" type="button">View my orders</button>
+                <div id="redirectedLogIn"></div>
+                <button id="userOrders" class="button_1" style="margin: 10px;" type="button" data-testid="viewUserOrderButton">View my orders</button>
                 <h2>Orders</h2>
                 <ul id="orders">
-                    <div id="singleuserorders">
+                    <div id="singleUserOrders">
                         <li>
                             <p style="font-weight: bold;">Click 'View my orders' to display your orders.</p>
                             <a href="order_display_page.html"><h3>Parcel Name</h3></a>
