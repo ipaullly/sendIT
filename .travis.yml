@@ -6,7 +6,9 @@ cache:
   - "node_modules"
 script:
 - npm start &
-- npm run test-with-coverage --token
+- npm test
+after_script: 
+- npm run test-with-coverage
 services:
 - http-server
 
