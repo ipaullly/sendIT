@@ -6,7 +6,8 @@
   "scripts": {
     "babel": "babel --presets es2015 js/main.js -o build/main.bundle.js",
     "start": "http-server",
-    "test": "jest"
+    "test": "jest",
+    "test-with-coverage": "jest --coverage && cat ./coverage/lcov.info | codacy-coverage"
   },
   "repository": {
     "type": "git",
@@ -29,5 +30,8 @@
     "http-server": "^0.11.1",
     "jest": "^23.6.0",
     "puppeteer": "^1.11.0"
+  },
+  "dependencies": {
+    "codacy-coverage": "^3.4.0"
   }
 }
