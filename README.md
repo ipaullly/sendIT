@@ -2,7 +2,7 @@
 
 
 # Send-IT   
-[![Build Status](https://travis-ci.com/ipaullly/sendIT.svg?branch=ch-test-user-interactions-163458249)](https://travis-ci.com/ipaullly/sendIT)[![Codacy Badge](https://api.codacy.com/project/badge/Grade/d5026cb302e349d7b08580df620e7ecd)](https://www.codacy.com/app/ipaullly/sendIT?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ipaullly/sendIT&amp;utm_campaign=Badge_Grade)
+[![Build Status](https://travis-ci.com/ipaullly/sendIT.svg?branch=ch-test-user-interactions-163458249)](https://travis-ci.com/ipaullly/sendIT) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/d5026cb302e349d7b08580df620e7ecd)](https://www.codacy.com/app/ipaullly/sendIT?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ipaullly/sendIT&amp;utm_campaign=Badge_Grade)
 
 The project was done while participating in the Andela Developer Challenge simulated sprint of the application bootcamp. 
 This is an app that allows users to create accounts and make delivery orders. The front-end was built using vanilla javaScript and consumed endpoints built with python/flask.
