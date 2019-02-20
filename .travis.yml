@@ -8,7 +8,7 @@ script:
 - npm start &
 - npm test
 after_script: 
-- npm run test-with-coverage
+- npm run test-codacy
 services:
 - http-server
 
