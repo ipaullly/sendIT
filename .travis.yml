@@ -9,7 +9,6 @@ script:
 - npm test
 after_success: 
 - npm run coveralls
-- coveralls
 services:
 - http-server
 
