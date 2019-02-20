@@ -6,8 +6,8 @@
   "scripts": {
     "babel": "babel --presets es2015 js/main.js -o build/main.bundle.js",
     "start": "http-server",
-    "test": "jest --coverage",
-    "test-with-coverage": "cat ./coverage/lcov.info | codacy-coverage --accountToken 5T5GEx9t2TIWXVXOdeUc --username Morogo --projectName sendIT"
+    "test": "jest",
+    "test-with-coverage": "jest --config config.json --coverage && cat ./coverage/lcov.info | codacy-coverage"
   },
   "repository": {
     "type": "git",

@@ -28,16 +28,16 @@
         <div class="container">
             <aside id="leftbar">
                 <h3>Update Order Destination</h3>
-                <form class="create">
+                <form data-testid="singleOrderForm" class="create">
                     <div class="label">
                         <label>Enter Parcel ID:</label><br>
-                        <input id="parcelorderid" type="text" placeholder="Enter order id">
-                        <button id="singleordersearch" class="button_1" type="button">Search</button>
+                        <input id="parcelorderid" type="text" placeholder="Enter order id" data-testid="orderIdInput">
+                        <button id="singleordersearch" class="button_1" type="button" data-testid="viewOrderInfo">See Order Info</button>
                     </div>
                     <div class="label">
                         <label style="margin-top: 10px;">Enter new destination:</label><br>
-                        <input id="parcelupdatedestination" type="text" placeholder="type new destination">
-                        <button id="updateorderdestination" class="button_1" type="button">Update</button>
+                        <input id="parcelupdatedestination" type="text" data-testid="updateOrderDestination" placeholder="type new destination">
+                        <button id="updateorderdestination" class="button_1" type="button" data-testid="submitNewDestination">Update</button>
                         <button id="cancelorderbut" style="margin-top: 20px;" class="button_1" type="button">Cancel Order</button>    
                     </div>
                 </form>
