@@ -8,7 +8,7 @@ script:
 - npm start &
 - npm test
 after_success: 
-- npm run coveralls
+- npm run test-with-coverage --token
 services:
 - http-server
 
