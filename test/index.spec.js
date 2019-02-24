@@ -146,17 +146,17 @@ describe("User dashboard", () => {
         await page.waitForSelector('[data-testid="generatedUserOrders"]');        
     });
     test("assert user can submit delivery order fields", async () => {
-        await page.waitForSelector('[data-testid="parcelCreationForm"]')
-        await page.click('[data-testid="orderNameInput"]')
-        await page.type('[data-testid="orderNameInput"]', dummyParcel.name)
-        await page.click('[data-testid="orderPickUpInput"]')
-        await page.type('[data-testid="orderPickUpInput"]', parcel.pickup)
-        await page.click('[data-testid="orderDestInput"]')
-        await page.type('[data-testid="orderDestInput"]', parcel.dest)
-        await page.click('[data-testid="orderPriceInput"]')
-        await page.type('[data-testid="orderPriceInput"]', parcel.price)
-        await page.click('[data-testid="createParcelSubmitButton"]')
-        await page.waitForSelector('[data-testid="createOrderFailResponse"]')
+        await page.waitForSelector('[data-testid="parcelCreationForm"]');
+        await page.click('[data-testid="orderNameInput"]');
+        await page.type('[data-testid="orderNameInput"]', dummyParcel.name);
+        await page.click('[data-testid="orderPickUpInput"]');
+        await page.type('[data-testid="orderPickUpInput"]', parcel.pickup);
+        await page.click('[data-testid="orderDestInput"]');
+        await page.type('[data-testid="orderDestInput"]', parcel.dest);
+        await page.click('[data-testid="orderPriceInput"]');
+        await page.type('[data-testid="orderPriceInput"]', parcel.price);
+        await page.click('[data-testid="createParcelSubmitButton"]');
+        await page.waitForSelector('[data-testid="createOrderFailResponse"]');
     });
     test("assert user can redirect to single order info page", async () => {
         await page.waitForSelector('[data-testid="generatedUserOrders"]');
@@ -181,6 +181,13 @@ describe("User dashboard", () => {
         await page.waitForSelector('[data-testid="updatedDestination"]');
         const updatedOrderDestination = await page.$eval('[data-testid="updatedDestination"]', el => el.textContent);
         expect(updatedOrderDestination).toEqual("New destination updated"); 
+    });
+    test("assert user can cancel order", async () => {
+        await page.waitForSelector('[data-testid="singleOrderForm"]');
+        await page.click('[data-testid="cancelOrder"]');
+        await page.waitForSelector('[data-testid="cancelResponse"]');
+        const cancelOrderResponse = await page.$eval('[data-testid="cancelResponse"]', el => el.textContent);
+        expect(cancelOrderResponse).toEqual("order is cancelled"); 
     });
 });
 

@@ -300,7 +300,7 @@ function cancelOrder(){
                 output += `
                 <p id="generatestatus">Status: cancelled</p>
                 `;
-                let message = `<p style="background: #004e00;color: white;text-align: center;padding: 20px;font-size: 1.3em;font-family: 'Boogaloo', cursive;">${myJson.message}</p>`;
+                let message = `<p style="background: #004e00;color: white;text-align: center;padding: 20px;font-size: 1.3em;font-family: 'Boogaloo', cursive;" data-testid="cancelResponse">${myJson.message}</p>`;
                 return document.getElementById("redirectedorderpage").innerHTML = message,
                 document.getElementById("generatestatus").innerHTML = output;
             });
