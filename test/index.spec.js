@@ -191,6 +191,38 @@ describe("User dashboard", () => {
     });
 });
 
+describe("Admin dashboard", () => {
+    test("assert admin can view all orders made by all users", async () => {
+        await page.goto(routes.public.login);
+        await page.waitForSelector('[data-testid="logInForm"]');
+        await page.click('[data-testid="logInEmailInput"]');
+        await page.type('[data-testid="logInEmailInput"]', admin.email);
+        await page.click('[data-testid="logInPasswordInput"]');
+        await page.type('[data-testid="logInPasswordInput"]', admin.password);
+        await page.click('[data-testid="loginSubmitButton"]');
+        await page.waitForNavigation({waitUntil: "networkidle2"});
+        await page.waitForSelector('[data-testid="allOrdersAdmin"]');
+        await page.click('[data-testid="allOrdersAdmin"]');
+        await page.waitForSelector('[data-testid="generatedAllOrders"]');        
+    });
+    test("assert admin can update the current location of a parcel", async () => {
+        await page.waitForSelector('[data-testid="updateLocationForm"]');
+        await page.click('[data-testid="parcelIdInput"]');
+        await page.type('[data-testid="parcelIdInput"]', "1");
+        await page.click('[data-testid="parcelLocationInput"]');
+        await page.type('[data-testid="parcelLocationInput"]', "Homabay");
+        await page.click('[data-testid="updateLocationButton"]');
+        await page.waitForSelector('[data-testid="updateLocationResponse"]');
+    });
+    test("assert admin can update status of a parcel", async () => {
+        await page.waitForSelector('[data-testid="updateOrderStatus"]');
+        await page.click('[data-testid="updateOrderStatus"]');
+        await page.type('[data-testid="updateOrderStatus"]', "Arrived");
+        await page.click('[data-testid="orderStatusButton"]');
+        await page.waitForSelector('[data-testid="orderStatusResponse"]');    
+    });
+});
+
 /*
 describe('User parcel creation', () => {
     

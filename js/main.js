@@ -330,7 +330,7 @@ function retrieveAllOrders(){
                 orderList = myJson.data;
                 orderList.forEach((order) => {
                     output += `
-                    <li>
+                    <li data-testid="generatedAllOrders">
                         <h3>${order.item_name}</h3>
                         <p>Present Location: ${order.current_location}</p>
                         <p>Destination: ${order.destination}</p>
@@ -386,7 +386,7 @@ function presentLocation(){
                     output = `
                     <p id="generatepresentdestination">Destination: ${newDestination}</p>
                     `;
-                    let message = `<p style="background: #004e00;color: white;text-align: center;padding: 20px;font-size: 1.3em;font-family: 'Boogaloo', cursive;">${myJson.message}</p>`;
+                    let message = `<p style="background: #004e00;color: white;text-align: center;padding: 20px;font-size: 1.3em;font-family: 'Boogaloo', cursive;" data-testid="updateLocationResponse">${myJson.message}</p>`;
                     return document.getElementById("redirectedLogIn").innerHTML = message;
 
                     //document.getElementById('generatepresentdestination').innerHTML = output;
@@ -428,7 +428,7 @@ function changeStatus(){
         .then((res) => {
             if (res.ok){
                 return res.json().then((myJson) => {
-                    let message = `<p style="background: #004e00;color: white;text-align: center;padding: 20px;font-size: 1.3em;font-family: 'Boogaloo', cursive;">${myJson.message}</p>`;
+                    let message = `<p style="background: #004e00;color: white;text-align: center;padding: 20px;font-size: 1.3em;font-family: 'Boogaloo', cursive;" data-testid="orderStatusResponse">${myJson.message}</p>`;
                     return document.getElementById("redirectedLogIn").innerHTML = message;
                 });
             }
