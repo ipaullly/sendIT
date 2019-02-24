@@ -146,17 +146,17 @@ describe("User dashboard", () => {
         await page.waitForSelector('[data-testid="generatedUserOrders"]');        
     });
     test("assert user can submit delivery order fields", async () => {
-        await page.waitForSelector('[data-testid="parcelCreationForm"]')
-        await page.click('[data-testid="orderNameInput"]')
-        await page.type('[data-testid="orderNameInput"]', dummyParcel.name)
-        await page.click('[data-testid="orderPickUpInput"]')
-        await page.type('[data-testid="orderPickUpInput"]', parcel.pickup)
-        await page.click('[data-testid="orderDestInput"]')
-        await page.type('[data-testid="orderDestInput"]', parcel.dest)
-        await page.click('[data-testid="orderPriceInput"]')
-        await page.type('[data-testid="orderPriceInput"]', parcel.price)
-        await page.click('[data-testid="createParcelSubmitButton"]')
-        await page.waitForSelector('[data-testid="createOrderFailResponse"]')
+        await page.waitForSelector('[data-testid="parcelCreationForm"]');
+        await page.click('[data-testid="orderNameInput"]');
+        await page.type('[data-testid="orderNameInput"]', dummyParcel.name);
+        await page.click('[data-testid="orderPickUpInput"]');
+        await page.type('[data-testid="orderPickUpInput"]', parcel.pickup);
+        await page.click('[data-testid="orderDestInput"]');
+        await page.type('[data-testid="orderDestInput"]', parcel.dest);
+        await page.click('[data-testid="orderPriceInput"]');
+        await page.type('[data-testid="orderPriceInput"]', parcel.price);
+        await page.click('[data-testid="createParcelSubmitButton"]');
+        await page.waitForSelector('[data-testid="createOrderFailResponse"]');
     });
     test("assert user can redirect to single order info page", async () => {
         await page.waitForSelector('[data-testid="generatedUserOrders"]');
@@ -181,6 +181,45 @@ describe("User dashboard", () => {
         await page.waitForSelector('[data-testid="updatedDestination"]');
         const updatedOrderDestination = await page.$eval('[data-testid="updatedDestination"]', el => el.textContent);
         expect(updatedOrderDestination).toEqual("New destination updated"); 
+    });
+    test("assert user can cancel order", async () => {
+        await page.waitForSelector('[data-testid="singleOrderForm"]');
+        await page.click('[data-testid="cancelOrder"]');
+        await page.waitForSelector('[data-testid="cancelResponse"]');
+        const cancelOrderResponse = await page.$eval('[data-testid="cancelResponse"]', el => el.textContent);
+        expect(cancelOrderResponse).toEqual("order is cancelled"); 
+    });
+});
+
+describe("Admin dashboard", () => {
+    test("assert admin can view all orders made by all users", async () => {
+        await page.goto(routes.public.login);
+        await page.waitForSelector('[data-testid="logInForm"]');
+        await page.click('[data-testid="logInEmailInput"]');
+        await page.type('[data-testid="logInEmailInput"]', admin.email);
+        await page.click('[data-testid="logInPasswordInput"]');
+        await page.type('[data-testid="logInPasswordInput"]', admin.password);
+        await page.click('[data-testid="loginSubmitButton"]');
+        await page.waitForNavigation({waitUntil: "networkidle2"});
+        await page.waitForSelector('[data-testid="allOrdersAdmin"]');
+        await page.click('[data-testid="allOrdersAdmin"]');
+        await page.waitForSelector('[data-testid="generatedAllOrders"]');        
+    });
+    test("assert admin can update the current location of a parcel", async () => {
+        await page.waitForSelector('[data-testid="updateLocationForm"]');
+        await page.click('[data-testid="parcelIdInput"]');
+        await page.type('[data-testid="parcelIdInput"]', "1");
+        await page.click('[data-testid="parcelLocationInput"]');
+        await page.type('[data-testid="parcelLocationInput"]', "Homabay");
+        await page.click('[data-testid="updateLocationButton"]');
+        await page.waitForSelector('[data-testid="updateLocationResponse"]');
+    });
+    test("assert admin can update status of a parcel", async () => {
+        await page.waitForSelector('[data-testid="updateOrderStatus"]');
+        await page.click('[data-testid="updateOrderStatus"]');
+        await page.type('[data-testid="updateOrderStatus"]', "Arrived");
+        await page.click('[data-testid="orderStatusButton"]');
+        await page.waitForSelector('[data-testid="orderStatusResponse"]');    
     });
 });
 
