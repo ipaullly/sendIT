@@ -114,6 +114,7 @@ header a:hover{
 /* squares */
 #squares{
     margin-top: 20px;
+    padding-bottom: 6rem;
 }
 
 #squares .box{

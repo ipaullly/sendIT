@@ -28,20 +28,20 @@
         <div class="container">
             <aside id="leftbar">
                 <h3>Update Current Location</h3>
-                <form class="create">
+                <form class="create" data-testid="updateLocationForm">
                     <div class="label">
                         <label>Order Id:</label><br>
-                        <input id="deliveryorderid" type="text" placeholder="enter order id">
+                        <input id="deliveryorderid" type="text" placeholder="enter order id" data-testid="parcelIdInput">
                     </div>
                     <div class="label">
                         <label>Present Location:</label><br>
-                        <input id="parcelpresentlocation" type="text" placeholder="current location">
-                        <button id="updatelocationbut" class="button_1" type="button">Update</button>
+                        <input id="parcelpresentlocation" type="text" placeholder="current location" data-testid="parcelLocationInput">
+                        <button id="updatelocationbut" class="button_1" type="button" data-testid="updateLocationButton">Update</button>
                     </div>
                     <div class="label">
                         <label>Status:</label><br>
-                        <input id="changeparcelstatus" type="text" placeholder="In transit/Arrived">
-                        <button id="changestatusbut" class="button_1" type="button">Change Status</button>
+                        <input id="changeparcelstatus" type="text" placeholder="In transit/Arrived" data-testid="updateOrderStatus">
+                        <button id="changestatusbut" class="button_1" type="button" data-testid="orderStatusButton">Change Status</button>
                     </div>
                 </form>
             </aside>
@@ -77,7 +77,7 @@
     </section>
 
     <footer>
-        <p>Send-IT, Copyright &copy; 2019</p>
+        <p>Send-IT, Copyright &copy; 2020</p>
     </footer>
     <script src="./js/main.js"></script>
 </body>

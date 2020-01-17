@@ -7,6 +7,8 @@ cache:
 script:
 - npm start &
 - npm test
+after_success: 
+- npm run test-with-coverage --token
 services:
 - http-server
 
